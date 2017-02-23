@@ -1,8 +1,5 @@
 version: 2
 importPivots: 1
 tpsheetFileNames:
-- Assets/res/ui/atlas/ui_common_buttons_01.tpsheet
 textureFileNames:
-- Assets/res/ui/atlas/ui_common_buttons_01.png
 normalmapFileNames:
-- 
