@@ -18,10 +18,8 @@ namespace Core.App
 		}
 		public override void OnEnter()
 		{
-			UIManager.Instance.CreateTitle();
-			UIManager.Instance.ShowUI( "ui_login" );
 			SignalSystem.Register( SignalId.NetworkState_EnterConnected, _enterNetworkConnectedState );
-			//NetManager.Instance.Login();
+			NetManager.Instance.Login();
 		}
 
 		public override void OnExit()
@@ -31,7 +29,8 @@ namespace Core.App
 
 		private void _enterNetworkConnectedState( SignalId _signal_id, SignalParameters _parameters )
 		{
-			//UIManager.Instance.ShowUI( "ui_login" );
+			UIManager.Instance.CreateTitle();
+			UIManager.Instance.ShowUI( "ui_login" );
 		}
 	}
 }

@@ -61,7 +61,7 @@ namespace Utility
 
 		public static Int32 GenerateInt32( Byte _type, Byte _dir, UInt16 _id )
 		{
-			Int32 id = (Int32) ( _type << 24 ) + (Int32)( _dir << 16 ) + _id;
+			Int32 id = (Int32) ( _dir << 24 ) + (Int32)( _type << 16 ) + _id;
 			return id;
 		}
 

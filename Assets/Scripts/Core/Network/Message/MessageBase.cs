@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using UnityEditor;
 using Utility;
 namespace Groot.Network
 {
@@ -29,6 +30,7 @@ namespace Groot.Network
 		[MessageFiled( 2 )]
 		public UInt64 Signature = 0;
 	}
+
 	/// <summary>
 	/// 消息基类
 	/// </summary>
@@ -50,84 +52,34 @@ namespace Groot.Network
 		[MessageFiled( 2 )]
 		public Byte MsgDirection;
 		public MessageBase() {}
-		public MessageBase( Byte _type, Byte _dir, UInt16 _msg_id )
+		public MessageBase( EMsgDirection _dir, EMsgType _type, EMsgId _msg_id )
 		{
-			MsgType = _type;
-			MsgId = _msg_id;
-			MsgDirection = _dir;
+			MsgDirection = (Byte)_dir;
+			MsgType = (Byte)_type;
+			MsgId = (UInt16)_msg_id;
 		}
 	}
 
 	class ConnectMsg : MessageBase
 	{
-		public static readonly Byte Type = 255;
-		public static readonly Byte Dir = 0;
-		public static readonly UInt16 MessageId = 65535;
+		public static Byte   Dir  = (Byte)EMsgDirection.MSG_MAX;
+		public static Byte   Type = (Byte)EMsgType.TYPE_MAX;
+		public static UInt16 MessageId = (UInt16)EMsgId.DIS_CONNECT;
 
 		public ConnectMsg()
-			: base( Type, Dir, MessageId )
+			: base( EMsgDirection.MSG_MAX, EMsgType.TYPE_MAX, EMsgId.CONNECT )
 		{
 		}
 	}
 
 	class DisconnectMsg : MessageBase
 	{
-		public static readonly Byte Type = 255;
-		public static readonly Byte Dir = 0;
-		public static readonly UInt16 MessageId = 65534;
-
+		public static Byte   Dir  = (Byte)EMsgDirection.MSG_MAX;
+		public static Byte   Type = (Byte)EMsgType.TYPE_MAX;
+		public static UInt16 MessageId = (UInt16)EMsgId.DIS_CONNECT;
 		public DisconnectMsg()
-			: base( Type, Dir, MessageId )
+			: base( EMsgDirection.MSG_MAX, EMsgType.TYPE_MAX, EMsgId.DIS_CONNECT )
 		{
-		}
-	}
-
-	class CG_LoginRequestMsg : MessageBase
-	{
-		[MessageFiled(0)]
-		public Byte PlatformID;
-
-		[MessageFiled(1,33)]
-		public string PlayerName;
-
-		[MessageFiled(2,18)]
-		public string PlayerPassword;
-
-		[MessageFiled(3,33)]
-		public string Md5;
-
-		[MessageFiled(4)]
-		public Int32 Version;
-
-		[MessageFiled(5)]
-		public Byte NameType;
-
-		[MessageFiled(6)]
-		public UInt64 Mac;
-
-		public CG_LoginRequestMsg() : base( 16, 1, 1 )
-		{
-			
-		}
-	}
-
-	class GC_LoginFailedMsg : MessageBase
-	{
-		[MessageFiled(0)]
-		public Int32 Reason;
-
-		[MessageFiled(1,33)]
-		public string PlayerName;
-
-		[MessageFiled(2,18)]
-		public string PlayerPassword;
-
-		[MessageFiled(3)]
-		public UInt64 LeaveTimeWhenForbid;
-
-		public GC_LoginFailedMsg() : base( 16, 2, 3 )
-		{
-			
 		}
 	}
 }

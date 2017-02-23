@@ -6,3 +6,5 @@ Tmp/
 Assets/StreamingAssets/
 Assets/StreamingAssets.meta
 weiqi_build/
+*.suo
+dev_path/

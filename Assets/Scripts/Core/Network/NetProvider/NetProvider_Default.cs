@@ -204,15 +204,11 @@ namespace Groot.Network
 				WaitForResponse.Retain();
 				NetManager.Instance.Register<ConnectMsg>( _onGameSrvConnected );
 				NetManager.Instance.Register<DisconnectMsg>( _onGameSrvDisconnected );
-				//Entity.m_net_client_gamesrv.Register<ConnectMsg>( ConnectMsg.MyMessageId, _onGameSrvConnected );
-				//Entity.m_net_client_gamesrv.Register<DisconnectMsg>( DisconnectMsg.MyMessageId, _onGameSrvDisconnected );
-				//Entity.m_net_client_gamesrv.Register<Msg_gc_LoginResult>( Msg_gc_LoginResult.MyMessageId, _onLoginSucceed );
 				IPAddress ip;
 				if( !IPAddress.TryParse( "192.168.100.152", out ip ) )
 					throw new ServerInfoException( ServerInfoException.ErrorType.IpParseError );
 				IPEndPoint ip_end = new IPEndPoint( ip, 12345 );
 				Entity.m_net_client_gamesrv.Connect( ip_end );
-				//SignalSystem.Register( SignalId.LoginSucceeded, _onLoginSucceed );
 
 				if( m_time_out == null )
 				{
@@ -227,8 +223,6 @@ namespace Groot.Network
 			{
 				NetManager.Instance.Unregister<ConnectMsg>();
 				NetManager.Instance.Unregister<DisconnectMsg>();
-				//SignalSystem.Unregister( SignalId.LoginSucceeded, _onLoginSucceed );
-				//Entity.m_net_client_gamesrv.Unregister( Msg_gc_LoginResult.MyMessageId );
 				m_time_out.Stop();
 			}
 
@@ -236,40 +230,12 @@ namespace Groot.Network
 			{
 				Log.Info( "GameSrv Connected!" );
 				FiniteStateMachine.ChangeStateTo( NetWorkStateType.Connected );
-				//Msg_cg_LoginRequire msg = new Msg_cg_LoginRequire();
-				//msg.UserID = LoginSystem.Instance.UserId;
-				//msg.UserToken = LoginSystem.Instance.GameToken;
-				//msg.DeviceModel = SystemInfo.deviceModel;
-				//msg.DeviceIndentifier = SystemInfo.deviceUniqueIdentifier;
-				//msg.Name = LoginSystem.Instance.NickName;
-				//msg.HeadImage = LoginSystem.Instance.Headimgurl;
-				//msg.Sex = LoginSystem.Instance.Sex;
-				//Entity.m_net_client_gamesrv.SendMessage( msg );
-				//m_time_out.Stop();
-				//m_time_out.Start();
-				//m_time_out_tip = "GameSrvAuthorizationTimeOut";
 			}
 
 			private void _onGameSrvDisconnected( Int32 _stream_id, PacketType _packet_type, DisconnectMsg _msg )
 			{
 				_onLoginFail( "GameSrv_AbnormalDisconnection" );
 			}
-
-			//private void _onLoginSucceed( SignalId _signal_id, SignalParameters _parameters )
-			//{
-			//	Msg_gc_LoginResult msg = (Msg_gc_LoginResult)_parameters[0];
-			//	switch( msg.ResultCode )
-			//	{
-			//	case LoginResultType.Succeed:
-			//		{
-			//			FiniteStateMachine.ChangeStateTo( NetWorkStateType.Connected );
-			//		}
-			//		break;
-			//	default: // 暂时都统一处理
-			//		_onLoginFail( "GameSrvConnectFail", msg.ResultCode );
-			//		break;
-			//	}
-			//}
 
 			private void _onTimeOut( Timer _timer, DateTime _date_time, long _arg3 )
 			{
@@ -299,21 +265,10 @@ namespace Groot.Network
 			{
 				WaitForResponse.Release();
 				NetManager.Instance.Register<DisconnectMsg>( _onConnectionClosed );
-				NetManager.Instance.Register<GC_LoginFailedMsg>( _onLoginFailed );
 				//Entity.m_net_client_gamesrv.Register<DisconnectMsg>( DisconnectMsg.MyMessageId, _onConnectionClosed );
 				//Entity.m_net_client_gamesrv.Register<Msg_gc_ConnectionClosed>( Msg_gc_ConnectionClosed.MyMessageId, _onGameSrvCloseConnection );
 				//Entity.m_net_client_gamesrv.Register<Msg_gc_Heartbeat>( Msg_gc_Heartbeat.MyMessageId, _onHeartbeatReceived );
 				Utility.Log.Info( "成功登录GameSrv" );
-				//CG_LoginRequestMsg msgs = new CG_LoginRequestMsg();
-				//msgs.PlatformID = 1;
-				//msgs.PlayerName = "zyp速度";
-				//msgs.PlayerPassword = "123456速度";
-				//msgs.Md5 = "65432速度1";
-				//msgs.Version = 1;
-				//msgs.NameType = 1;
-				//msgs.Mac = 651315644;
-				//NetManager.Instance.SendMsg( msgs );
-
 
 				//Main.Instance.eventOnApplicationPause += _onApplicationPause;
 				//_startSyncTime();
@@ -337,7 +292,6 @@ namespace Groot.Network
 				//if( m_timer_sync_time != null )
 				//	m_timer_sync_time.Stop();
 				NetManager.Instance.Unregister<DisconnectMsg>();
-				NetManager.Instance.Unregister<GC_LoginFailedMsg>();
 				//Entity.m_net_client_gamesrv.Unregister( Msg_gc_ConnectionClosed.MyMessageId );
 				//Entity.m_net_client_gamesrv.Unregister( Msg_gc_Heartbeat.MyMessageId );
 
@@ -352,11 +306,6 @@ namespace Groot.Network
 				//TODO 链接断开，自动重连
 				Entity.m_connect_in = 10f;
 				FiniteStateMachine.ChangeStateTo( NetWorkStateType.Connecting );
-			}
-
-			private void _onLoginFailed( Int32 _stream_id, PacketType _packet_type, GC_LoginFailedMsg _msg )
-			{
-				Utility.Log.Info( "{0}--{1}--{2}--{3}", _msg.Reason, _msg.LeaveTimeWhenForbid, _msg.PlayerName, _msg.PlayerPassword );
 			}
 
 			//private void _onGameSrvCloseConnection( Int32 _stream_id, PacketType _packet_type, Msg_gc_ConnectionClosed _msg )
