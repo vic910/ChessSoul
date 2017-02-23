@@ -2,3 +2,7 @@
 Library/
 *.sln
 Temp/
+Tmp/
+Assets/StreamingAssets/
+Assets/StreamingAssets.meta
+weiqi_build/
