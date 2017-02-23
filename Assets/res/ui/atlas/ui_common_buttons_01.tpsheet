@@ -1,0 +1,46 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:ff060e7e34864ec7984b587facc59b56:770a22ec44cc3a84e0a6522f80656b39:fc2656bc61a1422c40fb99adc648549e$
+#
+:format=40000
+:texture=ui_common_buttons_01.png
+:size=1024x1024
+:pivotpoints=enabled
+
+ui_common_sunken01;587;333;220;94;0.5;0.5
+ui_commond_btnblue01;508;138;194;104;0.5;0.5
+ui_commond_btnblue02;759;722;229;104;0.5;0.5
+ui_commond_btnblue03;2;217;273;104;0.5;0.5
+ui_commond_btnblue04;437;674;275;79;0.5;0.5
+ui_commond_btnblue05;554;244;206;87;0.5;0.5
+ui_commond_btnblue06;766;926;245;96;0.5;0.5
+ui_commond_btngray01;508;32;194;104;0.5;0.5
+ui_commond_btngray02;277;194;229;104;0.5;0.5
+ui_commond_btngray03;2;111;273;104;0.5;0.5
+ui_commond_btnpurple01;704;138;194;104;0.5;0.5
+ui_commond_btnpurple02;277;88;229;104;0.5;0.5
+ui_commond_btnpurple03;2;5;273;104;0.5;0.5
+ui_commond_btnpurple04;2;323;260;126;0.5;0.5
+ui_commond_btnpurple05;437;755;320;126;0.5;0.5
+ui_commond_btnpurple06;2;451;306;126;0.5;0.5
+ui_commond_btnpurple07;714;641;275;79;0.5;0.5
+ui_commond_btnpurple08;437;883;327;139;0.5;0.5
+ui_commond_btnred01;2;872;433;150;0.5;0.5
+ui_commond_btnred02;762;244;206;87;0.5;0.5
+ui_commond_btnyellow01;704;32;194;104;0.5;0.5
+ui_commond_btnyellow02;606;535;229;104;0.5;0.5
+ui_commond_btnyellow03;331;568;273;104;0.5;0.5
+ui_commond_btnyellow04;310;381;275;79;0.5;0.5
+ui_commond_btnyellow05;2;579;327;139;0.5;0.5
+ui_commond_btnyellow06;766;828;245;96;0.5;0.5
+ui_commond_btnyellow07;2;720;433;150;0.5;0.5
+ui_commond_green01;818;429;194;104;0.5;0.5
+ui_commond_green02;587;429;229;104;0.5;0.5
+ui_commond_green03;310;462;273;104;0.5;0.5
+ui_commond_green04;277;300;275;79;0.5;0.5
+ui_commond_green05;809;340;206;87;0.5;0.5
+ui_commond_green06;837;552;183;87;0.5;0.5

@@ -1,0 +1,551 @@
+fileFormatVersion: 2
+guid: f5be0df213afd3e4fb86f87c0835be6d
+timeCreated: 1481699682
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ui_commond_btnpurple
+    21300002: ui_commond_btnyellow02
+    21300004: ui_commond_btnblue03
+    21300006: ui_commond_btngray
+    21300008: ui_commond_btnblue02
+    21300010: ui_commond_btnyellow01
+    21300012: ui_commond_green
+    21300014: ui_commond_btnblue01
+    21300016: ui_actor_btnreadyfight
+    21300018: Com_btncontinue_gray
+    21300020: ui_commond_btnyellow03
+    21300022: ui_commond_green03
+    21300024: ui_commond_btnpurple03
+    21300026: ui_commond_btngray03
+    21300028: ui_commond_green02
+    21300030: ui_commond_btngray02
+    21300032: ui_commond_btnpurple02
+    21300034: ui_commond_btnpurple01
+    21300036: ui_commond_btngray01
+    21300038: ui_commond_green01
+    21300040: ui_common_sunken01
+    21300042: ui_commond_btnpurple05
+    21300044: ui_commond_btnpurple04
+    21300046: ui_commond_btnpurple06
+    21300048: ui_commond_btnblue04
+    21300050: ui_commond_btnblue05
+    21300052: ui_commond_btnblue06
+    21300054: ui_commond_btnpurple07
+    21300056: ui_commond_btnpurple08
+    21300058: ui_commond_btnred01
+    21300060: ui_commond_btnred02
+    21300062: ui_commond_btnyellow04
+    21300064: ui_commond_btnyellow05
+    21300066: ui_commond_btnyellow06
+    21300068: ui_commond_btnyellow07
+    21300070: ui_commond_green04
+    21300072: ui_commond_green05
+    21300074: ui_commond_green06
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -2
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    textureFormat: 2
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 4096
+    textureFormat: 2
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 4096
+    textureFormat: 4
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ui_common_sunken01
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 333
+        width: 220
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnblue01
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 138
+        width: 194
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnblue02
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 722
+        width: 229
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnblue03
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 217
+        width: 273
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnblue04
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 674
+        width: 275
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnblue05
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 244
+        width: 206
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 100, y: 0, z: 101, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnblue06
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 926
+        width: 245
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btngray01
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 32
+        width: 194
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btngray02
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 194
+        width: 229
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btngray03
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 111
+        width: 273
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnpurple01
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 138
+        width: 194
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnpurple02
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 88
+        width: 229
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnpurple03
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 5
+        width: 273
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnpurple04
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 323
+        width: 260
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnpurple05
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 755
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnpurple06
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 451
+        width: 306
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 113, y: 66, z: 111, w: 59}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnpurple07
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 641
+        width: 275
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnpurple08
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 883
+        width: 327
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnred01
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 872
+        width: 433
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnred02
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 244
+        width: 206
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 100, y: 0, z: 100, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnyellow01
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 32
+        width: 194
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnyellow02
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 535
+        width: 229
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnyellow03
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 568
+        width: 273
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnyellow04
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 381
+        width: 275
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnyellow05
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 579
+        width: 327
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnyellow06
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 828
+        width: 245
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_btnyellow07
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 720
+        width: 433
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_green01
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 429
+        width: 194
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_green02
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 429
+        width: 229
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_green03
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 462
+        width: 273
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_green04
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 300
+        width: 275
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_green05
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 340
+        width: 206
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 102, y: 0, z: 99, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ui_commond_green06
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 552
+        width: 183
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: ui/ui_common_buttons_01.atlas
+  assetBundleVariant: 

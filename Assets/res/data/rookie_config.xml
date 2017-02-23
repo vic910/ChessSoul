@@ -1,0 +1,80 @@
+﻿<?xml version="1.0"?>
+<Rookie>
+	<!--condition 0通过点去做任务触发 1第一次进游戏触发 2接到某个任务触发 condition="Type:2:QuestIndex:100002"-->
+	<!--ui_root 根界面 ui_child 子界面 btn_visible 是否需要按钮 light_effect 用聚光灯效果(不填则用方框)
+	boarder_click 聚光灯/方框是否阻挡后面的控件(不填默认不阻挡 true阻挡)
+	boarder_pos 聚光灯/方框位置 boarder_size 聚光灯/方框尺寸 text_pos 描述文字位置默认(0,0) finger_pos 手指中心点
+	finger_visible 是否显示手指(不填默认显示 false不显示)
+	-->
+	<!--引导进入关卡-->
+	<Data type="0" condition="Type:1">
+		<step ui_root="ui_main" ui_child="right_bottom/adventure/button_level" light_effect="true" boarder_size="450,450" des="不知道树精把他们带去哪了，先走出道场再说。"/>
+	</Data>
+	<!--升级角色-->
+	<Data type="1">
+		<step ui_root="ui_main" ui_child="left_bottom/role/button_role" light_effect="true" boarder_size="300,300" des="[color=#ff6000ff]升级熊猫[/color]，让他更强力一点吧！"/>
+		<step ui_root="ui_roleselector" ui_child="background/BtnUpgrade" light_effect="true" boarder_size="350,350" />
+		<step ui_root="ui_role_level" ui_child="Cost/LevelUpBtn" light_effect="true" boarder_size="350,350" des="点[color=#ff6000ff]升级[/color]让他升到[color=#ff6000ff]2[/color]级吧！"/>
+	</Data>
+	<!--抽取宠物-->
+	<Data type="2">
+		<step ui_root="ui_main" ui_child="left_bottom/pet/button_pet" light_effect="true" boarder_size="300,300" des="我们还可以[color=#ff6000ff]召唤宠物[/color]来帮助我们冒险！"/>
+		<step ui_root="ui_petmain" ui_child="MaskBack/ItorRoot/0/ClickButton" des="选择要召唤的宠物" text_pos="100,0"/>
+		<step ui_root="ui_petmain" ui_child="CallPetBtn" light_effect="true" boarder_size="400,400" />
+	</Data>
+	<!--引导进入无尽-->
+	<Data type="3">
+		<step ui_root="ui_main" ui_child="right_bottom/endless/button_endless" light_effect="true" boarder_size="450,450" des="在[color=#ff6000ff]挑战模式[/color]中和其他玩家比赛，看谁的分数更高。"/>
+		<step ui_root="ui_endless" ui_child="ScoreUI/EndlessLevelBase" text_pos="600,100" boarder_click="true" btn_visible="true" des="这里是你当前的[color=#ff6000ff]挑战等级[/color]，分数越高则挑战等级越高，当达到更高的等级时会获得奖励！"/>
+		<step ui_root="ui_endless" ui_child="ScoreUI/Button" light_effect="true" boarder_size="400,400" finger_pos="0,-30" des="点[color=#ff6000ff]开始[/color]按钮进行挑战"/>
+		<step ui_root="UnlimitLevelSceneUI" ui_child="UnlimitLevelUI/Hp" text_pos="-500,150" boarder_size="550,110" des="这是你的[color=#ff6000ff]生命条[/color]，会随着时间减少，当[color=#ff6000ff]生命用尽[/color]时挑战结束。" btn_visible="true"/>
+	</Data>
+	<!--引导进入竞速关-->
+	<Data type="4">
+		<step ui_root="ui_main" ui_child="right_bottom/adventure/button_level" light_effect="true" boarder_size="500,500" des="关卡中多了[color=#ff6000ff]竞速模式[/color]，去看看吧！"/>
+		<step ui_root="ui_levelchoose_ex" ui_child="ClickOn" light_effect="true" finger_visible="false" boarder_pos="0,-200" boarder_size="800,800"/>
+		<step ui_root="ui_levelchoose_ex" ui_child="Toggle_group/RaceToggle" light_effect="true" boarder_size="500,500" des="点这里开始竞速模式"/>
+	</Data>
+	<!--引导进入无伤关-->
+	<Data type="5">
+		<step ui_root="ui_main" ui_child="right_bottom/adventure/button_level" light_effect="true" boarder_size="500,500" des="关卡中多了[color=#ff6000ff]无伤模式[/color]，去看看吧！"/>
+		<step ui_root="ui_levelchoose_ex" ui_child="ClickOn" light_effect="true" finger_visible="false" boarder_pos="0,-200" boarder_size="800,800"/>
+		<step ui_root="ui_levelchoose_ex" ui_child="Toggle_group/IntactToggle" light_effect="true" boarder_size="500,500" des="点这里开始无伤模式"/>
+	</Data>
+	<!--购买无尽物品-->
+	<Data type="6">
+		<step ui_root="ui_endless" ui_child="ShopUI/Button" boarder_size="200,650" boarder_pos="140,-315" des="这里可以购买并使用增强道具"/>
+	</Data>
+	<!--引导悬赏-->
+	<Data type="7">
+		<step ui_root="ui_main" ui_child="right_top/all_btn_back/daily_quest" light_effect="true" boarder_size="300,300" finger_pos="-10,-20" des="每天完成[color=#ff6000ff]悬赏[/color]可获得丰厚奖励"/>
+		<step ui_root="ui_daily_quest" ui_child="MainBack/FiveStepReward" btn_visible="true" des="完成当日全部悬赏后可获得[color=#ff6000ff]宝箱奖励[/color]" text_pos="0,80"/>
+		<step ui_root="ui_daily_quest" ui_child="MainBack/ReflashBtn" light_effect="true" boarder_size="400,400" btn_visible="true" des="如果对悬赏不满意可点[color=#ff6000ff]刷新[/color]换一个"/>
+	</Data>
+	<!--升级宠物-->
+	<Data type="8">
+		<step ui_root="ui_main" ui_child="left_bottom/pet/button_pet" light_effect="true" boarder_size="250,250" des="升级[color=#ff6000ff]波波鱼[/color]让它更厉害些"/>
+		<step ui_root="ui_petmain" ui_child="MaskBack/ItorRoot/0/ClickButton" des="选择要升级的宠物" text_pos="100,0"/>
+		<step ui_root="ui_petmain" ui_child="LevelUpPetBtn" light_effect="true" boarder_size="350,350"/>
+		<step ui_root="ui_petlevelup" ui_child="MainBack/RightMainPetShow/PropetyBottom/LevelUpBtn/LevelUpPetBtn" light_effect="true" boarder_size="350,350" des="点[color=#ff6000ff]升级[/color]将它升到[color=#ff6000ff]2[/color]级。"/>
+	</Data>
+	<!--了解无尽探索度-->
+	<Data type="9">
+		<step ui_root="UnlimitLevelSceneUI" ui_child="UnlimitLevelUI/Explore" boarder_pos="-10,-4" text_pos="-500,150" boarder_size="230,102" des="这是[color=#ff6000ff]探索度[/color]，在关卡中收集[color=#ff0000ff]爱心[/color]、[color=#ff0000ff]大金币[/color]、[color=#ff0000ff]大琥珀[/color]可以增加探索度。积攒探索度对最终得分有很大帮助。" btn_visible="true"/>
+	</Data>
+	<!--介绍无尽信息-->
+	<Data type="10">
+		<step ui_root="ui_endless" ui_child="ScoreUI/EndlessLevelBase/Button" light_effect="true" boarder_size="300,300" text_pos="-200,0" des="点击这里显示挑战目标"/>
+	</Data>
+	<!--好友助战-->
+	<Data type="11">
+		<step ui_root="ui_leveldetail" ui_child="rightbackground/friendBattle" des="好友的支持帮我更轻松的冒险"/>
+		<!--step ui_root="ui_leveldetail" ui_child="rightbackground/friendBattle" des="选择一个好友，就可以用他的角色和宠物进行闯关"/>
+		<step ui_root="ui_leveldetail" ui_child="rightbackground/friendBattle" des="点击这里确认选择"/-->
+	</Data>
+	<!--进入某个大关-->
+	<Data type="12">
+		<step ui_root="ui_title" ui_child="button_back" light_effect="true" boarder_size="400,400" des="点击这里进入章节选择书页"/>
+		<step ui_root="ui_levelchoose_ex" ui_child="level_btn_group/btn_level_index_0{0}/levelbtn_{1}" light_effect="true" boarder_size="300,300" des="点击这里进入新的章节"/>
+	</Data>
+</Rookie>

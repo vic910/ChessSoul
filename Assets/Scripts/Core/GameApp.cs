@@ -1,0 +1,101 @@
+﻿using System;
+using UnityEngine;
+using System.Collections;
+using Core.App;
+using Groot;
+using Groot.Network;
+using Groot.Res;
+using Slua;
+using Utility;
+using Weiqi;
+using Weiqi.UI;
+
+public class GameApp : UnitySingleton<GameApp>
+{
+	public static event Action<float> eventUpdate;
+
+	public static event Action eventLateUpdate;
+
+	public static event Action eventFixedUpdate;
+
+	private AppMain m_app;
+
+	private Utility.SynchronizedQueue<GameEvent> m_game_events = new Utility.SynchronizedQueue<GameEvent>();
+
+	protected override void OnAwake()
+	{
+		m_app = new AppMain();
+		m_app.Initialize();
+	}
+
+	protected override void OnStart()
+	{
+		m_app.Start();
+	}
+
+	protected override void OnDestory()
+	{
+
+	}
+
+	void OnApplicationQuit()
+	{
+		m_app.Stop();
+		UninitializeConfig();
+
+		NetManager.Instance.Uninitialize();
+		TimerSystem.Instance.Uninitialize();
+		ResourceManager.Instance.Uninitialize();
+		UIManager.Instance.Uninitialize();
+		UILuaSvr.Instance.Uninitialize();
+	}
+
+	public void UninitializeConfig()
+	{
+		GlobalConfig.Instance.Uninitialize();
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		m_app.Update();
+		if( eventUpdate != null )
+			eventUpdate( Time.deltaTime );
+		_handleGameEvents();
+	}
+
+	void FixedUpdate()
+	{
+		if( eventFixedUpdate != null )
+			eventFixedUpdate();
+	}
+
+	void LateUpdate()
+	{
+		if( eventLateUpdate != null )
+			eventLateUpdate();
+	}
+
+	public void PushEvent( GameEvent _event )
+	{
+		m_game_events.Enqueue( _event );
+	}
+
+	private void _handleGameEvents()
+	{
+		GameEvent game_event = null;
+		while( m_game_events.Dequeue( out game_event ) )
+		{
+			game_event.ExecuteEvent();
+		}
+	}
+
+	/// <summary>
+	/// 登出游戏，返回登录界面，暂时先放这了
+	/// </summary>
+	public static void Logout()
+	{
+		// 切换到Unload状态去干掉所有资源
+		Instance.m_app.Translate( "Unload" );
+	}
+}
