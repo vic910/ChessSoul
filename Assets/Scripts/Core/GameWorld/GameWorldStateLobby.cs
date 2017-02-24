@@ -14,7 +14,6 @@ namespace Core
 
 		public override void OnEnter()
 		{
-			//UIManager.Instance.ShowUI( "ui_msgbox" );
 			UIManager.Instance.ShowUI( "ui_main" );
 		}
 	}

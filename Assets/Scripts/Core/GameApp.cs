@@ -43,10 +43,10 @@ public class GameApp : UnitySingleton<GameApp>
 		m_app.Stop();
 		UninitializeConfig();
 
+		UIManager.Instance.Uninitialize();
 		NetManager.Instance.Uninitialize();
 		TimerSystem.Instance.Uninitialize();
 		ResourceManager.Instance.Uninitialize();
-		UIManager.Instance.Uninitialize();
 		UILuaSvr.Instance.Uninitialize();
 	}
 

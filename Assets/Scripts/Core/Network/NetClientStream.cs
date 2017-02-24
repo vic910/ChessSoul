@@ -141,6 +141,7 @@ namespace Groot.Network
 			try
 			{
 				Int32 packet_id = 0;
+				MessageBase msg = null;
 				switch( _packet.PacketType )
 				{
 				case PacketType.Connected:
@@ -152,7 +153,7 @@ namespace Groot.Network
 					packet_id = Helper.GenerateInt32( DisconnectMsg.Type, DisconnectMsg.Dir, DisconnectMsg.MessageId );
 					break;
 				case PacketType.Message:
-					MessageBase msg = SerializerHelper.Deserializer<MessageBase>( _packet.Data );
+					msg = SerializerHelper.Deserializer<MessageBase>( _packet.Data );
 					packet_id = Helper.GenerateInt32( msg.MsgType, msg.MsgDirection, msg.MsgId );
 					break;
 				case PacketType.Error:
@@ -163,7 +164,7 @@ namespace Groot.Network
 				NetPacketEvent packet_event = _createEvent( packet_id );
 				if( null == packet_event )
 				{
-					Utility.Log.Warning( "Received a packet {0} that isn't register with any handler.", packet_id );
+					Utility.Log.Warning( "Received a packet dir={0} type={1} id={2} that isn't register with any handler.", msg.MsgDirection, msg.MsgType, msg.MsgId );
 					return;
 				}
 				if( !packet_event.Initialize( _stream_id, _packet ) )

@@ -94,7 +94,7 @@ namespace Utility.FSM
 		/// </summary>
 		public void Stop()
 		{
-			if( m_previous_state == null || m_current_state == null )
+			if( m_current_state == null )
 				throw new ExceptionEx( "[StateMachine.Stop] State Machine is not runing!" );
 			m_running = false;
 			m_previous_state = null;

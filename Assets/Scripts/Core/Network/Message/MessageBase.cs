@@ -64,7 +64,7 @@ namespace Groot.Network
 	{
 		public static Byte   Dir  = (Byte)EMsgDirection.MSG_MAX;
 		public static Byte   Type = (Byte)EMsgType.TYPE_MAX;
-		public static UInt16 MessageId = (UInt16)EMsgId.DIS_CONNECT;
+		public static UInt16 MessageId = (UInt16)EMsgId.CONNECT;
 
 		public ConnectMsg()
 			: base( EMsgDirection.MSG_MAX, EMsgType.TYPE_MAX, EMsgId.CONNECT )

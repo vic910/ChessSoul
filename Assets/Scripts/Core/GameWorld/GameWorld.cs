@@ -13,8 +13,8 @@ namespace Core
 		/// </summary>
 		protected override void InitializeState()
 		{
-			AddState<GameWorldStateLobby>( "Lobby", true );
-			AddState<GameWorldStateLoad>( "Load", false );
+			AddState<GameWorldStateLoad>( "Load", true );
+			AddState<GameWorldStateLobby>( "Lobby", false );
 			AddState<GameWorldStateUnLoad>( "Unload", false );
 		}
 

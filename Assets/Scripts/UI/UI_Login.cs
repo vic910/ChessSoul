@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using Core.App;
 using Groot;
 using Groot.Network;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
+using Weiqi;
 using Weiqi.UI;
 
 public class UI_Login : UI_Base
@@ -42,6 +47,11 @@ public class UI_Login : UI_Base
 		return m_entrance_anim_time;
 	}
 
+	public override void OnHide( UI_Base _next_ui )
+	{
+		
+	}
+
 	private void _onRegisterButtonClick()
 	{
 		Application.OpenURL( GlobalConfig.Instance.GetValue<string>( "RegisterWeb" ) );
@@ -49,8 +59,16 @@ public class UI_Login : UI_Base
 
 	private void _onLoginButtonClick()
 	{
-		UIManager.Instance.ShowUI( "ui_main" );
-		UIManager.Instance.HideUI( this );
+		CG_LoginRequestMsg msg = new CG_LoginRequestMsg();
+		msg.PlatformID = 0;
+		msg.PlayerName = m_edit_account.text;
+		msg.PlayerPassword = m_edit_password.text;
+		var bt =Encoding.UTF8.GetBytes( UnityEngine.SystemInfo.deviceUniqueIdentifier );
+		msg.Mac = BitConverter.ToUInt64( bt, 0 );
+		msg.Md5 = MD5Helper.GetMD5Hash( bt ); 
+		msg.NameType = 0;
+		msg.Version = 17696793;
+		NetManager.Instance.SendMsg( msg );
 	}
 
 	private void _onGetPasswordClick()

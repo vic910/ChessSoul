@@ -35,6 +35,42 @@ namespace Groot.Network
 
 	class GC_LoginFailedMsg : MessageBase
 	{
+		public enum ReasonInfo
+		{
+			// 帐号服务器返回的结果 0x0-0x99
+			RET_SUCCESS,                // 成功
+			RET_INVALID_ACCOUNT,        // 无效的账号
+			RET_INVALID_PASSWORD,       // 无效的密码
+			RET_NOCARDPOINT,            // 点卡值不足
+			RET_LOGGEDIN,               // 已经处于登录状态
+			RET_BADINFO,                // 异常信息
+			RET_BLOCKED,                // 被封帐号
+			RET_LIMITED,                // 被限制的账号
+			RET_SUCCESS_WITH_ITEM,      // 成功并且有附加道具存在
+			RET_LOGIN_OTHER_SERVER,     // 已在其它服务器登录
+
+			// 登录服务器返回的结果 0x100-0x199
+			ERROR_USER_PWD = 0x0100,        // 用户名-密码错误
+			ERROR_HAS_LOGINED,          // 用户已登录
+			ERROR_HAS_FORBID,           // 帐号被禁用
+			ERROR_OTHERSERVER_NOTSTART,         // 帐号服务器未启动
+			ERROR_LOGINTIMEOUT,                 // 帐号验证超时
+			ERROR_LOGINTOOFAST,         //登陆速度太快，暂时不予以登陆
+			ERROR_UNKNOWN,
+
+			// 游戏服务器返回的结果 0x200-0x299
+			ERROR_VERSION = 0x200,          // 消息版本错误
+			ERROR_PLAYERLIMIT,          // 人数已满
+			ERROR_LS_NOTSTART,          // 登录服务器未启动
+			ERROR_MULTIOPENCHECKED,             // 检测到多开
+			ERROR_DATA_OPERATE_WRONG,       // 金钱操作数据异常
+			ERROR_CHILDSERVER,          // 开启儿童准入服务器
+
+			// 世界服务器返回的结果
+			ERROR_WS_OPERATION = 0x300,     // 玩家操作未完成
+			ERROR_ACCOUNT_CONFLICT = 0x400,         //棋魂与棋趣合服时出现的账号冲突
+		};
+
 		[MessageFiled(0)]
 		public Int32 Reason;
 
@@ -50,16 +86,16 @@ namespace Groot.Network
 	class GC_LoginOK : MessageBase
 	{
 		[MessageFiled(0)]
-		PlayerInfo  PlayerInfo;
+		public PlayerInfo  PlayerInfo;
 
 		[MessageFiled(1)]
-		Byte        HasPlayerBankAccount;
+		public Byte        HasPlayerBankAccount;
 
 		[MessageFiled(2)]
-		Byte        ServerType;          //当前服务器类型.0:普通 1:混战 2：比赛
+		public Byte        ServerType;          //当前服务器类型.0:普通 1:混战 2：比赛
 
 		[MessageFiled(3)]
-		Byte        IsHadEmail;          //是否有安全邮箱 gly 20140127
+		public Byte        IsHadEmail;          //是否有安全邮箱 gly 20140127
 
 		public GC_LoginOK() : base( EMsgDirection.MSG_GC, EMsgType.TYPE_LOGIN, EMsgId.LOGIN_OK_GC )
 		{
@@ -71,228 +107,228 @@ namespace Groot.Network
 	public class PlayerInfoBase
 	{
 		[MessageFiled(0)]
-		UInt64  PlayerID;                // 玩家ID
+		public UInt64  PlayerID;                // 玩家ID
 
 		[MessageFiled(1, 19)]
-		string  PlayerName;             // 玩家名字
+		public string  PlayerName;             // 玩家名字
 
 		[MessageFiled(2)]
-		Byte    PlayerRank;				// 排名
+		public Byte    PlayerRank;				// 排名
 
 		[MessageFiled(3)]
-		Byte    Sex;
+		public Byte    Sex;
 
 		[MessageFiled(4)]
-		Byte    Level;                   // 棋力
+		public Byte    Level;                   // 棋力
 
 		[MessageFiled(5)]
-		bool    Honor;                   // 棋力
+		public bool    Honor;                   // 棋力
 
 		[MessageFiled(6)]
-		Int32	WinCount;                // 赢棋次数
+		public Int32 WinCount;                // 赢棋次数
 
 		[MessageFiled(7)]
-		Int32	LossCount;               // 输棋次数
+		public Int32 LossCount;               // 输棋次数
 
 		[MessageFiled(8)]
-		Int32   LevelScore;				 // 等级分
+		public Int32   LevelScore;				 // 等级分
 
 		[MessageFiled(9)]
-		Byte    CanInvite;               // 是否接收对局邀请
+		public Byte    CanInvite;               // 是否接收对局邀请
 
 		[MessageFiled(10)]
-		Int32	State;                   // 状态(位置)
+		public Int32 State;                   // 状态(位置)
 
 		[MessageFiled(11)]
-		Byte    PlatformID;              // 所属平台的平台ID
+		public Byte    PlatformID;              // 所属平台的平台ID
 
 		[MessageFiled(12)]
-		Int32	ClubID;                  // 棋友会ID
+		public Int32 ClubID;                  // 棋友会ID
 
 		[MessageFiled(13)]
-		Int16   ClubIconVer;             // 会徽版本号
+		public Int16   ClubIconVer;             // 会徽版本号
 
 		[MessageFiled(14)]
-		Int32   ClubPost;                // 棋友会post,见EPlayerPostInClub
+		public Int32   ClubPost;                // 棋友会post,见EPlayerPostInClub
 
 		[MessageFiled(15)]
-		Int32   ClubRole;                // 棋友会职位,见EPlayerPostInClub
+		public Int32   ClubRole;                // 棋友会职位,见EPlayerPostInClub
 
 		[MessageFiled(16)]
-		Int32   ClubRight;               // 棋友会权限,见EPlayerPostInClub
+		public Int32   ClubRight;               // 棋友会权限,见EPlayerPostInClub
 
 		[MessageFiled(17)]
-		Int32   AreaID;                  // 区域ID
+		public Int32   AreaID;                  // 区域ID
 	};
 
 
-	class RecentResult
+	public class RecentResult
 	{
 		[MessageFiled(0)]
-		char    Result;
+		public Byte    Result;
 
 		[MessageFiled(1,19)]
-		char    OtherPlayerName;
+		public Byte    OtherPlayerName;
 	};
 
 	// 部分对局胜负结果(x胜y负z和棋)
-	class SWinResult
+	public class SWinResult
 	{
 		[MessageFiled(0)]
-		Int32 iWinCount;
+		public Int32 iWinCount;
 
 		[MessageFiled(1)]
-		Int32 iLossCount;
+		public Int32 iLossCount;
 
 		[MessageFiled(2)]
-		Int32 iJigoCount;
+		public Int32 iJigoCount;
 	};
 
-	class SysTimeData
+	public class SysTimeData
 	{
 		[MessageFiled(0)]
-		UInt16 Year;
+		public UInt16 Year;
 
 		[MessageFiled(1)]
-		UInt16 Month;
+		public UInt16 Month;
 
 		[MessageFiled(2)]
-		UInt16 DayOfWeek;
+		public UInt16 DayOfWeek;
 
 		[MessageFiled(3)]
-		UInt16 Day;
+		public UInt16 Day;
 
 		[MessageFiled(4)]
-		UInt16 Hour;
+		public UInt16 Hour;
 
 		[MessageFiled(5)]
-		UInt16 Minute;
+		public UInt16 Minute;
 
 		[MessageFiled(6)]
-		UInt16 Second;
+		public UInt16 Second;
 
 		[MessageFiled(7)]
-		UInt16 Milliseconds;
+		public UInt16 Milliseconds;
 	}
 
-	class OnlineTimeInfo
+	public class OnlineTimeInfo
 	{
 		[MessageFiled(0)]
-		Int32     Total; //总在线时长
+		public Int32     Total; //总在线时长
 
 		[MessageFiled(1)]
-		Int32     Today; //当日在线时长
+		public Int32     Today; //当日在线时长
 
 		[MessageFiled(2)]
-		Int32     Now;   //当次在线时长(未在线时表示最后一次在线时长)
+		public Int32     Now;   //当次在线时长(未在线时表示最后一次在线时长)
 	};
 
 	// 系统定义的组合头像结构
-	class ComboHeadPic
+	public class ComboHeadPic
 	{
 		[MessageFiled(0)]
-		Byte Eye;          // 眼
+		public Byte Eye;          // 眼
 
 		[MessageFiled(1)]
-		Byte Head;         // 头
+		public Byte Head;         // 头
 
 		[MessageFiled(2)]
-		Byte Nose;         // 鼻子
+		public Byte Nose;         // 鼻子
 
 		[MessageFiled(3)]
-		Byte Hair;         // 头发
+		public Byte Hair;         // 头发
 
 		[MessageFiled(4)]
-		Byte Mouth;        // 嘴
+		public Byte Mouth;        // 嘴
 
 		[MessageFiled(5)]
-		Byte Cloth;        // 衣服
+		public Byte Cloth;        // 衣服
 
 		[MessageFiled(6)]
-		Byte Goatee;       // 胡子
+		public Byte Goatee;       // 胡子
 
 		[MessageFiled(7)]
-		Byte Face;         // 特征
+		public Byte Face;         // 特征
 	};
 
-	class TotalImpawnInfo
+	public class TotalImpawnInfo
 	{
 		[MessageFiled(0)]
-		Int32     WinCount;
+		public Int32     WinCount;
 
 		[MessageFiled(1)]
-		Int32     LossCount;
+		public Int32     LossCount;
 	};
 
 	public class PlayerInfo : PlayerInfoBase
 	{
 		[MessageFiled(0, 33)]
-		string          EnglishName;
+		public string          EnglishName;
 
 		[MessageFiled(1)]
-		UInt64          Money;
+		public UInt64          Money;
 
 		[MessageFiled(2)]
-		UInt32          Gold;
+		public UInt32          Gold;
 
 		[MessageFiled(3,20)]
-		List<RecentResult>    RecentResult;
+		public List<RecentResult>    RecentResult;
 
 		[MessageFiled(4)]
-		SWinResult      NowLevelAchievement;
+		public SWinResult      NowLevelAchievement;
 
 		[MessageFiled(5)]
-		SWinResult      TotalAchievement;
+		public SWinResult      TotalAchievement;
 
 		[MessageFiled(6)]
-		SWinResult      UpgradeAchievement;
+		public SWinResult      UpgradeAchievement;
 
 		[MessageFiled(7)]
-		SWinResult      FriendshipAchievement;
+		public SWinResult      FriendshipAchievement;
 
 		[MessageFiled(8)]
-		SysTimeData     LastLoginTime;
+		public SysTimeData     LastLoginTime;
 
 		[MessageFiled(9)]
-		SysTimeData     LastLogoutTime;                 //最后登出时间
+		public SysTimeData     LastLogoutTime;                 //最后登出时间
 
 		[MessageFiled(10)]
-		SysTimeData     RegisterTime;
+		public SysTimeData     RegisterTime;
 
 		[MessageFiled(11)]
-		OnlineTimeInfo  OnlineTimeInfo;                 //在线时长信息
+		public OnlineTimeInfo  OnlineTimeInfo;                 //在线时长信息
 
 		[MessageFiled(12)]
-		Int32			PictureID;
+		public Int32         PictureID;
 
 		[MessageFiled(13)]
-		ComboHeadPic    ComboPic;
+		public ComboHeadPic    ComboPic;
 
 		[MessageFiled(14,20)]
-		string          IP;
+		public string          IP;
 
 		[MessageFiled(15,20)]
-		string          ClubName;						//棋友会名称
+		public string          ClubName;						//棋友会名称
 
 		[MessageFiled(16,100)]
-		string          ClubPositionName;               //职务名
+		public string          ClubPositionName;               //职务名
 
 		[MessageFiled(17)]
-		UInt64          Liveness;                      //用户活跃度
+		public UInt64          Liveness;                      //用户活跃度
 
 		[MessageFiled(18)]
-		TotalImpawnInfo TotalImpawnInfo;           //押分统计信息
+		public TotalImpawnInfo TotalImpawnInfo;           //押分统计信息
 
 		[MessageFiled(19)]
-		Int64           ImpawnStatOneDay;          // 每日押分收益
+		public Int64           ImpawnStatOneDay;          // 每日押分收益
 
 		[MessageFiled(20)]
-		Int64           NewCompetitionPoints;
+		public Int64           NewCompetitionPoints;
 
 		[MessageFiled(21)]
-		UInt32          ChildMark;					//儿童标记
+		public UInt32          ChildMark;					//儿童标记
 
 		[MessageFiled(22)]
-		UInt32          HuoDongMark;               //活动标记(每日登陆领奖类型标记)
+		public UInt32          HuoDongMark;               //活动标记(每日登陆领奖类型标记)
 	}
 }

@@ -269,6 +269,7 @@ namespace Groot.Network
 				//Entity.m_net_client_gamesrv.Register<Msg_gc_ConnectionClosed>( Msg_gc_ConnectionClosed.MyMessageId, _onGameSrvCloseConnection );
 				//Entity.m_net_client_gamesrv.Register<Msg_gc_Heartbeat>( Msg_gc_Heartbeat.MyMessageId, _onHeartbeatReceived );
 				Utility.Log.Info( "成功登录GameSrv" );
+				SignalSystem.FireSignal( SignalId.NetworkState_EnterConnected );
 
 				//Main.Instance.eventOnApplicationPause += _onApplicationPause;
 				//_startSyncTime();
@@ -284,8 +285,6 @@ namespace Groot.Network
 						break;
 					msg = Entity.m_msg_buffer.Dequeue();
 				}
-
-				SignalSystem.FireSignal( SignalId.NetworkState_EnterConnected );
 			}
 			public override void Exit()
 			{

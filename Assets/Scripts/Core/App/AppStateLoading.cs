@@ -46,7 +46,7 @@ namespace Core.App
 		{
 			_loadLanguage();
 			_bundle[0].Unload( true );
-			Log.Info( "开始加载配置包" );
+			Log.Info( "开始加载前置配置包" );
 			ResourceManager.Instance.LoadAssetbundleAsync( "data/config.cg", _onConfigLoaded );
 			return true;
 		}

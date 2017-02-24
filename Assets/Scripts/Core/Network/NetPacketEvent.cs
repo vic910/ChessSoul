@@ -33,6 +33,7 @@ namespace Groot.Network
 				m_message = new TyMessage();
 			else
 				m_message = SerializerHelper.Deserializer<TyMessage>( _packet.Data );
+			Utility.Log.Info( "收到消息{0}", m_message.ToString() );
 			return true;
 		}
 

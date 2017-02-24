@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Groot.Network;
 using UnityEngine;
@@ -17,6 +18,11 @@ namespace Weiqi
 		public override void Uninitialize()
 		{
 			
+		}
+
+		public void InitializePlayerInfo( PlayerInfo _info )
+		{
+			PlayerInfo = _info;
 		}
 	}
 
