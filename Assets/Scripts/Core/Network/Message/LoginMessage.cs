@@ -51,24 +51,24 @@ namespace Groot.Network
 
 			// 登录服务器返回的结果 0x100-0x199
 			ERROR_USER_PWD = 0x0100,        // 用户名-密码错误
-			ERROR_HAS_LOGINED,          // 用户已登录
-			ERROR_HAS_FORBID,           // 帐号被禁用
-			ERROR_OTHERSERVER_NOTSTART,         // 帐号服务器未启动
-			ERROR_LOGINTIMEOUT,                 // 帐号验证超时
-			ERROR_LOGINTOOFAST,         //登陆速度太快，暂时不予以登陆
+			ERROR_HAS_LOGINED,				// 用户已登录
+			ERROR_HAS_FORBID,				// 帐号被禁用
+			ERROR_OTHERSERVER_NOTSTART,     // 帐号服务器未启动
+			ERROR_LOGINTIMEOUT,             // 帐号验证超时
+			ERROR_LOGINTOOFAST,				//登陆速度太快，暂时不予以登陆
 			ERROR_UNKNOWN,
 
 			// 游戏服务器返回的结果 0x200-0x299
 			ERROR_VERSION = 0x200,          // 消息版本错误
-			ERROR_PLAYERLIMIT,          // 人数已满
-			ERROR_LS_NOTSTART,          // 登录服务器未启动
-			ERROR_MULTIOPENCHECKED,             // 检测到多开
+			ERROR_PLAYERLIMIT,				// 人数已满
+			ERROR_LS_NOTSTART,				// 登录服务器未启动
+			ERROR_MULTIOPENCHECKED,         // 检测到多开
 			ERROR_DATA_OPERATE_WRONG,       // 金钱操作数据异常
-			ERROR_CHILDSERVER,          // 开启儿童准入服务器
+			ERROR_CHILDSERVER,				// 开启儿童准入服务器
 
 			// 世界服务器返回的结果
 			ERROR_WS_OPERATION = 0x300,     // 玩家操作未完成
-			ERROR_ACCOUNT_CONFLICT = 0x400,         //棋魂与棋趣合服时出现的账号冲突
+			ERROR_ACCOUNT_CONFLICT = 0x400, //棋魂与棋趣合服时出现的账号冲突
 		};
 
 		[MessageFiled(0)]
@@ -119,7 +119,7 @@ namespace Groot.Network
 		public Byte    Sex;
 
 		[MessageFiled(4)]
-		public Byte    Level;                   // 棋力
+		public Byte    Level;                   // 等级
 
 		[MessageFiled(5)]
 		public bool    Honor;                   // 棋力

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Groot;
 using UnityEngine;
 
 using Utility.FSM;
@@ -13,14 +13,13 @@ namespace Core
 
 		public override void OnEnter()
 		{
-			// 加载所有配置
-
-			// TODO
+			// 加载剩下所有语言配置
+			Locale.Instance.LoadAllLanguageConfig();
 
 			// 初始化基础系统
 
-
-
+			// 进入大厅
+			Fsm.Translate( "Lobby" );
 		}
 	}
 }

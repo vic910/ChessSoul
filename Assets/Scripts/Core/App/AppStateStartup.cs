@@ -38,7 +38,7 @@ namespace Core.App
 				return;
 			}
 			Locale.Instance.Language = LanguageName.zh_cn;
-			Locale.Instance.ChangeLanguage( Locale.Instance.Language, true );
+			Locale.Instance.LoadOneLanguageConfig( "preload" );
 			Fsm.Translate( AppStateName.ResCheckAndUpdate );
 		}
 	}

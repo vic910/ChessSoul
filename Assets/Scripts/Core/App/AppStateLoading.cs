@@ -44,8 +44,8 @@ namespace Core.App
 				Log.Error( "没有language数据" );
 				return;
 			}
-			//加载完整语言包
-			Locale.Instance.ChangeLanguage( Locale.Instance.Language );
+			//加载登录时用到的语言包
+			Locale.Instance.LoadOneLanguageConfig( "login" );
 		}
 
 		private void _loadConfig()

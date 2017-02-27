@@ -72,7 +72,9 @@ namespace Groot
 	{
 		private String[] s_language_files =
 		{
-			"tips", // 总表
+			//"preload",	// 资源更新前用到的语言包	
+			//"login",		// 登录时用到的语言包
+			"tips",			// 进入大厅后各个游戏系统通用语言包
 		};
 
 		/// <summary>
@@ -134,36 +136,31 @@ namespace Groot
 		/// </summary>
 		/// <param name="_lang"></param>
 		/// <param name="_preload_only"></param>
-		public Boolean ChangeLanguage( LanguageName _lang, Boolean _preload_only = false )
+		public Boolean ChangeLanguage( LanguageName _lang )
 		{
-			if( !_loadLocaleString( _lang, _preload_only ) )
-				return false;
+			m_locale.Clear();
+			Language = _lang;
+			LoadOneLanguageConfig( "preload" );
+			LoadOneLanguageConfig( "login" );
+			LoadAllLanguageConfig();
 			if( null != eventOnLanguageChanged )
 				eventOnLanguageChanged( Language );
 
 			Log.Info( "成功切换语言: {0} -->{1}", Language, _lang );
-			Language = _lang;
 			return true;
 		}
 
-		/// <summary>
-		/// 加载语言包
-		/// </summary>
-		private Boolean _loadLocaleString( LanguageName _lang, Boolean _is_preload_phase )
+		public void LoadOneLanguageConfig( string _config )
 		{
-			// 非初始化阶段, 加载前置语言包
-			if( _is_preload_phase )
-			{
-				_loadLocaleFile( _lang, "preload" );
-				return true;
-			}
+			_loadLocaleFile( Language, _config );
+		}
 
+		public void LoadAllLanguageConfig()
+		{
 			for( int i = 0; i < s_language_files.Length; i++ )
 			{
-				if( !_loadLocaleFile( _lang, s_language_files[i] ) )
-					return false;
+				_loadLocaleFile( Language, s_language_files[i] );
 			}
-			return true;
 		}
 
 		private Boolean _loadLocaleFile( LanguageName _lang, String _file_name )

@@ -41,7 +41,19 @@ namespace Core.App
 
 		private void _onPacketArrived( Int32 _stream_id, PacketType _packet_type, GC_LoginFailedMsg _msg )
 		{
-			UI_MessageBox.Show( ( (GC_LoginFailedMsg.ReasonInfo)( _msg.Reason ) ).ToString(), Locale.Instance["Common@Confirm"] );
+			switch( (GC_LoginFailedMsg.ReasonInfo)_msg.Reason )
+			{
+			case GC_LoginFailedMsg.ReasonInfo.RET_SUCCESS:
+			case GC_LoginFailedMsg.ReasonInfo.RET_SUCCESS_WITH_ITEM:
+				break;
+			default:
+					string tip = Locale.Instance[string.Format( "Login@{0}", (GC_LoginFailedMsg.ReasonInfo)( _msg.Reason ) ).ToString()];
+					if( tip == string.Empty )
+						UI_MessageBox.Show( ( (GC_LoginFailedMsg.ReasonInfo)( _msg.Reason ) ).ToString(), Locale.Instance["Common@Confirm"] );
+					else
+						UI_MessageBox.Show(  tip, Locale.Instance["Common@Confirm"] );
+				break;
+			}
 		}
 
 		private void _onPacketArrived( Int32 _stream_id, PacketType _packet_type, GC_LoginOK _msg )
