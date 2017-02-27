@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
-using UnityEditor;
 using Utility;
+
 namespace Groot.Network
 {
 	/// <summary>

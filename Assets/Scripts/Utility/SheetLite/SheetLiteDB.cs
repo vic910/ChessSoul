@@ -43,21 +43,38 @@ namespace Utility.SheetLite
 
 		public override SheetLite OpenSheet( String _sheet_name )
 		{
-			Resource_Assetbundle bundle = null;
-			if( m_data_path.CompareTo( WeiqiApp.CONFIG_ROOT_PATH ) == 0 )
+			//Resource_Assetbundle bundle = null;
+			//if( m_data_path.CompareTo( WeiqiApp.CONFIG_ROOT_PATH ) == 0 )
+			//{
+			//	if( _sheet_name.Substring( 0, 3 ).CompareTo( "pre" ) == 0 )
+			//		bundle = ResourceManager.Instance.GetResource( string.Format( "{0}/pre_config.cg", m_data_path ) ) as Resource_Assetbundle;
+			//	else
+			//		bundle = ResourceManager.Instance.GetResource( string.Format( "{0}/config.cg", m_data_path ) ) as Resource_Assetbundle;
+			//}
+			//else
+			//{
+			//	String[] array = _sheet_name.Split( '/' );
+			//	string language = array[0];
+			//	_sheet_name = array[1];
+			//	if( _sheet_name.Substring( 0, 3 ).CompareTo( "pre" ) == 0 )
+			//		bundle = ResourceManager.Instance.GetResource( string.Format( "{0}/pre_{1}.cg", m_data_path, language ) ) as Resource_Assetbundle;
+			//	else
+			//		bundle = ResourceManager.Instance.GetResource( string.Format( "{0}/{1}.cg", m_data_path, language ) ) as Resource_Assetbundle;
+			//}
+			//if ( bundle == null || !bundle.CheckLoaded() )
+			//{
+			//	Log.Error( "[ResouceManager]: data/config包不存在或没有加载！不能读取配置{0}", _sheet_name );
+			//	return null;
+			//}
+			Resource_Assetbundle bundle = ResourceManager.Instance.LoadAssetbundleSync( string.Format( "{0}/{1}.cg", m_data_path, _sheet_name ) );
+			if( bundle == null )
 			{
-				bundle = ResourceManager.Instance.GetResource( string.Format( "{0}/config.cg", m_data_path ) ) as Resource_Assetbundle;
+				throw new ExceptionEx( "不存在配置文件包: {0}", _sheet_name );
 			}
-			else
+			if( m_data_path.CompareTo( WeiqiApp.LANGUAGES_ROOT_PATH ) == 0 )
 			{
 				String[] array = _sheet_name.Split( '/' );
 				_sheet_name = array[1];
-				bundle = ResourceManager.Instance.GetResource( string.Format( "{0}/{1}.cg", m_data_path, array[0] ) ) as Resource_Assetbundle;
-			}
-			if ( bundle == null || !bundle.CheckLoaded() )
-			{
-				Log.Error( "[ResouceManager]: data/config包不存在或没有加载！不能读取配置{0}", _sheet_name );
-				return null;
 			}
 			TextAsset asset = bundle.LoadAssetSync( _sheet_name, typeof( TextAsset ) ) as TextAsset;
 			if( asset == null )
@@ -65,7 +82,9 @@ namespace Utility.SheetLite
 			try
 			{
 				SheetLite sheet = new SheetLite();
-				return !sheet.Open( _sheet_name, asset.bytes ) ? null : sheet;
+				sheet = !sheet.Open( _sheet_name, asset.bytes ) ? null : sheet;
+				bundle.Unload( true );
+				return sheet;
 			}
 			catch( Exception e )
 			{

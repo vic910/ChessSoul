@@ -445,7 +445,7 @@ PlayerSettings:
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
     1: GROOT_SLUA_EXTENSION
-    7: GROOT_SLUA_EXTENSION
+    7: GROOT_SLUA_EXTENSION;GROOT_ASSETBUNDLE_SIMULATION
   platformArchitecture:
     iOS: 2
   scriptingBackend:

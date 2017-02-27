@@ -27,29 +27,17 @@ namespace Core.App
 			// 初始化资源管理系统
 			if( !ResourceManager.Instance.Initialize( true ) )
 				return;
-			Locale.Instance.Language = LanguageName.zh_cn;
-#if GROOT_ASSETBUNDLE_SIMULATION
-			Log.Info( "开始加载前置语言包" );
-			ResourceManager.Instance.LoadAssetbundleAsync( string.Format( "data/language/{0}.cg", Locale.Instance.Language ), _onLanguageLoaded );
-#else
-			_loadLanguage();
-#endif
+			_loadPreLanguage();
 		}
 
-		private bool _onLanguageLoaded( bool _success, List<Resource_Assetbundle> _bundle )
-		{
-			_loadLanguage();
-			_bundle[0].Unload( true );
-			return true;
-		}
-
-		private void _loadLanguage()
+		private void _loadPreLanguage()
 		{
 			if( Utility.SheetLite.Manager.Instance.GetDB( "language" ) == null )
 			{
 				Log.Error( "没有language数据" );
 				return;
 			}
+			Locale.Instance.Language = LanguageName.zh_cn;
 			Locale.Instance.ChangeLanguage( Locale.Instance.Language, true );
 			Fsm.Translate( AppStateName.ResCheckAndUpdate );
 		}

@@ -32,23 +32,9 @@ namespace Core.App
 
 		public override void OnEnter()
 		{
-#if GROOT_ASSETBUNDLE_SIMULATION
-			Log.Info( "开始加载完整语言包" );
-			ResourceManager.Instance.LoadAssetbundleAsync( string.Format( "data/language/{0}.cg", Locale.Instance.Language ), _onLanguageLoaded );
-#else
 			_loadLanguage();
-			_loadAllConfig();
+			_loadConfig();
 			s_instance.Fsm.Translate( AppStateName.Login );
-#endif
-		}
-
-		private bool _onLanguageLoaded( bool _success, List<Resource_Assetbundle> _bundle )
-		{
-			_loadLanguage();
-			_bundle[0].Unload( true );
-			Log.Info( "开始加载前置配置包" );
-			ResourceManager.Instance.LoadAssetbundleAsync( "data/config.cg", _onConfigLoaded );
-			return true;
 		}
 
 		private void _loadLanguage()
@@ -58,25 +44,18 @@ namespace Core.App
 				Log.Error( "没有language数据" );
 				return;
 			}
+			//加载完整语言包
 			Locale.Instance.ChangeLanguage( Locale.Instance.Language );
 		}
 
-		private bool _onConfigLoaded( bool _success, List<Resource_Assetbundle> _bundle )
-		{
-			//读取配置
-			_loadAllConfig();
-			_bundle[0].Unload( true );
-			s_instance.Fsm.Translate( AppStateName.Login );
-			return true;
-		}
-
-		private void _loadAllConfig()
+		private void _loadConfig()
 		{
 			if( Utility.SheetLite.Manager.Instance.GetDB( "data" ) == null )
 			{
 				Log.Error( "没有data配置数据" );
 				return;
 			}
+			//加载登录时能用到的配置
 			GlobalConfig.Instance.Initialize();
 		}
 	}

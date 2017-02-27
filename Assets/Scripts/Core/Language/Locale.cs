@@ -72,7 +72,7 @@ namespace Groot
 	{
 		private String[] s_language_files =
 		{
-			"Tips", // 总表
+			"tips", // 总表
 		};
 
 		/// <summary>
@@ -151,7 +151,6 @@ namespace Groot
 		/// </summary>
 		private Boolean _loadLocaleString( LanguageName _lang, Boolean _is_preload_phase )
 		{
-			m_locale.Clear();
 			// 非初始化阶段, 加载前置语言包
 			if( _is_preload_phase )
 			{
@@ -159,7 +158,6 @@ namespace Groot
 				return true;
 			}
 
-			_loadLocaleFile( _lang, "preload" );
 			for( int i = 0; i < s_language_files.Length; i++ )
 			{
 				if( !_loadLocaleFile( _lang, s_language_files[i] ) )

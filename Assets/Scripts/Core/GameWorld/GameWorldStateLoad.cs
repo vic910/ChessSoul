@@ -13,10 +13,8 @@ namespace Core
 
 		public override void OnEnter()
 		{
-			// 重新加载所有配置
-			// TODO
+			// 加载所有配置
 
-			// 重新加载所有语言包配置
 			// TODO
 
 			// 初始化基础系统

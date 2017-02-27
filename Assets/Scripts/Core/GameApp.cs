@@ -52,6 +52,7 @@ public class GameApp : UnitySingleton<GameApp>
 
 	public void UninitializeConfig()
 	{
+		Locale.Instance.Uninitialize();
 		GlobalConfig.Instance.Uninitialize();
 	}
 

@@ -59,8 +59,6 @@ namespace Core.App
 			if( _updated )
 			{
 				// TODO 重新初始化资源管理系统
-				// TODO 重新加载所有
-				// TODO 重新加载语言包
 				// TODo 重新初始化UI
 				ResourceManager.Instance.Uninitialize();
 				if( !ResourceManager.Instance.Initialize( false ) )
