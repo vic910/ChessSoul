@@ -43,17 +43,17 @@ public class UI_Main : UI_Base
 
 	private void _onChessBtnClick()
 	{
-		UI_MessageBox.Show( Locale.Instance["Common@NotOpen"], Locale.Instance["Common@Confirm"] );
+		UI_MessageBox.Show( Locale.Instance["Common@NotOpen"] );
 	}
 
 	private void _onOnlineBtnClick()
 	{
-		UI_MessageBox.Show( Locale.Instance["Common@NotOpen"], Locale.Instance["Common@Confirm"] );
+		UI_MessageBox.Show( Locale.Instance["Common@NotOpen"] );
 	}
 
 	private void _onChatBtnClick()
 	{
-		UI_MessageBox.Show( Locale.Instance["Common@NotOpen"], Locale.Instance["Common@Confirm"] );
+		UI_MessageBox.Show( Locale.Instance["Common@NotOpen"] );
 	}
 
 	private void _onSelfBtnClick()

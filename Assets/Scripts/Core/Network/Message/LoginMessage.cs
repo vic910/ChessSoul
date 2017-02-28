@@ -33,6 +33,32 @@ namespace Groot.Network
 		}
 	}
 
+	class CG_ForceLoginRequestMsg : MessageBase
+	{
+		[MessageFiled(0)]
+		public Byte PlatformID;
+
+		[MessageFiled(1,33)]
+		public string PlayerName;
+
+		[MessageFiled(2,18)]
+		public string PlayerPassword;
+
+		[MessageFiled(3,33)]
+		public string Md5;
+
+		[MessageFiled(4)]
+		public Byte NameType;
+
+		[MessageFiled(5)]
+		public UInt64 Mac;
+
+		public CG_ForceLoginRequestMsg() : base( EMsgDirection.MSG_CG, EMsgType.TYPE_LOGIN, EMsgId.LOGIN_FORCE_CG )
+		{
+
+		}
+	}
+
 	class GC_LoginFailedMsg : MessageBase
 	{
 		public enum ReasonInfo

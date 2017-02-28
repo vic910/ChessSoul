@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using Groot;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ namespace Weiqi.UI
 		/// <param name="_tips"></param>
 		/// <param name="_buttonText"></param>
 		/// <param name="_callback"></param>
-		public static void Show( String _tips, String _button_text, Action _callback = null, Action _close_callback = null )
+		public static void Show( String _tips, String _button_text = "", Action _callback = null, Action _close_callback = null )
 		{
 			UI_MessageBox messagebox = UIManager.Instance.ShowUI( "ui_msgbox" ) as UI_MessageBox;
 			messagebox.OpenMsgBox( _tips, _button_text, _callback, _close_callback );
@@ -89,6 +90,8 @@ namespace Weiqi.UI
 		public void OpenMsgBox( String _tips, String _button_text, Action _callback, Action _close_callback )
 		{
 			m_text_tips.text = _tips;
+			if( _button_text == string.Empty )
+				_button_text = Locale.Instance["Common@Confirm"];
 			m_button_double_1.gameObject.SetActive( false );
 			m_button_double_2.gameObject.SetActive( false );
 			m_button_single.gameObject.SetActive( true );
@@ -109,6 +112,10 @@ namespace Weiqi.UI
 		public void OpenMsgBox( String _tips, String _button_text_1, String _button_text_2, Action _callback_1, Action _callback_2, Action _close_callback )
 		{
 			m_text_tips.text = _tips;
+			if( _button_text_1 == string.Empty )
+				_button_text_1 = Locale.Instance["Common@Confirm"];
+			if( _button_text_2 == string.Empty )
+				_button_text_2 = Locale.Instance["Common@Cancel"];
 			m_button_single.gameObject.SetActive( false );
 			m_button_double_1.gameObject.SetActive( true );
 			m_button_double_2.gameObject.SetActive( true );

@@ -21,7 +21,9 @@
 // THE SOFTWARE.
 
 using System.Runtime.InteropServices.ComTypes;
+using Groot;
 using UnityEngine.UI;
+using Weiqi.UI;
 
 namespace SLua
 {
@@ -63,7 +65,7 @@ namespace SLua
 			}
 			else if( _type == LuaCodeGen.ExportType.Custom )
 			{
-
+				
 			}
 		}
 #endif

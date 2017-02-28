@@ -1,6 +1,9 @@
 ﻿using System;
+using Groot;
+using LuaInterface;
 using UnityEngine;
 using SLua;
+using Weiqi;
 using Weiqi.UI;
 
 
@@ -19,6 +22,7 @@ public static class UnityLuaUtils
 		_y = pos.y;
 		_z = pos.z;
 	}
+
 	public static Vector3 GetPos( Transform _transform )
 	{
 		return _transform.position;
@@ -37,5 +41,31 @@ public static class UnityLuaUtils
 	public static void ShowUI( String _name )
 	{
 		UIManager.Instance.ShowUI( _name );
+	}
+
+	public static void ShowSingleMsgBox( string _tip, string _button_tip, Action _button_action, Action _close_action )
+	{
+		UI_MessageBox.Show( _tip, _button_tip, _button_action, _close_action );
+	}
+
+	public static void ShowSelectMsgBox( string _tip, string _button1_tip, string _button2_tip, Action _button1_action, Action _button2_action, Action _close_action )
+	{
+		UI_MessageBox.Show( _tip, _button1_tip, _button2_tip, _button1_action, _button2_action, _close_action );
+	}
+
+	public static string GetLocaleString( string _key )
+	{
+		return Locale.Instance[_key];
+	}
+
+	[MonoPInvokeCallbackAttribute( typeof( LuaCSFunction ) )]
+	[StaticExport]
+	public static int Test( IntPtr l )
+	{
+		LuaObject.pushValue( l, true );
+		LuaDLL.lua_pushstring( l, "xiaoming" );
+		LuaDLL.lua_pushstring( l, "hanmeimei" );
+		LuaDLL.lua_pushinteger( l, 2 );
+		return 4;
 	}
 }

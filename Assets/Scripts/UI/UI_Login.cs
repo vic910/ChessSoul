@@ -44,12 +44,13 @@ public class UI_Login : UI_Base
 
 	public override float PreShow( UI_Base _pre_ui, params object[] _args )
 	{
+		SignalSystem.Register( SignalId.Login_ForceLogin, _forceLogin );
 		return m_entrance_anim_time;
 	}
 
 	public override void OnHide( UI_Base _next_ui )
 	{
-		
+		SignalSystem.Unregister( SignalId.Login_ForceLogin, _forceLogin );
 	}
 
 	private void _onRegisterButtonClick()
@@ -57,8 +58,36 @@ public class UI_Login : UI_Base
 		Application.OpenURL( GlobalConfig.Instance.GetValue<string>( "RegisterWeb" ) );
 	}
 
+	private void _onGetPasswordClick()
+	{
+		Application.OpenURL( GlobalConfig.Instance.GetValue<string>( "GetPassword" ) );
+	}
+
+	private void _forceLogin( SignalId _signal_id, SignalParameters _parameters )
+	{
+		CG_ForceLoginRequestMsg msg = new CG_ForceLoginRequestMsg();
+		msg.PlatformID = 0;
+		msg.PlayerName = m_edit_account.text;
+		msg.PlayerPassword = m_edit_password.text;
+		var bt =Encoding.UTF8.GetBytes( UnityEngine.SystemInfo.deviceUniqueIdentifier );
+		msg.Mac = BitConverter.ToUInt64( bt, 0 );
+		msg.Md5 = MD5Helper.GetMD5Hash( bt );
+		msg.NameType = 0;
+		NetManager.Instance.SendMsg( msg );
+	}
+
 	private void _onLoginButtonClick()
 	{
+		if( m_edit_account.text == string.Empty )
+		{
+			UI_MessageBox.Show( Locale.Instance["Login@PleaseInputAccount"] );
+			return;
+		}
+		if( m_edit_password.text == string.Empty )
+		{
+			UI_MessageBox.Show( Locale.Instance["Login@PleaseInputPassword"] );
+			return;
+		}
 		CG_LoginRequestMsg msg = new CG_LoginRequestMsg();
 		msg.PlatformID = 0;
 		msg.PlayerName = m_edit_account.text;
@@ -69,10 +98,5 @@ public class UI_Login : UI_Base
 		msg.NameType = 0;
 		msg.Version = 17696793;
 		NetManager.Instance.SendMsg( msg );
-	}
-
-	private void _onGetPasswordClick()
-	{
-		Application.OpenURL( GlobalConfig.Instance.GetValue<string>( "GetPassword" ) );
 	}
 }

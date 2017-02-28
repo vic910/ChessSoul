@@ -221,6 +221,7 @@ namespace Groot.Network
 
 			public override void Exit()
 			{
+				WaitForResponse.Release();
 				NetManager.Instance.Unregister<ConnectMsg>();
 				NetManager.Instance.Unregister<DisconnectMsg>();
 				m_time_out.Stop();
@@ -263,7 +264,6 @@ namespace Groot.Network
 
 			public override void Enter()
 			{
-				WaitForResponse.Release();
 				NetManager.Instance.Register<DisconnectMsg>( _onConnectionClosed );
 				//Entity.m_net_client_gamesrv.Register<DisconnectMsg>( DisconnectMsg.MyMessageId, _onConnectionClosed );
 				//Entity.m_net_client_gamesrv.Register<Msg_gc_ConnectionClosed>( Msg_gc_ConnectionClosed.MyMessageId, _onGameSrvCloseConnection );

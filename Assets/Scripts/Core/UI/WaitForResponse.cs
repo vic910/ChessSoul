@@ -19,7 +19,7 @@ namespace Groot
 		{
 			s_reference_count++;
 			UIManager.Instance.SetEventSystemEnable( false );
-			//UIManager.Instance.ShowUI( "ui_wait_for_response" );
+			UIManager.Instance.ShowUI( "ui_wait_response" );
 		}
 
 		public static void Release()
@@ -29,7 +29,7 @@ namespace Groot
 				return;
 			s_reference_count = 0;
 			UIManager.Instance.SetEventSystemEnable( true );
-			//UIManager.Instance.HideUI( "ui_wait_for_response" );
+			UIManager.Instance.HideUI( "ui_wait_response" );
 		}
 	}
 }

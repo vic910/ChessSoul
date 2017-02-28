@@ -7,7 +7,8 @@ namespace Groot
 		NetworkState_EnterConnected,            //进入网络连接状态
 		#endregion
 		#region Login
-		Login_Success,							//登录成功
+		Login_Success,                          //登录成功
+		Login_ForceLogin,						//强制登录
 		#endregion
 	}
 }

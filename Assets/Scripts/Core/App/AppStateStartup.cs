@@ -8,6 +8,7 @@ using Utility.FSM;
 using Weiqi.UI;
 using Groot;
 using Groot.Res;
+using Weiqi;
 
 namespace Core.App
 {

@@ -79,6 +79,7 @@ namespace Groot.Network
 		LOGIN_REQUEST_CG = 1,
 		LOGIN_OK_GC = 2,
 		LOGIN_FAILED_GC = 3,
+		LOGIN_FORCE_CG = 5,
 
 
 

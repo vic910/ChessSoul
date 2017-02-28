@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Groot.Network;
+using SLua;
 using UnityEngine;
 
 namespace Weiqi
@@ -10,9 +11,10 @@ namespace Weiqi
 	{
 		public PlayerInfo PlayerInfo { get; private set; }
 
+
 		public override void Initialize()
 		{
-			
+
 		}
 
 		public override void Uninitialize()

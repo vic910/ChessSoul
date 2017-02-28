@@ -41,7 +41,7 @@ public class GameApp : UnitySingleton<GameApp>
 	void OnApplicationQuit()
 	{
 		m_app.Stop();
-		UninitializeConfig();
+		_uninitializeConfig();
 
 		UIManager.Instance.Uninitialize();
 		NetManager.Instance.Uninitialize();
@@ -50,7 +50,7 @@ public class GameApp : UnitySingleton<GameApp>
 		UILuaSvr.Instance.Uninitialize();
 	}
 
-	public void UninitializeConfig()
+	private void _uninitializeConfig()
 	{
 		Locale.Instance.Uninitialize();
 		GlobalConfig.Instance.Uninitialize();
@@ -89,14 +89,5 @@ public class GameApp : UnitySingleton<GameApp>
 		{
 			game_event.ExecuteEvent();
 		}
-	}
-
-	/// <summary>
-	/// 登出游戏，返回登录界面，暂时先放这了
-	/// </summary>
-	public static void Logout()
-	{
-		// 切换到Unload状态去干掉所有资源
-		Instance.m_app.Translate( "Unload" );
 	}
 }

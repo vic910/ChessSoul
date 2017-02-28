@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SLua;
+using UnityEngine;
 
 namespace Weiqi
 {
@@ -49,7 +50,6 @@ namespace Weiqi
 		{
 		}*/
 	}
-
 
 	public abstract class GrootSingleton<T> where T : class, new()
 	{
