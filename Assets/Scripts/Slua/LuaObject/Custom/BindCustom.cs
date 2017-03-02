@@ -6,6 +6,8 @@ namespace SLua {
 		public static Action<IntPtr>[] GetBindList() {
 			Action<IntPtr>[] list= {
 				Lua_UnityLuaUtils.reg,
+				Lua_MainPlayer.reg,
+				Lua_PlayerInfoConfig.reg,
 			};
 			return list;
 		}

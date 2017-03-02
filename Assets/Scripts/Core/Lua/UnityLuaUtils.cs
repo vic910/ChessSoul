@@ -28,10 +28,10 @@ public static class UnityLuaUtils
 		return _transform.position;
 	}
 
-	public static void Invoke( Action _action )
-	{
-		_action();
-	}
+	//public static void Invoke( Action _action )
+	//{
+	//	_action();
+	//}
 
 	public static void HideUI( String _name )
 	{

@@ -51,10 +51,12 @@ namespace Weiqi
 				}
 				break;
 			}
+			WaitForResponse.Release();
 		}
 
 		private void _onPacketArrived( Int32 _stream_id, PacketType _packet_type, GC_LoginOK _msg )
 		{
+			WaitForResponse.Release();
 			Log.Info( "收到玩家数据" );
 			MainPlayer.Instance.InitializePlayerInfo( _msg.PlayerInfo );
 			SignalSystem.FireSignal( SignalId.Login_Success );

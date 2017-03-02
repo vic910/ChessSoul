@@ -1,5 +1,3 @@
 global.lua#
+ui_self.lua
 ui_option.lua
---ui_msgbox.lua#
---ui_title.lua
---ui_main.lua

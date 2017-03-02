@@ -69,11 +69,12 @@ public class UI_Login : UI_Base
 		msg.PlatformID = 0;
 		msg.PlayerName = m_edit_account.text;
 		msg.PlayerPassword = m_edit_password.text;
-		var bt =Encoding.UTF8.GetBytes( UnityEngine.SystemInfo.deviceUniqueIdentifier );
+		var bt = Encoding.UTF8.GetBytes( UnityEngine.SystemInfo.deviceUniqueIdentifier );
 		msg.Mac = BitConverter.ToUInt64( bt, 0 );
 		msg.Md5 = MD5Helper.GetMD5Hash( bt );
 		msg.NameType = 0;
 		NetManager.Instance.SendMsg( msg );
+		WaitForResponse.Retain();
 	}
 
 	private void _onLoginButtonClick()
@@ -92,11 +93,12 @@ public class UI_Login : UI_Base
 		msg.PlatformID = 0;
 		msg.PlayerName = m_edit_account.text;
 		msg.PlayerPassword = m_edit_password.text;
-		var bt =Encoding.UTF8.GetBytes( UnityEngine.SystemInfo.deviceUniqueIdentifier );
+		var bt = Encoding.UTF8.GetBytes( UnityEngine.SystemInfo.deviceUniqueIdentifier );
 		msg.Mac = BitConverter.ToUInt64( bt, 0 );
 		msg.Md5 = MD5Helper.GetMD5Hash( bt ); 
 		msg.NameType = 0;
 		msg.Version = 17696793;
 		NetManager.Instance.SendMsg( msg );
+		WaitForResponse.Retain();
 	}
 }

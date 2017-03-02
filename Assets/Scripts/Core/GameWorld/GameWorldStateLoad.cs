@@ -15,6 +15,7 @@ namespace Core
 		{
 			// 加载剩下所有语言配置
 			Locale.Instance.LoadAllLanguageConfig();
+			PlayerInfoConfig.Instance.Initialize();
 
 			// 初始化基础系统
 

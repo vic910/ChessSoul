@@ -54,6 +54,7 @@ public class GameApp : UnitySingleton<GameApp>
 	{
 		Locale.Instance.Uninitialize();
 		GlobalConfig.Instance.Uninitialize();
+		PlayerInfoConfig.Instance.UnInitialize();
 	}
 
 	// Update is called once per frame

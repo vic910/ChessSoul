@@ -56,19 +56,6 @@ public class Lua_UnityLuaUtils : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static public int Invoke_s(IntPtr l) {
-		try {
-			System.Action a1;
-			LuaDelegation.checkDelegate(l,1,out a1);
-			UnityLuaUtils.Invoke(a1);
-			pushValue(l,true);
-			return 1;
-		}
-		catch(Exception e) {
-			return error(l,e);
-		}
-	}
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static public int HideUI_s(IntPtr l) {
 		try {
 			System.String a1;
@@ -154,7 +141,6 @@ public class Lua_UnityLuaUtils : LuaObject {
 		getTypeTable(l,"UnityLuaUtils");
 		addMember(l,SetPos_s);
 		addMember(l,GetPos_s);
-		addMember(l,Invoke_s);
 		addMember(l,HideUI_s);
 		addMember(l,ShowUI_s);
 		addMember(l,ShowSingleMsgBox_s);

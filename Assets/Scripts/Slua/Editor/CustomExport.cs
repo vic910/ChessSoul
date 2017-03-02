@@ -51,6 +51,7 @@ namespace SLua
 			else if( _type == LuaCodeGen.ExportType.UnityEngineUI )
 			{
 				_add( typeof( UnityEngine.Events.UnityEvent ), null );
+				_add( typeof( UnityEngine.Events.UnityEventBase ), null );
 				_add( typeof( UnityEngine.UI.Button.ButtonClickedEvent ), null );
 				_add( typeof( UnityEngine.UI.Text ), null );
 				_add( typeof( UnityEngine.UI.Image ), null );

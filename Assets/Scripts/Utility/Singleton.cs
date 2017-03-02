@@ -1,4 +1,5 @@
-﻿using SLua;
+﻿using LuaInterface;
+using SLua;
 using UnityEngine;
 
 namespace Weiqi

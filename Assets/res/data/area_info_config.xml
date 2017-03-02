@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AreaInfo>
+	<State ID="0" CountryID="0" Name="未知" ShortName="无" ConutryName="未知" Desc="无" />
+	<State ID="2" CountryID="1" Name="北京市" ShortName="京" ConutryName="中国" Desc="无" />
+	<State ID="3" CountryID="1" Name="天津市" ShortName="津" ConutryName="中国" Desc="无" />
+	<State ID="4" CountryID="1" Name="重庆市" ShortName="渝" ConutryName="中国" Desc="无" />
+	<State ID="5" CountryID="1" Name="上海市" ShortName="沪" ConutryName="中国" Desc="无" />
+	<State ID="1" CountryID="1" Name="四川省" ShortName="川" ConutryName="中国" Desc="无" />
+	<State ID="6" CountryID="1" Name="河北省" ShortName="冀" ConutryName="中国" Desc="无" />
+	<State ID="7" CountryID="1" Name="河南省" ShortName="豫" ConutryName="中国" Desc="无" />
+	<State ID="8" CountryID="1" Name="云南省" ShortName="云" ConutryName="中国" Desc="无" />
+	<State ID="9" CountryID="1" Name="辽宁省" ShortName="辽" ConutryName="中国" Desc="无" />
+	<State ID="10" CountryID="1" Name="黑龙江省" ShortName="黑" ConutryName="中国" Desc="无" />
+	<State ID="11" CountryID="1" Name="湖南省" ShortName="湘" ConutryName="中国" Desc="无" />
+	<State ID="12" CountryID="1" Name="安徽省" ShortName="皖" ConutryName="中国" Desc="无" />
+	<State ID="13" CountryID="1" Name="山东省" ShortName="鲁" ConutryName="中国" Desc="无" />
+	<State ID="14" CountryID="1" Name="新疆" ShortName="新" ConutryName="中国" Desc="无" />
+	<State ID="15" CountryID="1" Name="江苏省" ShortName="苏" ConutryName="中国" Desc="无" />
+	<State ID="16" CountryID="1" Name="浙江省" ShortName="浙" ConutryName="中国" Desc="无" />
+	<State ID="17" CountryID="1" Name="江西省" ShortName="赣" ConutryName="中国" Desc="无" />
+	<State ID="18" CountryID="1" Name="湖北省" ShortName="鄂" ConutryName="中国" Desc="无" />
+	<State ID="19" CountryID="1" Name="广西省" ShortName="桂" ConutryName="中国" Desc="无" />
+	<State ID="20" CountryID="1" Name="甘肃省" ShortName="甘" ConutryName="中国" Desc="无" />
+	<State ID="21" CountryID="1" Name="山西省" ShortName="晋" ConutryName="中国" Desc="无" />
+	<State ID="22" CountryID="1" Name="内蒙古" ShortName="蒙" ConutryName="中国" Desc="无" />
+	<State ID="23" CountryID="1" Name="陕西省" ShortName="陕" ConutryName="中国" Desc="无" />
+	<State ID="24" CountryID="1" Name="吉林省" ShortName="吉" ConutryName="中国" Desc="无" />
+	<State ID="25" CountryID="1" Name="福建省" ShortName="闽" ConutryName="中国" Desc="无" />
+	<State ID="26" CountryID="1" Name="贵州省" ShortName="黔" ConutryName="中国" Desc="无" />
+	<State ID="27" CountryID="1" Name="广东省" ShortName="粤" ConutryName="中国" Desc="无" />
+	<State ID="28" CountryID="1" Name="青海省" ShortName="青" ConutryName="中国" Desc="无" />
+	<State ID="29" CountryID="1" Name="西藏" ShortName="藏" ConutryName="中国" Desc="无" />
+	<State ID="30" CountryID="1" Name="宁夏" ShortName="宁" ConutryName="中国" Desc="无" />
+	<State ID="31" CountryID="1" Name="海南省" ShortName="琼" ConutryName="中国" Desc="无" />
+	<State ID="32" CountryID="1" Name="香港" ShortName="港" ConutryName="中国" Desc="无" />
+	<State ID="33" CountryID="1" Name="澳门" ShortName="澳" ConutryName="中国" Desc="无" />
+	<State ID="34" CountryID="1" Name="台湾" ShortName="台" ConutryName="中国" Desc="无" />
+</AreaInfo> 
+	

@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_layer: 2
-  m_type: 1
+  m_type: 0
   m_auto_destory: 1
   m_entrance_anim_time: 0
   m_exit_anim_time: 0
