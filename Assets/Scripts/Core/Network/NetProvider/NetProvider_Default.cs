@@ -99,13 +99,18 @@ namespace Groot.Network
 			m_net_client_gamesrv.Unregister( _packet_id );
 		}
 
-		public override void Login()
+		public override void RequestConnect()
 		{
 			// 如果正在尝试连接，则等连接状态
 			if( m_fsm.CurrentState.StateType == NetWorkStateType.ConnectingToGameSrv
 				|| m_fsm.CurrentState.StateType == NetWorkStateType.Connected )
 				return;
 			Connect();
+		}
+
+		public override void RequestDisConnect()
+		{
+			Disconnect();
 		}
 
 		public override bool SendMsg( MessageBase _msg )

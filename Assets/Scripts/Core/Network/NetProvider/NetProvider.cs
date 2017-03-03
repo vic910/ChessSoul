@@ -26,9 +26,14 @@ namespace Groot.Network
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual void Login()
+		public virtual void RequestConnect()
 		{
-			throw new NotImplementedException( "NetProvider: Login isn't implemented.");
+			throw new NotImplementedException( "NetProvider: RequestConnect isn't implemented." );
+		}
+
+		public virtual void RequestDisConnect()
+		{
+			throw new NotImplementedException( "NetProvider: RequestDisConnect isn't implemented." );
 		}
 
 		/// <summary>

@@ -8,6 +8,7 @@ namespace SLua {
 				Lua_UnityLuaUtils.reg,
 				Lua_MainPlayer.reg,
 				Lua_PlayerInfoConfig.reg,
+				Lua_ScrollRectList.reg,
 			};
 			return list;
 		}

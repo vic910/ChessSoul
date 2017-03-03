@@ -410,6 +410,10 @@ namespace Groot.Network
 						return;
 					m_connect_socket.Close();
 					m_connect_socket = null;
+					lock ( m_action_lock )
+					{
+						m_doing_action = false;
+					}
 				}
 				catch( Exception e )
 				{

@@ -24,6 +24,9 @@ namespace Weiqi.UI
 		[SerializeField]
 		private Image[] m_images;
 
+		[SerializeField]
+		private InputField[] m_editors;
+
 		private LuaTable m_lua_script;
 
 		#region LuaFunctions 
@@ -81,6 +84,10 @@ namespace Weiqi.UI
 			count = m_images.Length;
 			for( Int32 i = 0; i < count; i++ )
 				go_table[m_images[i].name] = m_images[i];
+
+			count = m_editors.Length;
+			for( Int32 i = 0; i < count; i++ )
+				go_table[m_editors[i].name] = m_editors[i];
 
 			m_lua_script["mRectTransform"] = (RectTransform)transform;
 			m_lua_script["mAnimator"] = AnimatorObject;

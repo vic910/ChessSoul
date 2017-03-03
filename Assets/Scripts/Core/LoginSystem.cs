@@ -16,7 +16,7 @@ namespace Weiqi
 		{
 			NetManager.Instance.Register<GC_LoginFailedMsg>( _onPacketArrived );
 			NetManager.Instance.Register<GC_LoginOK>( _onPacketArrived );
-			NetManager.Instance.Login();
+			NetManager.Instance.RequestConnect();
 		}
 
 		public override void Uninitialize()
@@ -35,6 +35,7 @@ namespace Weiqi
 			case GC_LoginFailedMsg.ReasonInfo.ERROR_HAS_LOGINED:
 				{
 					string tip = Locale.Instance[string.Format( "Login@{0}", (GC_LoginFailedMsg.ReasonInfo)( _msg.Reason ) ).ToString()];
+					NetManager.Instance.RequestDisConnect();
 					UI_MessageBox.Show( tip, Locale.Instance["Common@Confirm"], Locale.Instance["Common@Cancel"], () =>
 					{
 						SignalSystem.FireSignal( SignalId.Login_ForceLogin );

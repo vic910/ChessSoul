@@ -80,9 +80,14 @@ namespace Groot.Network
 		}
 
 
-		public void Login()
+		public void RequestConnect()
 		{
-			m_net_provider.Login();
+			m_net_provider.RequestConnect();
+		}
+
+		public void RequestDisConnect()
+		{
+			m_net_provider.RequestDisConnect();
 		}
 
 	}

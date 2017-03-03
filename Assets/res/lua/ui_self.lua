@@ -17,24 +17,7 @@ function t:OnUnloaded()
 end
 
 function t:PreShow() 
-	t.mUIWidgets.text_name.text = MainPlayer.Instance.PlayerInfo.PlayerName;
-	t.mUIWidgets.text_level.text = MainPlayer.Instance.PlayerInfo.Level;
-	t.mUIWidgets.text_score.text = MainPlayer.Instance.PlayerInfo.LevelScore;
-	local area_info = PlayerInfoConfig.Instance:GetAreaInfo( MainPlayer.Instance.PlayerInfo.AreaID );
-	t.mUIWidgets.text_area.text = area_info.ShortName;
-	local liveness_info = PlayerInfoConfig.Instance:GetLivenessInfo( MainPlayer.Instance.PlayerInfo.Liveness );
-	t.mUIWidgets.text_activity.text = liveness_info.Name.."("..MainPlayer.Instance.PlayerInfo.Liveness..")";
-	if MainPlayer.Instance.PlayerInfo.ClubName == "" then
-		t.mUIWidgets.text_union.text = UnityLuaUtils.GetLocaleString( "Common@No" );
-	else
-		t.mUIWidgets.text_union.text = MainPlayer.Instance.PlayerInfo.ClubName;
-	end
-	if MainPlayer.Instance.PlayerInfo.ClubPositionName == "" then
-		t.mUIWidgets.text_job.text = UnityLuaUtils.GetLocaleString( "Common@No" );
-	else
-		t.mUIWidgets.text_job.text = MainPlayer.Instance.PlayerInfo.ClubPositionName;
-	end
-	t.mUIWidgets.text_money.text = MainPlayer.Instance.PlayerInfo.Money;
+	t:_updatePlayerInfo();
 end
 
 function t:_onButtonItemClick()
@@ -55,6 +38,27 @@ end
 
 function t:_onButtonOptionClick()
 	UnityLuaUtils.ShowUI( "ui_option" );
+end
+
+function t:_updatePlayerInfo()
+	t.mUIWidgets.text_name.text = MainPlayer.Instance.PlayerInfo.PlayerName;
+	t.mUIWidgets.text_level.text = MainPlayer.Instance.PlayerInfo.Level;
+	t.mUIWidgets.text_score.text = MainPlayer.Instance.PlayerInfo.LevelScore;
+	local area_info = PlayerInfoConfig.Instance:GetAreaInfo( MainPlayer.Instance.PlayerInfo.AreaID );
+	t.mUIWidgets.text_area.text = area_info.ShortName;
+	local liveness_info = PlayerInfoConfig.Instance:GetLivenessInfo( MainPlayer.Instance.PlayerInfo.Liveness );
+	t.mUIWidgets.text_activity.text = liveness_info.Name.."("..MainPlayer.Instance.PlayerInfo.Liveness..")";
+	if MainPlayer.Instance.PlayerInfo.ClubName == "" then
+		t.mUIWidgets.text_union.text = UnityLuaUtils.GetLocaleString( "Common@No" );
+	else
+		t.mUIWidgets.text_union.text = MainPlayer.Instance.PlayerInfo.ClubName;
+	end
+	if MainPlayer.Instance.PlayerInfo.ClubPositionName == "" then
+		t.mUIWidgets.text_job.text = UnityLuaUtils.GetLocaleString( "Common@No" );
+	else
+		t.mUIWidgets.text_job.text = MainPlayer.Instance.PlayerInfo.ClubPositionName;
+	end
+	t.mUIWidgets.text_money.text = MainPlayer.Instance.PlayerInfo.Money;
 end
 
 return t

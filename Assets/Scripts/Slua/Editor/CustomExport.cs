@@ -22,6 +22,7 @@
 
 using System.Runtime.InteropServices.ComTypes;
 using Groot;
+using UnityEngine;
 using UnityEngine.UI;
 using Weiqi.UI;
 
@@ -62,6 +63,7 @@ namespace SLua
 				// .NET
 				_add( typeof( System.Int32 ), null );
 				_add( typeof( System.String ), null );
+				//_add( typeof( System.Action<GameObject, Int32> ), null );
 				//_add( typeof( System.Action ), null );
 			}
 			else if( _type == LuaCodeGen.ExportType.Custom )
