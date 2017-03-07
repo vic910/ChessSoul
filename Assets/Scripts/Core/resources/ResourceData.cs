@@ -123,12 +123,6 @@ namespace Groot.Res
 			return success;
 		}
 
-		public GameObject LoadUI( String _ui_name )
-		{
-			Assetbundle = AssetBundle.LoadFromFile( ResouceInfo.SystemApiLoadingPath );
-			return Assetbundle.LoadAsset<GameObject>( _ui_name );
-		}
-
 		public void OnLoadFinished( AssetBundle _asset_bundle, Boolean _succeed )
 		{
 			Assetbundle = _asset_bundle;

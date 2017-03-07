@@ -138,12 +138,6 @@ namespace Groot.Res
 			return res_assetbundle;
 		}
 
-		public GameObject LoadUIObject( String _name )
-		{
-			Resource_Assetbundle res_assetbundle = GetResource( String.Concat( "ui/", _name, ".ui" ) ) as Resource_Assetbundle;
-			return res_assetbundle.LoadUI( _name );
-		}
-
 		public void LoadSceneAsync( String _assetbundle_name, String _scene_name, Action<Boolean> _callback )
 		{
 			//_scene_name = _scene_name.ToLower();

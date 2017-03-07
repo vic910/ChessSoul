@@ -43,27 +43,26 @@ namespace Groot.Res
 		private IEnumerator _loadAssetBundle( Resource_Assetbundle _assetbundle_data )
 		{
 			AssetBundle loaded_asset_bundle = null;
-			if( Application.platform == RuntimePlatform.Android && _assetbundle_data.ResouceInfo.Location == AssetLocation.StreamingPath )
-			{
-				using( WWW www = new WWW( _assetbundle_data.ResouceInfo.UnityApiLoadingPath ) )
-				{
-					yield return www;
+			//if( Application.platform == RuntimePlatform.Android && _assetbundle_data.ResouceInfo.Location == AssetLocation.StreamingPath )
+			//{
+			//	using( WWW www = new WWW( _assetbundle_data.ResouceInfo.UnityApiLoadingPath ) )
+			//	{
+			//		yield return www;
 
-					if( www.error == null )
-						loaded_asset_bundle = www.assetBundle;
-					else
-						Log.Error( eLogType.Resources, "Load Fail: {0}! Msg: {1}", _assetbundle_data.ResouceInfo.UnityApiLoadingPath, www.error );
-				}
-			}
-			else
-			{
-				//loaded_asset_bundle = AssetBundle.LoadFromFile( _assetbundle_data.ResouceInfo.SystemApiLoadingPath );
-				AssetBundleCreateRequest bundle_load_request = AssetBundle.LoadFromFileAsync( _assetbundle_data.ResouceInfo.SystemApiLoadingPath );
-				yield return bundle_load_request;
-				loaded_asset_bundle = bundle_load_request.assetBundle;
-				if( loaded_asset_bundle == null )
-					Log.Error( eLogType.Resources, "Load Fail: {0}! Msg: Assetbundle 为空", _assetbundle_data.ResouceInfo.SystemApiLoadingPath );
-			}
+			//		if( www.error == null )
+			//			loaded_asset_bundle = www.assetBundle;
+			//		else
+			//			Log.Error( eLogType.Resources, "Load Fail: {0}! Msg: {1}", _assetbundle_data.ResouceInfo.UnityApiLoadingPath, www.error );
+			//	}
+			//}
+			//else
+			//{
+			AssetBundleCreateRequest bundle_load_request = AssetBundle.LoadFromFileAsync( _assetbundle_data.ResouceInfo.SystemApiLoadingPath );
+			yield return bundle_load_request;
+			loaded_asset_bundle = bundle_load_request.assetBundle;
+			if( loaded_asset_bundle == null )
+				Log.Error( eLogType.Resources, "Load Fail: {0}! Msg: Assetbundle 为空", _assetbundle_data.ResouceInfo.SystemApiLoadingPath );
+			//}
 			_assetbundle_data.OnLoadFinished( loaded_asset_bundle , loaded_asset_bundle != null );
 			m_current_loading = null;
 		}
