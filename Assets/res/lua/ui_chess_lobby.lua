@@ -1,20 +1,31 @@
 local t = { };
 
 function t:OnLoaded() 
-	--t.mUIWidgets.button_item.onClick:AddListener( t._onButtonItemClick );
 	t.ScrollRectList = t.mUIWidgets.ScrollRect:GetComponent( ScrollRectList );
 	t.ScrollRectList.OnItemVisible = function( _obj, _index )
-		t:OnItemVisible( _obj, _index )
+		t:OnItemVisible( _obj, _index );
 	end
 	t.ScrollRectList:SetMaxItemCount( 100 );
+	local content = t.mUIWidgets.ScrollRect.transform:FindChild( "Content" );
+	for i = 0, content.childCount - 1 do
+		content:GetChild( i ):FindChild( "button_join" ).gameObject:GetComponent( UnityEngine.UI.Button ).onClick:AddListener( t.OnItemJoinClick );
+	end
 end
 
 function t:OnUnloaded()
-	--t.mUIWidgets.button_item.onClick:RemoveAllListeners();
+	local content = t.mUIWidgets.ScrollRect.transform:FindChild( "Content" );
+	for i = 0, content.childCount - 1 do
+		content:GetChild( i ):FindChild( "button_join" ).gameObject:GetComponent( UnityEngine.UI.Button ).onClick:RemoveAllListeners();
+	end
 end
 
 function t:PreShow() 
 	
+end
+
+function t:OnItemJoinClick()
+	print( UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.parent.name );
+	--print( type( tonumber( UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.parent.name ) ) );
 end
 
 function t:OnItemVisible( _obj, _index )

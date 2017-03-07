@@ -5,6 +5,7 @@ namespace SLua {
 	public class BindUnityEngine {
 		public static Action<IntPtr>[] GetBindList() {
 			Action<IntPtr>[] list= {
+				Lua_UnityEngine_Object.reg,
 				Lua_UnityEngine_GameObject.reg,
 				Lua_UnityEngine_Transform.reg,
 				Lua_UnityEngine_Vector2.reg,

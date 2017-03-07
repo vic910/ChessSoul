@@ -39,6 +39,7 @@ namespace SLua
 			// UnityEngine
 			if( _type == LuaCodeGen.ExportType.UnityEngine )
 			{
+				_add( typeof( UnityEngine.Object ), null );
 				_add( typeof( UnityEngine.GameObject ), null );
 				_add( typeof( UnityEngine.Transform ), null );
 				_add( typeof( UnityEngine.Vector2 ), null );
@@ -51,6 +52,7 @@ namespace SLua
 			}
 			else if( _type == LuaCodeGen.ExportType.UnityEngineUI )
 			{
+				_add( typeof( UnityEngine.EventSystems.EventSystem ), null );
 				_add( typeof( UnityEngine.Events.UnityEvent ), null );
 				_add( typeof( UnityEngine.Events.UnityEventBase ), null );
 				_add( typeof( UnityEngine.UI.Button.ButtonClickedEvent ), null );

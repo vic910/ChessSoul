@@ -5,6 +5,7 @@ namespace SLua {
 	public class BindUnityEngineUI {
 		public static Action<IntPtr>[] GetBindList() {
 			Action<IntPtr>[] list= {
+				Lua_UnityEngine_EventSystems_EventSystem.reg,
 				Lua_UnityEngine_Events_UnityEventBase.reg,
 				Lua_UnityEngine_Events_UnityEvent.reg,
 				Lua_UnityEngine_UI_Button_ButtonClickedEvent.reg,
