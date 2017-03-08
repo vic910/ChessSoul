@@ -27,7 +27,7 @@ namespace Groot.Network
 		[MessageFiled(6)]
 		public UInt64 Mac;
 
-		public CG_LoginRequestMsg() : base( EMsgDirection.MSG_CG, EMsgType.TYPE_LOGIN, EMsgId.LOGIN_REQUEST_CG )
+		public CG_LoginRequestMsg() : base( EMsgDirection.MSG_CG, EMsgType.TYPE_LOGIN, (UInt16)ELoginMsgId.LOGIN_REQUEST_CG )
 		{
 			
 		}
@@ -53,7 +53,7 @@ namespace Groot.Network
 		[MessageFiled(5)]
 		public UInt64 Mac;
 
-		public CG_ForceLoginRequestMsg() : base( EMsgDirection.MSG_CG, EMsgType.TYPE_LOGIN, EMsgId.LOGIN_FORCE_CG )
+		public CG_ForceLoginRequestMsg() : base( EMsgDirection.MSG_CG, EMsgType.TYPE_LOGIN, (UInt16)ELoginMsgId.LOGIN_FORCE_CG )
 		{
 
 		}
@@ -103,7 +103,7 @@ namespace Groot.Network
 		[MessageFiled(1)]
 		public UInt64 LeaveTimeWhenForbid;
 
-		public GC_LoginFailedMsg() : base( EMsgDirection.MSG_GC, EMsgType.TYPE_LOGIN, EMsgId.LOGIN_FAILED_GC )
+		public GC_LoginFailedMsg() : base( EMsgDirection.MSG_GC, EMsgType.TYPE_LOGIN, (UInt16)ELoginMsgId.LOGIN_FAILED_GC )
 		{
 			
 		}
@@ -123,7 +123,7 @@ namespace Groot.Network
 		[MessageFiled(3)]
 		public Byte        IsHadEmail;          //是否有安全邮箱 gly 20140127
 
-		public GC_LoginOK() : base( EMsgDirection.MSG_GC, EMsgType.TYPE_LOGIN, EMsgId.LOGIN_OK_GC )
+		public GC_LoginOK() : base( EMsgDirection.MSG_GC, EMsgType.TYPE_LOGIN, (UInt16)ELoginMsgId.LOGIN_OK_GC )
 		{
 
 		}

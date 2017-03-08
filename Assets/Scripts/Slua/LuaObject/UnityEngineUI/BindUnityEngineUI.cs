@@ -12,6 +12,7 @@ namespace SLua {
 				Lua_UnityEngine_UI_Text.reg,
 				Lua_UnityEngine_UI_Image.reg,
 				Lua_UnityEngine_UI_Button.reg,
+				Lua_UnityEngine_UI_InputField.reg,
 			};
 			return list;
 		}

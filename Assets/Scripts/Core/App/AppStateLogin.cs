@@ -24,6 +24,8 @@ namespace Core.App
 			UIManager.Instance.CreateTitle();
 			UIManager.Instance.ShowUI( "ui_login" );
 			LoginSystem.Instance.Initialize();
+			//由于登录成功后服务器马上发其他消息 所以这些消息的注册放到这
+			RoomSystem.Instance.Initialize();
 		}
 
 		public override void OnExit()

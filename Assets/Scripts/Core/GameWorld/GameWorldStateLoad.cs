@@ -17,8 +17,6 @@ namespace Core
 			Locale.Instance.LoadAllLanguageConfig();
 			PlayerInfoConfig.Instance.Initialize();
 
-			// 初始化基础系统
-
 			// 进入大厅
 			Fsm.Translate( "Lobby" );
 		}

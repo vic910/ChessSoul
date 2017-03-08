@@ -52,11 +52,11 @@ namespace Groot.Network
 		[MessageFiled( 2 )]
 		public Byte MsgDirection;
 		public MessageBase() {}
-		public MessageBase( EMsgDirection _dir, EMsgType _type, EMsgId _msg_id )
+		public MessageBase( EMsgDirection _dir, EMsgType _type, UInt16 _msg_id )
 		{
 			MsgDirection = (Byte)_dir;
 			MsgType = (Byte)_type;
-			MsgId = (UInt16)_msg_id;
+			MsgId = _msg_id;
 		}
 	}
 
@@ -64,10 +64,10 @@ namespace Groot.Network
 	{
 		public static Byte   Dir  = (Byte)EMsgDirection.MSG_MAX;
 		public static Byte   Type = (Byte)EMsgType.TYPE_MAX;
-		public static UInt16 MessageId = (UInt16)EMsgId.CONNECT;
+		public static UInt16 MessageId = (UInt16)ELoginMsgId.CONNECT;
 
 		public ConnectMsg()
-			: base( EMsgDirection.MSG_MAX, EMsgType.TYPE_MAX, EMsgId.CONNECT )
+			: base( EMsgDirection.MSG_MAX, EMsgType.TYPE_MAX, (UInt16)ELoginMsgId.CONNECT )
 		{
 		}
 	}
@@ -76,9 +76,9 @@ namespace Groot.Network
 	{
 		public static Byte   Dir  = (Byte)EMsgDirection.MSG_MAX;
 		public static Byte   Type = (Byte)EMsgType.TYPE_MAX;
-		public static UInt16 MessageId = (UInt16)EMsgId.DIS_CONNECT;
+		public static UInt16 MessageId = (UInt16)ELoginMsgId.DIS_CONNECT;
 		public DisconnectMsg()
-			: base( EMsgDirection.MSG_MAX, EMsgType.TYPE_MAX, EMsgId.DIS_CONNECT )
+			: base( EMsgDirection.MSG_MAX, EMsgType.TYPE_MAX, (UInt16)ELoginMsgId.DIS_CONNECT )
 		{
 		}
 	}

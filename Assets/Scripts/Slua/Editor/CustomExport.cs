@@ -59,14 +59,13 @@ namespace SLua
 				_add( typeof( UnityEngine.UI.Text ), null );
 				_add( typeof( UnityEngine.UI.Image ), null );
 				_add( typeof( UnityEngine.UI.Button ), null );
+				_add( typeof( UnityEngine.UI.InputField ), null );
 			}
 			else if( _type == LuaCodeGen.ExportType.DotNET )
 			{
 				// .NET
 				_add( typeof( System.Int32 ), null );
 				_add( typeof( System.String ), null );
-				//_add( typeof( System.Action<GameObject, Int32> ), null );
-				//_add( typeof( System.Action ), null );
 			}
 			else if( _type == LuaCodeGen.ExportType.Custom )
 			{

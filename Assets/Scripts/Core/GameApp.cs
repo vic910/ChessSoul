@@ -41,6 +41,7 @@ public class GameApp : UnitySingleton<GameApp>
 	void OnApplicationQuit()
 	{
 		m_app.Stop();
+		_uninitializeSystem();
 		_uninitializeConfig();
 
 		UIManager.Instance.Uninitialize();
@@ -48,6 +49,11 @@ public class GameApp : UnitySingleton<GameApp>
 		TimerSystem.Instance.Uninitialize();
 		ResourceManager.Instance.Uninitialize();
 		UILuaSvr.Instance.Uninitialize();
+	}
+
+	private void _uninitializeSystem()
+	{
+		RoomSystem.Instance.Uninitialize();
 	}
 
 	private void _uninitializeConfig()

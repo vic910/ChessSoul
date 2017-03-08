@@ -74,7 +74,7 @@ namespace Groot.Network
 		TYPE_MAX = 255,
 	};
 
-	public enum EMsgId : ushort
+	public enum ELoginMsgId : ushort
 	{
 		LOGIN_REQUEST_CG = 1,
 		LOGIN_OK_GC = 2,
@@ -85,5 +85,10 @@ namespace Groot.Network
 
 		CONNECT = 65534,
 		DIS_CONNECT = 65535,	
+	}
+
+	public enum EGameMsgId : ushort
+	{
+		GAME_HALL_ROOM_INFO_GC = 2,
 	}
 }
