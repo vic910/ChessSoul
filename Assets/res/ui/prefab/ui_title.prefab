@@ -127,7 +127,7 @@ MonoBehaviour:
   m_exit_anim_time: 0
   m_btn_return: {fileID: 114943133716342814}
   m_btn_menu: {fileID: 114823428357963046}
-  m_text_server_name: {fileID: 114328786578483004}
+  m_text_title_name: {fileID: 114328786578483004}
 --- !u!114 &114328786578483004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -477,6 +477,8 @@ namespace Weiqi.UI
 
 		public UI_Base GetCurrentWindow()
 		{
+			if( m_windows_name_stack.Count == 0 )
+				return null;
 			return _getUIObject( m_windows_name_stack.Peek(), false );
 		}
 

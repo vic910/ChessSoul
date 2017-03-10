@@ -21,8 +21,8 @@ namespace Core.App
 		{
 			//SignalSystem.Register( SignalId.NetworkState_EnterConnected, _enterNetworkConnectedState );
 			SignalSystem.Register( SignalId.Login_Success, _loginSuccess );
-			UIManager.Instance.CreateTitle();
 			UIManager.Instance.ShowUI( "ui_login" );
+			UIManager.Instance.CreateTitle();
 			LoginSystem.Instance.Initialize();
 			//由于登录成功后服务器马上发其他消息 所以这些消息的注册放到这
 			RoomSystem.Instance.Initialize();
