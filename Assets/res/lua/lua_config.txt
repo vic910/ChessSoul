@@ -1,3 +1,4 @@
 global.lua#
 ui_self.lua
 ui_option.lua
+ui_chess_lobby.lua
