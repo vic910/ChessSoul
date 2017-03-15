@@ -90,5 +90,7 @@ namespace Groot.Network
 	public enum EGameMsgId : ushort
 	{
 		GAME_HALL_ROOM_INFO_GC = 2,
+		GAME_HALL_PLAYER_INFO_GC = 4,
+		GAME_PLAYER_JOIN_GC = 7,
 	}
 }
