@@ -8,3 +8,5 @@ Assets/StreamingAssets.meta
 weiqi_build/
 *.suo
 dev_path/
+obj/
+ChessSoul.userprefs

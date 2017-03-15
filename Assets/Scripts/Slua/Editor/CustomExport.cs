@@ -28,194 +28,196 @@ using Weiqi.UI;
 
 namespace SLua
 {
-	using System.Collections.Generic;
-	using System;
+    using System.Collections.Generic;
+    using System;
 
-	public class CustomExport
-	{
+    public class CustomExport
+    {
 #if GROOT_SLUA_EXTENSION
-		public static void OnAddExporClass( LuaCodeGen.ExportGenericDelegate _add, LuaCodeGen.ExportType _type )
-		{
-			// UnityEngine
-			if( _type == LuaCodeGen.ExportType.UnityEngine )
-			{
-				_add( typeof( UnityEngine.Object ), null );
-				_add( typeof( UnityEngine.GameObject ), null );
-				_add( typeof( UnityEngine.Transform ), null );
-				_add( typeof( UnityEngine.Vector2 ), null );
-				_add( typeof( UnityEngine.Vector3 ), null );
-				_add( typeof( UnityEngine.Vector4 ), null );
-				_add( typeof( UnityEngine.Quaternion ), null );
-				_add( typeof( UnityEngine.Matrix4x4 ), null );
-				_add( typeof( UnityEngine.Color ), null );
+        public static void OnAddExporClass(LuaCodeGen.ExportGenericDelegate _add, LuaCodeGen.ExportType _type)
+        {
+            // UnityEngine
+            if (_type == LuaCodeGen.ExportType.UnityEngine)
+            {
+                _add(typeof(UnityEngine.Object), null);
+                _add(typeof(UnityEngine.GameObject), null);
+                _add(typeof(UnityEngine.Transform), null);
+                _add(typeof(UnityEngine.Vector2), null);
+                _add(typeof(UnityEngine.Vector3), null);
+                _add(typeof(UnityEngine.Vector4), null);
+                _add(typeof(UnityEngine.Quaternion), null);
+                _add(typeof(UnityEngine.Matrix4x4), null);
+                _add(typeof(UnityEngine.Color), null);
 
-			}
-			else if( _type == LuaCodeGen.ExportType.UnityEngineUI )
-			{
-				_add( typeof( UnityEngine.EventSystems.EventSystem ), null );
-				_add( typeof( UnityEngine.Events.UnityEvent ), null );
-				_add( typeof( UnityEngine.Events.UnityEventBase ), null );
-				_add( typeof( UnityEngine.UI.Button.ButtonClickedEvent ), null );
-				_add( typeof( UnityEngine.UI.Text ), null );
-				_add( typeof( UnityEngine.UI.Image ), null );
-				_add( typeof( UnityEngine.UI.Button ), null );
-				_add( typeof( UnityEngine.UI.InputField ), null );
-			}
-			else if( _type == LuaCodeGen.ExportType.DotNET )
-			{
-				// .NET
-				_add( typeof( System.Int32 ), null );
-				_add( typeof( System.String ), null );
-			}
-			else if( _type == LuaCodeGen.ExportType.Custom )
-			{
-				
-			}
-		}
+            }
+            else if (_type == LuaCodeGen.ExportType.UnityEngineUI)
+            {
+                _add(typeof(UnityEngine.EventSystems.EventSystem), null);
+                _add(typeof(UnityEngine.Events.UnityEvent), null);
+                _add(typeof(UnityEngine.Events.UnityEventBase), null);
+                _add(typeof(UnityEngine.UI.Button.ButtonClickedEvent), null);
+                _add(typeof(UnityEngine.UI.Text), null);
+                _add(typeof(UnityEngine.UI.Image), null);
+                _add(typeof(UnityEngine.UI.Button), null);
+                _add(typeof(UnityEngine.UI.InputField), null);
+                _add(typeof(UnityEngine.UI.Toggle.ToggleEvent), null);
+                _add(typeof(UnityEngine.UI.Toggle), null);
+            }
+            else if (_type == LuaCodeGen.ExportType.DotNET)
+            {
+                // .NET
+                _add(typeof(System.Int32), null);
+                _add(typeof(System.String), null);
+            }
+            else if (_type == LuaCodeGen.ExportType.Custom)
+            {
+            
+            }
+        }
 #endif
 
-		public static void OnGetAssemblyToGenerateExtensionMethod( out List<string> list )
-		{
-			list = new List<string> {
-				"Assembly-CSharp",
-			};
-		}
+        public static void OnGetAssemblyToGenerateExtensionMethod(out List<string> list)
+        {
+            list = new List<string> {
+                "Assembly-CSharp",
+            };
+        }
 
-		public static void OnAddCustomClass( LuaCodeGen.ExportGenericDelegate add )
-		{
-			// below lines only used for demostrate how to add custom class to export, can be delete on your app
+        public static void OnAddCustomClass(LuaCodeGen.ExportGenericDelegate add)
+        {
+            // below lines only used for demostrate how to add custom class to export, can be delete on your app
 
-			add( typeof( System.Func<int> ), null );
-			add( typeof( System.Action<int, string> ), null );
-			add( typeof( System.Action<int, Dictionary<int, object>> ), null );
-			add( typeof( List<int> ), "ListInt" );
-			add( typeof( Dictionary<int, string> ), "DictIntStr" );
-			add( typeof( string ), "String" );
+            add(typeof(System.Func<int>), null);
+            add(typeof(System.Action<int, string>), null);
+            add(typeof(System.Action<int, Dictionary<int, object>>), null);
+            add(typeof(List<int>), "ListInt");
+            add(typeof(Dictionary<int, string>), "DictIntStr");
+            add(typeof(string), "String");
 
-			// add your custom class here
-			// add( type, typename)
-			// type is what you want to export
-			// typename used for simplify generic type name or rename, like List<int> named to "ListInt", if not a generic type keep typename as null or rename as new type name
-		}
+            // add your custom class here
+            // add( type, typename)
+            // type is what you want to export
+            // typename used for simplify generic type name or rename, like List<int> named to "ListInt", if not a generic type keep typename as null or rename as new type name
+        }
 
-		public static void OnAddCustomAssembly( ref List<string> list )
-		{
-			// add your custom assembly here
-			// you can build a dll for 3rd library like ngui titled assembly name "NGUI", put it in Assets folder
-			// add its name into list, slua will generate all exported interface automatically for you
+        public static void OnAddCustomAssembly(ref List<string> list)
+        {
+            // add your custom assembly here
+            // you can build a dll for 3rd library like ngui titled assembly name "NGUI", put it in Assets folder
+            // add its name into list, slua will generate all exported interface automatically for you
 
-			//list.Add("NGUI");
-		}
+            //list.Add("NGUI");
+        }
 
-		public static HashSet<string> OnAddCustomNamespace()
-		{
-			return new HashSet<string>
-			{
-				//"NLuaTest.Mock"
-			};
-		}
+        public static HashSet<string> OnAddCustomNamespace()
+        {
+            return new HashSet<string>
+            {
+                //"NLuaTest.Mock"
+            };
+        }
 
-		// if uselist return a white list, don't check noUseList(black list) again
-		public static void OnGetUseList( out List<string> list )
-		{
-			list = new List<string>
-			{
-				"UnityEngine.GameObject",
-			};
-		}
+        // if uselist return a white list, don't check noUseList(black list) again
+        public static void OnGetUseList(out List<string> list)
+        {
+            list = new List<string>
+            {
+                "UnityEngine.GameObject",
+            };
+        }
 
-		public static List<string> FunctionFilterList = new List<string>()
-		{
-			"UIWidget.showHandles",
-			"UIWidget.showHandlesWithMoveTool",
-		};
-		// black list if white list not given
-		public static void OnGetNoUseList( out List<string> list )
-		{
-			list = new List<string>
-			{
-				"HideInInspector",
-				"ExecuteInEditMode",
-				"AddComponentMenu",
-				"ContextMenu",
-				"RequireComponent",
-				"DisallowMultipleComponent",
-				"SerializeField",
-				"AssemblyIsEditorAssembly",
-				"Attribute",
-				"Types",
-				"UnitySurrogateSelector",
-				"TrackedReference",
-				"TypeInferenceRules",
-				"FFTWindow",
-				"RPC",
-				"Network",
-				"MasterServer",
-				"BitStream",
-				"HostData",
-				"ConnectionTesterStatus",
-				"GUI",
-				"EventType",
-				"EventModifiers",
-				"FontStyle",
-				"TextAlignment",
-				"TextEditor",
-				"TextEditorDblClickSnapping",
-				"TextGenerator",
-				"TextClipping",
-				"Gizmos",
-				"ADBannerView",
-				"ADInterstitialAd",
-				"Android",
-				"Tizen",
-				"jvalue",
-				"iPhone",
-				"iOS",
-				"Windows",
-				"CalendarIdentifier",
-				"CalendarUnit",
-				"CalendarUnit",
-				"ClusterInput",
-				"FullScreenMovieControlMode",
-				"FullScreenMovieScalingMode",
-				"Handheld",
-				"LocalNotification",
-				"NotificationServices",
-				"RemoteNotificationType",
-				"RemoteNotification",
-				"SamsungTV",
-				"TextureCompressionQuality",
-				"TouchScreenKeyboardType",
-				"TouchScreenKeyboard",
-				"MovieTexture",
-				"UnityEngineInternal",
-				"Terrain",
-				"Tree",
-				"SplatPrototype",
-				"DetailPrototype",
-				"DetailRenderMode",
-				"MeshSubsetCombineUtility",
-				"AOT",
-				"Social",
-				"Enumerator",
-				"SendMouseEvents",
-				"Cursor",
-				"Flash",
-				"ActionScript",
-				"OnRequestRebuild",
-				"Ping",
-				"ShaderVariantCollection",
-				"SimpleJson.Reflection",
-				"CoroutineTween",
-				"GraphicRebuildTracker",
-				"Advertisements",
-				"UnityEditor",
-				"WSA",
-				"EventProvider",
-				"Apple",
-				"ClusterInput",
-				"Motion",
-			};
-		}
-	}
+        public static List<string> FunctionFilterList = new List<string>()
+        {
+            "UIWidget.showHandles",
+            "UIWidget.showHandlesWithMoveTool",
+        };
+        // black list if white list not given
+        public static void OnGetNoUseList(out List<string> list)
+        {
+            list = new List<string>
+            {
+                "HideInInspector",
+                "ExecuteInEditMode",
+                "AddComponentMenu",
+                "ContextMenu",
+                "RequireComponent",
+                "DisallowMultipleComponent",
+                "SerializeField",
+                "AssemblyIsEditorAssembly",
+                "Attribute",
+                "Types",
+                "UnitySurrogateSelector",
+                "TrackedReference",
+                "TypeInferenceRules",
+                "FFTWindow",
+                "RPC",
+                "Network",
+                "MasterServer",
+                "BitStream",
+                "HostData",
+                "ConnectionTesterStatus",
+                "GUI",
+                "EventType",
+                "EventModifiers",
+                "FontStyle",
+                "TextAlignment",
+                "TextEditor",
+                "TextEditorDblClickSnapping",
+                "TextGenerator",
+                "TextClipping",
+                "Gizmos",
+                "ADBannerView",
+                "ADInterstitialAd",
+                "Android",
+                "Tizen",
+                "jvalue",
+                "iPhone",
+                "iOS",
+                "Windows",
+                "CalendarIdentifier",
+                "CalendarUnit",
+                "CalendarUnit",
+                "ClusterInput",
+                "FullScreenMovieControlMode",
+                "FullScreenMovieScalingMode",
+                "Handheld",
+                "LocalNotification",
+                "NotificationServices",
+                "RemoteNotificationType",
+                "RemoteNotification",
+                "SamsungTV",
+                "TextureCompressionQuality",
+                "TouchScreenKeyboardType",
+                "TouchScreenKeyboard",
+                "MovieTexture",
+                "UnityEngineInternal",
+                "Terrain",
+                "Tree",
+                "SplatPrototype",
+                "DetailPrototype",
+                "DetailRenderMode",
+                "MeshSubsetCombineUtility",
+                "AOT",
+                "Social",
+                "Enumerator",
+                "SendMouseEvents",
+                "Cursor",
+                "Flash",
+                "ActionScript",
+                "OnRequestRebuild",
+                "Ping",
+                "ShaderVariantCollection",
+                "SimpleJson.Reflection",
+                "CoroutineTween",
+                "GraphicRebuildTracker",
+                "Advertisements",
+                "UnityEditor",
+                "WSA",
+                "EventProvider",
+                "Apple",
+                "ClusterInput",
+                "Motion",
+            };
+        }
+    }
 }

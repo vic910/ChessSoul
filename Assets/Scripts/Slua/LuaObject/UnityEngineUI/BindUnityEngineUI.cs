@@ -13,6 +13,8 @@ namespace SLua {
 				Lua_UnityEngine_UI_Image.reg,
 				Lua_UnityEngine_UI_Button.reg,
 				Lua_UnityEngine_UI_InputField.reg,
+				Lua_UnityEngine_UI_Toggle_ToggleEvent.reg,
+				Lua_UnityEngine_UI_Toggle.reg,
 			};
 			return list;
 		}

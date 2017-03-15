@@ -23,7 +23,9 @@ public class GlobalConfig : GrootSingleton<GlobalConfig>
 			}
 			m_container.Add( key, value );
 		}
-	}
+
+       // LocalConfigSystem.Instacne.CreateXml();
+    }
 
 	public override void Uninitialize ( )
 	{

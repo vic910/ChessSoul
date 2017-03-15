@@ -137,6 +137,20 @@ public class Lua_UnityLuaUtils : LuaObject {
 			return error(l,e);
 		}
 	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int StringConvertToBool_s(IntPtr l) {
+		try {
+			System.String a1;
+			checkType(l,1,out a1);
+			var ret=UnityLuaUtils.StringConvertToBool(a1);
+			pushValue(l,true);
+			pushValue(l,ret);
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
 	static public void reg(IntPtr l) {
 		getTypeTable(l,"UnityLuaUtils");
 		addMember(l,SetPos_s);
@@ -146,6 +160,7 @@ public class Lua_UnityLuaUtils : LuaObject {
 		addMember(l,ShowSingleMsgBox_s);
 		addMember(l,ShowSelectMsgBox_s);
 		addMember(l,GetLocaleString_s);
+		addMember(l,StringConvertToBool_s);
 		addMember(l,UnityLuaUtils.Test,false);
 		createTypeMetatable(l,null, typeof(UnityLuaUtils));
 	}
