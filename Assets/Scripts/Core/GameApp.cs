@@ -54,6 +54,7 @@ public class GameApp : UnitySingleton<GameApp>
 	private void _uninitializeSystem()
 	{
 		RoomSystem.Instance.Uninitialize();
+		LobbySystem.Instance.Uninitialize();
 	}
 
 	private void _uninitializeConfig()
