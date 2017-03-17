@@ -44,7 +44,6 @@ public class LobbySystem
         return lis;
     }
 
-
     private void _onPacketArrived( Int32 _stream_id, PacketType _packet_type, GC_HallPlayerInfo _msg )
 	{
 		for( int i = 0; i < _msg.PlayerCount; i++ )
@@ -55,7 +54,8 @@ public class LobbySystem
 				m_players[_msg.PlayerInfo[i].PlayerID] = _msg.PlayerInfo[i];
 			else
 				m_players.Add( _msg.PlayerInfo[i].PlayerID, _msg.PlayerInfo[i] );
-		}
+             PlayerOnlineSystem.Instance.UpdatePlayerInfo(0, _msg.PlayerInfo[i].PlayerID);
+        }
 	}
 
 	private void _onPacketArrived( Int32 _stream_id, PacketType _packet_type, GC_PlayerJoinGame _msg )

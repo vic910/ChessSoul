@@ -48,8 +48,8 @@ public class UI_Main : UI_Base
 
 	private void _onOnlineBtnClick()
 	{
-		UI_MessageBox.Show( Locale.Instance["Common@NotOpen"] );
-	}
+        UIManager.Instance.ShowUI("ui_player_online");
+    }
 
 	private void _onChatBtnClick()
 	{
