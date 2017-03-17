@@ -34,7 +34,18 @@ public class LobbySystem
 		return null;
 	}
 
-	private void _onPacketArrived( Int32 _stream_id, PacketType _packet_type, GC_HallPlayerInfo _msg )
+    public List<PlayerInfoBase> GetAllPlayerInfo()
+    {
+        List<PlayerInfoBase> lis = new List<PlayerInfoBase>();
+        foreach (var item in m_players)
+        {
+            lis.Add(item.Value);
+        }
+        return lis;
+    }
+
+
+    private void _onPacketArrived( Int32 _stream_id, PacketType _packet_type, GC_HallPlayerInfo _msg )
 	{
 		for( int i = 0; i < _msg.PlayerCount; i++ )
 		{
