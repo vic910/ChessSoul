@@ -93,4 +93,10 @@ namespace Groot.Network
 		GAME_HALL_PLAYER_INFO_GC = 4,
 		GAME_PLAYER_JOIN_GC = 7,
 	}
+
+	public enum EChatMsgId : ushort
+	{
+		CHAT_CG = 1,
+		CHAT_GC = 2,
+	}
 }

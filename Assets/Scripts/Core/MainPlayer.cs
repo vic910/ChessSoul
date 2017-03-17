@@ -6,6 +6,9 @@ using SLua;
 using UnityEngine;
 using Weiqi;
 
+/// <summary>
+/// 我的信息
+/// </summary>
 [CustomLuaClassAttribute]
 public class MainPlayer
 {

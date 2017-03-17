@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
+using Groot;
+using Groot.Network;
 using UnityEngine;
 using UnityEngine.UI;
 using Weiqi.UI;
@@ -53,6 +56,15 @@ public class UI_Chat : UI_Base
 
 	private Stack<GameObject> m_free_notice = new Stack<GameObject>();
 
+	enum eChatTarget
+	{
+		eChatTarget_other,		//他人
+		eChatTarget_mine,		//我的
+		eChatTarget_notice,		//通知
+	}
+
+	private EChatType m_cur_chat_type = EChatType.CHAT_HALL;
+
 	public override void OnLoaded()
 	{
 		m_btn_send.onClick.AddListener( _onSendButtonClick );
@@ -67,7 +79,46 @@ public class UI_Chat : UI_Base
 
 	public override float PreShow( UI_Base _pre_ui, params object[] _args )
 	{
+		SignalSystem.Register( SignalId.Chat_ReceiveChat, _receivePlayerChat );
+		_updateChat();
 		return m_entrance_anim_time;
+	}
+
+	public override void OnHide( UI_Base _next_ui )
+	{
+		SignalSystem.Unregister( SignalId.Chat_ReceiveChat, _receivePlayerChat );
+	}
+
+	private void _updateChat()
+	{
+		_onClearButtonClick();
+		foreach( var data in ChatSystem.Instance.ChatInfo )
+		{
+			_addChat( data );
+		}
+	}
+
+	private void _addChat( GC_ChatMsg _data )
+	{
+		eChatTarget type = eChatTarget.eChatTarget_other;
+		PlayerInfoBase player = null;
+		if( _data.PlayerID == MainPlayer.Instance.PlayerInfo.PlayerID )
+		{
+			type = eChatTarget.eChatTarget_mine;
+			player = MainPlayer.Instance.PlayerInfo;
+		}
+		else
+		{
+			type = eChatTarget.eChatTarget_other;
+			player = LobbySystem.Instance.GetPlayerInfo( _data.PlayerID );
+		}
+		_addChat( type, player.PlayerName, player.Level, _data.Chat );
+	}
+
+	private void _receivePlayerChat( SignalId _signal_id, SignalParameters _parameters )
+	{
+		GC_ChatMsg data = _parameters[0] as GC_ChatMsg;
+		_addChat( data );
 	}
 
 	private void _onClearButtonClick()
@@ -82,9 +133,15 @@ public class UI_Chat : UI_Base
 
 	private void _onSendButtonClick()
 	{
-		System.Random r = new System.Random();
-		_addChat( r.Next( 0, 3 ), "abc", 1, m_edit_input.text );
-		m_scroll_list.verticalNormalizedPosition = 0;
+		if( m_edit_input.text == string.Empty )
+			return;
+		CG_ChatMsg msg = new CG_ChatMsg();
+		msg.PlayerID = MainPlayer.Instance.PlayerInfo.PlayerID;
+		msg.ChatType = (Byte)m_cur_chat_type;
+		var bytes = Encoding.GetEncoding( "GB2312" ).GetBytes( m_edit_input.text );
+		msg.ChatLen = (Int16)( bytes.Length + 1 );
+		msg.Chat = m_edit_input.text;
+		NetManager.Instance.SendMsg( msg );
 	}
 
 	private void _addFreeObj( GameObject _obj )
@@ -99,24 +156,24 @@ public class UI_Chat : UI_Base
 			m_free_notice.Push( _obj );
 	}
 
-	private GameObject _getFreeObj( Int32 _type )
+	private GameObject _getFreeObj( eChatTarget _type )
 	{
 		GameObject obj = null;
 		switch( _type )
 		{
-		case 0:
+		case eChatTarget.eChatTarget_other:
 			if( m_free_other.Count == 0 )
 				obj = Instantiate( m_other_template );
 			else
 				obj = m_free_other.Pop();
 			break;
-		case 1:
+		case eChatTarget.eChatTarget_mine:
 			if( m_free_mine.Count == 0 )
 				obj = Instantiate( m_mine_template );
 			else
 				obj = m_free_mine.Pop();
 			break;
-		case 2:
+		case eChatTarget.eChatTarget_notice:
 			if( m_free_notice.Count == 0 )
 				obj = Instantiate( m_notice_template );
 			else
@@ -126,18 +183,18 @@ public class UI_Chat : UI_Base
 		return obj;
 	}
 
-	private void _addChat( Int32 _type, string _name, Int32 _level, string _content )
+	private void _addChat( eChatTarget _type, string _name, Int32 _level, string _content )
 	{
 		GameObject obj = null;
 		obj = _getFreeObj( _type );
 		switch( _type )
 		{
-		case 0:
-		case 1:
+		case eChatTarget.eChatTarget_other:
+		case eChatTarget.eChatTarget_mine:
 			obj.transform.FindChild( "text_name" ).GetComponent<Text>().text = _name;
 			obj.transform.FindChild( "Image/text_chat" ).GetComponent<Text>().text = _content;
 			break;
-		case 2:
+		case eChatTarget.eChatTarget_notice:
 			obj.transform.FindChild( "Image/text_chat" ).GetComponent<Text>().text = _content;
 			break;
 		}

@@ -36,6 +36,7 @@ namespace Groot.Network
 	{
 		private Int32 SendMessageHeadSize = 16;
 		private Int32 RecvMessageHeadSize = 4;
+		private UInt16 SendSeqnum = 0;
 		/// <summary>
 		/// 网络事件到达时调用，不保证从主线程调用，请注意线程安全
 		/// </summary>
@@ -124,6 +125,7 @@ namespace Groot.Network
 		/// </summary>
 		public void Disconnect()
 		{
+			SendSeqnum = 0;
 			Action action = new Action();
 			action.ActionType = ActionType.Disconnect;
 			action.Message = null;
@@ -268,8 +270,8 @@ namespace Groot.Network
 			//Array.Copy( BitConverter.GetBytes( message_length_u16 ), 0, full_message, 6, 2 );
 
 			UInt16 message_length_u16 = Convert.ToUInt16( _length );
+			Array.Copy( BitConverter.GetBytes( SendSeqnum ), 0, full_message, 4, 2 );
 			Array.Copy( BitConverter.GetBytes( message_length_u16 ), 0, full_message, 6, 2 );
-
 
 			//Int32 message_length = IPAddress.HostToNetworkOrder( _length );
 			//Array.Copy( BitConverter.GetBytes( message_length ), full_message, MessageHeadSize );
@@ -368,6 +370,7 @@ namespace Groot.Network
 					arg.BytesSent += _args.BytesTransferred;
 					if( arg.BytesSent == arg.BytesWanted )
 					{
+						SendSeqnum++;
 						lock ( m_action_lock )
 						{
 							m_doing_action = false;
