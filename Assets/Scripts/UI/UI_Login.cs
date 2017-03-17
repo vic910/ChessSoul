@@ -46,6 +46,7 @@ public class UI_Login : UI_Base
     {
         //显示上次登陆的用户名
         m_edit_account.text = LocalConfigSystem.Instacne.GetOptionConfig("CurrentAccount");
+        m_edit_password.text = LocalConfigSystem.Instacne.GetOptionConfig("CurrentPassword");
 
         SignalSystem.Register(SignalId.Login_ForceLogin, _forceLogin);
         return m_entrance_anim_time;
@@ -103,6 +104,7 @@ public class UI_Login : UI_Base
         msg.Version = 17696793;
         NetManager.Instance.SendMsg(msg);
         LoginSystem.Instance.CurAccount = msg.PlayerName;
+        LoginSystem.Instance.CurPassword = msg.PlayerPassword;
         WaitForResponse.Retain();
     }
 }

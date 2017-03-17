@@ -12,7 +12,7 @@ namespace Weiqi
     public class LoginSystem : GrootSingleton<LoginSystem>
     {
         public string CurAccount = string.Empty;
-
+        public string CurPassword = string.Empty;
 
         public override void Initialize()
         {
@@ -66,7 +66,7 @@ namespace Weiqi
 
             //登陆成功后更新本地配置中的账户名
             LocalConfigSystem.Instacne.UpdateCurAccount(CurAccount);
-            
+            LocalConfigSystem.Instacne.Update("CurrentPassword", CurPassword);
         }
     }
 

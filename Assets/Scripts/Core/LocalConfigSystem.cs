@@ -33,7 +33,7 @@ public class LocalConfigSystem
     /// <summary>
     /// 创建本地配置表
     /// </summary>
-    public void Create()
+    public void Initialize()
     {
         if (!File.Exists(m_path))
         {
@@ -43,24 +43,34 @@ public class LocalConfigSystem
             XmlElement account = xml.CreateElement("CurrentAccount");
             account.InnerText = "";
 
+            XmlElement password = xml.CreateElement("CurrentPassword");
+            password.InnerText = "";
+
             XmlElement openSound = xml.CreateElement("OpenSound");
             openSound.InnerText = GlobalConfig.Instance.GetValue<Boolean>("OpenSound").ToString();
 
             root.AppendChild(account);
+            root.AppendChild(password);
             root.AppendChild(openSound);
 
             xml.AppendChild(root);
             xml.Save(m_path);
+
         }
 
         //加载本地配置表
         Load();
     }
 
+    public void Uninitialize()
+    {
+        m_optionConfig.Clear();
+    }
+
     [DoNotToLua]
     /// <summary>
     /// 读取本地文件，并保存在m_optionConfig表中
-    /// </summary>
+    /// </summary>a
     public void Load()
     {
         XmlDocument xml = new XmlDocument();
@@ -79,7 +89,6 @@ public class LocalConfigSystem
     private void InitConfigList(Dictionary<string, string> _table, XmlNodeList _xmlNodeList)
     {
         _table.Clear();
-
         foreach (XmlElement item in _xmlNodeList)
         {
             _table.Add(item.Name, item.InnerText);
@@ -103,13 +112,13 @@ public class LocalConfigSystem
                 if (item.Name == _key)
                 {
                     item.InnerText = _value;
+                    m_optionConfig[_key] = _value;
                     break;
                 }
             }
             xml.Save(m_path);
         }
-
-        Load();
+        //Load();
     }
 
     #endregion

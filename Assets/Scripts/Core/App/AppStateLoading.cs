@@ -58,7 +58,7 @@ namespace Core.App
             //加载登录时能用到的配置
             GlobalConfig.Instance.Initialize();
             //加载本地配置
-            LocalConfigSystem.Instacne.Create();
+            LocalConfigSystem.Instacne.Initialize();
         }
     }
 }

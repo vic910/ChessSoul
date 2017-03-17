@@ -17,6 +17,18 @@ public class Lua_LocalConfigSystem : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int Uninitialize(IntPtr l) {
+		try {
+			LocalConfigSystem self=(LocalConfigSystem)checkSelf(l);
+			self.Uninitialize();
+			pushValue(l,true);
+			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static public int Update(IntPtr l) {
 		try {
 			LocalConfigSystem self=(LocalConfigSystem)checkSelf(l);
@@ -87,6 +99,7 @@ public class Lua_LocalConfigSystem : LuaObject {
 	}
 	static public void reg(IntPtr l) {
 		getTypeTable(l,"LocalConfigSystem");
+		addMember(l,Uninitialize);
 		addMember(l,Update);
 		addMember(l,GetOptionConfig);
 		addMember(l,UpdateCurAccount);
