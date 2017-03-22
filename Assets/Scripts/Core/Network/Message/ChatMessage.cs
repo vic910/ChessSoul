@@ -64,7 +64,7 @@ namespace Groot.Network
 		}
 	};
 
-	enum EChatType
+	public enum EChatType : byte
 	{
 		CHAT_HALL,			// 0大厅频道
 		CHAT_ROOM,			// 1房间聊天

@@ -92,7 +92,10 @@ public class UI_Chat : UI_Base
 	private void _updateChat()
 	{
 		_onClearButtonClick();
-		foreach( var data in ChatSystem.Instance.ChatInfo )
+		LinkedList<GC_ChatMsg> chats = ChatSystem.Instance.GetChats( m_cur_chat_type );
+		if( chats == null )
+			return;
+		foreach( var data in chats )
 		{
 			_addChat( data );
 		}
