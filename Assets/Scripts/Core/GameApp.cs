@@ -56,9 +56,9 @@ public class GameApp : UnitySingleton<GameApp>
 		RoomSystem.Instance.Uninitialize();
 		LobbySystem.Instance.Uninitialize();
 		ChatSystem.Instance.Uninitialize();
-		PlayerOnlineSystem.Instance.Uninitialize();<<<<<<< .mine        PlayerOnlineSystem.Instance.Uninitialize();
-=======		ChatSystem.Instance.Uninitialize();
->>>>>>> .theirs	}
+		PlayerOnlineSystem.Instance.Uninitialize();
+		ChatSystem.Instance.Uninitialize();
+	}
 
 	private void _uninitializeConfig()
 	{
