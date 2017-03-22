@@ -53,11 +53,9 @@ public class ChatSystem
 					chats.AddLast( _msg );
 					ChatInfo.Add( _msg.ChatType, chats );
 				}
+				SignalSystem.FireSignal( SignalId.Chat_ReceiveChat, _msg );
 			}
-			break;
-		default:
-			return;			
+			break;		
 		}
-		SignalSystem.FireSignal( SignalId.Chat_ReceiveChat, _msg );
 	}
 }

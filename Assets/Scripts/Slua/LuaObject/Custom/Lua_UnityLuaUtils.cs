@@ -73,7 +73,9 @@ public class Lua_UnityLuaUtils : LuaObject {
 		try {
 			System.String a1;
 			checkType(l,1,out a1);
-			UnityLuaUtils.ShowUI(a1);
+			System.Object[] a2;
+			checkParams(l,2,out a2);
+			UnityLuaUtils.ShowUI(a1,a2);
 			pushValue(l,true);
 			return 1;
 		}

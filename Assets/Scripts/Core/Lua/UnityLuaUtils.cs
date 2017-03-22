@@ -33,14 +33,14 @@ public static class UnityLuaUtils
     //	_action();
     //}
 
-    public static void HideUI(String _name)
+    public static void HideUI( String _name )
     {
         UIManager.Instance.HideUI(_name);
     }
 
-    public static void ShowUI(String _name)
+    public static void ShowUI( String _name, params object[] _args )
     {
-        UIManager.Instance.ShowUI(_name);
+        UIManager.Instance.ShowUI( _name, _args );
     }
 
     public static void ShowSingleMsgBox(string _tip, string _button_tip, Action _button_action, Action _close_action)

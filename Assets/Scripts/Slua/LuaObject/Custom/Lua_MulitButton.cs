@@ -19,9 +19,23 @@ public class Lua_MulitButton : LuaObject {
 			return error(l,e);
 		}
 	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int GetSecButtonString(IntPtr l) {
+		try {
+			MulitButton self=(MulitButton)checkSelf(l);
+			var ret=self.GetSecButtonString();
+			pushValue(l,true);
+			pushValue(l,ret);
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
 	static public void reg(IntPtr l) {
 		getTypeTable(l,"MulitButton");
 		addMember(l,SetOnClickFunction);
+		addMember(l,GetSecButtonString);
 		createTypeMetatable(l,null, typeof(MulitButton),typeof(UnityEngine.MonoBehaviour));
 	}
 }

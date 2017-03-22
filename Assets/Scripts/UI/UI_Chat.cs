@@ -12,13 +12,13 @@ using Weiqi.UI;
 public class UI_Chat : UI_Base
 {
 	[SerializeField]
-	private Button m_btn_lobby_channel;
+	private Toggle m_toggle_lobby_channel;
 
 	[SerializeField]
-	private Button m_btn_busy_channel;
+	private Toggle m_toggle_busy_channel;
 
 	[SerializeField]
-	private Button m_btn_union_channel;
+	private Toggle m_toggle_union_channel;
 
 	[SerializeField]
 	private ScrollRect m_scroll_list;
@@ -28,9 +28,6 @@ public class UI_Chat : UI_Base
 
 	[SerializeField]
 	private Button m_btn_clear;
-
-	[SerializeField]
-	private Dropdown m_drop_channel_select;
 
 	[SerializeField]
 	private InputField m_edit_input;
@@ -67,14 +64,29 @@ public class UI_Chat : UI_Base
 
 	public override void OnLoaded()
 	{
+		m_toggle_lobby_channel.onValueChanged.AddListener( delegate( bool _value )
+		{
+			_onToggleChannelChange( _value, EChatType.CHAT_HALL );
+		} );
+		m_toggle_busy_channel.onValueChanged.AddListener( delegate ( bool _value ) {
+			_onToggleChannelChange( _value, EChatType.CHAT_TRADE );
+		} );
+		m_toggle_union_channel.onValueChanged.AddListener( delegate ( bool _value ) {
+			_onToggleChannelChange( _value, EChatType.CHAT_CLUB );
+		} );
 		m_btn_send.onClick.AddListener( _onSendButtonClick );
 		m_btn_clear.onClick.AddListener( _onClearButtonClick );
+		m_drop_tips_select.onValueChanged.AddListener( _onDropDownChange );
 	}
 
 	public override void OnUnload()
 	{
+		m_toggle_lobby_channel.onValueChanged.RemoveAllListeners();
+		m_toggle_busy_channel.onValueChanged.RemoveAllListeners();
+		m_toggle_union_channel.onValueChanged.RemoveAllListeners();
 		m_btn_send.onClick.RemoveAllListeners();
 		m_btn_clear.onClick.RemoveAllListeners();
+		m_drop_tips_select.onValueChanged.RemoveAllListeners();
 	}
 
 	public override float PreShow( UI_Base _pre_ui, params object[] _args )
@@ -87,6 +99,19 @@ public class UI_Chat : UI_Base
 	public override void OnHide( UI_Base _next_ui )
 	{
 		SignalSystem.Unregister( SignalId.Chat_ReceiveChat, _receivePlayerChat );
+	}
+
+	private void _onToggleChannelChange( bool _selected, EChatType _type )
+	{
+		if( !_selected )
+			return;
+		m_cur_chat_type = _type;
+		_updateChat();
+	}
+
+	private void _onDropDownChange( Int32 _index )
+	{
+		_sendChatMsg( m_cur_chat_type, m_drop_tips_select.options[_index].text );
 	}
 
 	private void _updateChat()
@@ -138,12 +163,17 @@ public class UI_Chat : UI_Base
 	{
 		if( m_edit_input.text == string.Empty )
 			return;
+		_sendChatMsg( m_cur_chat_type, m_edit_input.text );
+	}
+
+	private void _sendChatMsg( EChatType _type, string _text )
+	{
 		CG_ChatMsg msg = new CG_ChatMsg();
 		msg.PlayerID = MainPlayer.Instance.PlayerInfo.PlayerID;
-		msg.ChatType = (Byte)m_cur_chat_type;
-		var bytes = Encoding.GetEncoding( "GB2312" ).GetBytes( m_edit_input.text );
+		msg.ChatType = (Byte)_type;
+		var bytes = Encoding.GetEncoding( "GB2312" ).GetBytes( _text );
 		msg.ChatLen = (Int16)( bytes.Length + 1 );
-		msg.Chat = m_edit_input.text;
+		msg.Chat = _text;
 		NetManager.Instance.SendMsg( msg );
 	}
 
