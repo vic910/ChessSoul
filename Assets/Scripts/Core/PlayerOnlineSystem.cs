@@ -30,7 +30,7 @@ public class PlayerOnlineSystem
 
     //玩家ID存储表
     private Dictionary<PlayerType, List<UInt64>> m_PlayerID = new Dictionary<PlayerType, List<UInt64>>();
-
+            
     [DoNotToLua]
     public void Initialize()
     {

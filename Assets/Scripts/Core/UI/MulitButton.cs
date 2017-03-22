@@ -36,6 +36,7 @@ public class MulitButton : MonoBehaviour
         //初始化完毕
         if (m_mulitButton.transform.childCount == m_option.Count)
             return;
+
         Vector2 size = m_mulitButton.GetComponent<RectTransform>().sizeDelta;
         size.y = m_buttonTmp.GetComponent<RectTransform>().sizeDelta.y * m_option.Count;
         m_mulitButton.GetComponent<RectTransform>().sizeDelta = size;
@@ -60,6 +61,7 @@ public class MulitButton : MonoBehaviour
             DisableButton();
             return;
         }
+
         m_mulitButton.transform.parent.gameObject.SetActive(true);
         m_mulitButton.GetComponent<RectTransform>().position = this.GetComponent<RectTransform>().position;
         for (int i = 0; i < m_option.Count; i++)
@@ -95,5 +97,10 @@ public class MulitButton : MonoBehaviour
         if (m_onClickFunction == null)
             m_onClickFunction = new Action<int>[m_option.Count];
         m_onClickFunction[_index] = _func;
+    }
+
+    public List<string> GetSecButtonString()
+    {
+        return m_option;
     }
 }
