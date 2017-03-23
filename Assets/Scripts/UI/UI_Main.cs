@@ -34,7 +34,7 @@ public class UI_Main : UI_Base
 		m_btn_online.onClick.RemoveAllListeners();
 		m_btn_chat.onClick.RemoveAllListeners();
 		m_btn_self.onClick.RemoveAllListeners();
-	}
+    }
 
 	public override float PreShow( UI_Base _pre_ui, params object[] _args )
 	{

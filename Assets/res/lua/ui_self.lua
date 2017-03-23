@@ -21,7 +21,7 @@ function t:PreShow()
 end
 
 function t:_onButtonItemClick()
-	UnityLuaUtils.ShowSingleMsgBox( UnityLuaUtils.GetLocaleString( "Common@NotOpen" ), "", nil, nil );
+   UnityLuaUtils.ShowUI( "ui_player_backpack" );
 end
 
 function t:_onButtonRecordClick()
