@@ -4,7 +4,7 @@ using System.Text;
 using Utility;
 namespace Groot.Network
 {
-	class CG_LoginRequestMsg : MessageBase
+    class CG_LoginRequestMsg : MessageBase
 	{
 		[MessageFiled(0)]
 		public Byte PlatformID;

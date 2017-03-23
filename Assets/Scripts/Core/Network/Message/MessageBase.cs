@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using SLua;
 using Utility;
 
 namespace Groot.Network
@@ -34,6 +35,7 @@ namespace Groot.Network
 	/// <summary>
 	/// 消息基类
 	/// </summary>
+	[CustomLuaClass]
 	public class MessageBase
 	{
 		/// <summary>

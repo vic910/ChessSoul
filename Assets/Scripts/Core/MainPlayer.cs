@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Groot.Network;
+﻿using Groot.Network;
 using SLua;
-using UnityEngine;
-using Weiqi;
 
 /// <summary>
 /// 我的信息
