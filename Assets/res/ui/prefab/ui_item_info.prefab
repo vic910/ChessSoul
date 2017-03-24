@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 222282381374716850}
   - component: {fileID: 114135028415709886}
   m_Layer: 5
-  m_Name: info
+  m_Name: gameobject_info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1145,7 +1145,9 @@ MonoBehaviour:
   m_auto_destory: 1
   m_entrance_anim_time: 0
   m_exit_anim_time: 0
-  m_game_objects: []
+  m_game_objects:
+  - {fileID: 1699457037957412}
+  - {fileID: 1755107637798150}
   m_texts:
   - {fileID: 114754051313187170}
   - {fileID: 114057004234371578}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Groot.Network;
 using Utility;
+using SLua;
 
 namespace Groot.Network
 {
@@ -23,6 +24,7 @@ namespace Groot.Network
 		}
 	}
 
+	[CustomLuaClass]
 	public class PropItem
 	{
 		[MessageFiled( 0 )]
@@ -52,6 +54,7 @@ namespace Groot.Network
 		}
 	}
 
+	[CustomLuaClass]
 	public class ItemAttr
 	{
 		[MessageFiled( 0 )]
