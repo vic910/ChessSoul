@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Groot.Network;
 using Utility;
-using SLua;
 
 namespace Groot.Network
 {
@@ -24,7 +23,6 @@ namespace Groot.Network
 		}
 	}
 
-	[CustomLuaClass]
 	public class PropItem
 	{
 		[MessageFiled( 0 )]
@@ -54,7 +52,6 @@ namespace Groot.Network
 		}
 	}
 
-	[CustomLuaClass]
 	public class ItemAttr
 	{
 		[MessageFiled( 0 )]
@@ -153,5 +150,12 @@ namespace Groot.Network
 		PROPERTY_CHANGE_USERNAME,           //更名道具
 		PROPERTY_OTHER,                     //杂项道具
 		PROPERTY_MYD_REFINE_LIQUID = 100,     //梦游戏岛炼制药水             
+	};
+
+	enum EMoneyType
+	{
+		PROP_ISMONEY = 1,           //棋魂币
+		PROP_ISGOLD,                //元宝,由于帐号服务器限制,元宝将不可交易
+		PROP_LESSIDVALUE = 1001,    //道具最小ID
 	};
 }

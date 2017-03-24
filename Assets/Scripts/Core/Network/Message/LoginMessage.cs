@@ -201,13 +201,13 @@ namespace Groot.Network
 	public class SWinResult
 	{
 		[MessageFiled(0)]
-		public Int32 iWinCount;
+		public Int32 WinCount;
 
 		[MessageFiled(1)]
-		public Int32 iLossCount;
+		public Int32 LossCount;
 
 		[MessageFiled(2)]
-		public Int32 iJigoCount;
+		public Int32 JigoCount;
 	};
 
 	public class SysTimeData
