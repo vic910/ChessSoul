@@ -137,4 +137,12 @@ namespace Groot.Network
 		CHAT_CG = 1,
 		CHAT_GC = 2,
 	}
+
+    public enum EMessageId : ushort
+    {
+        MESSAGE_SEND_CG = 0,
+        MESSAGE_GETALL_GC = 7,
+        MESSAGE_GETSENTALL_CG = 12,
+        MESSAGE_GETSENTALL_GC = 13,
+    }
 }

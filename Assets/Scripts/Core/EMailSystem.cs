@@ -65,7 +65,7 @@ public class EMailSystem
     [DoNotToLua]
     private void messageGetSentAll(Int32 id, PacketType type, msg_MessageGetSentAll_GC msg)
     {
-        sentMails.AddRange(msg.messageBaseInfo);
+        sentMails.InsertRange(0, msg.messageBaseInfo);
     }
 
     #endregion
@@ -80,11 +80,11 @@ public class EMailSystem
     /// </summary>
     public void SendMessageGetSentAll()
     {
-        //if (!haveGetSentAll)
-        //{
+        if (!haveGetSentAll)
+        {
             NetManager.Instance.SendMsg(new msg_MessageGetSentAll_CG());
-            //haveGetSentAll = true;
-        //}
+            haveGetSentAll = true;
+        }
     }
 
     #endregion
