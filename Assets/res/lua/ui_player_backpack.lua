@@ -15,13 +15,13 @@ function t:PreShow()
     -- t.mUIWidget.image_vipmoney.Sprite
     -- t.mUIWidget.image_money.Sprite
 
-    --t.mUIWidgets.text_vipmoney_name.text = "text_vipmoney_name"
-    --t.mUIWidgets.text_money_name.text = "text_money_name"
+    -- t.mUIWidgets.text_vipmoney_name.text = "text_vipmoney_name"
+    -- t.mUIWidgets.text_money_name.text = "text_money_name"
     t.mUIWidgets.text_money_value.text = "32,432,653,234"
     t.mUIWidgets.text_vipmoney_value.text = "24,543"
 
-    --t.mUIWidgets.text_safebox.text = "text_safebox"
-    --t.mUIWidgets.text_hunt.text = "text_hunt"
+    -- t.mUIWidgets.text_safebox.text = "text_safebox"
+    -- t.mUIWidgets.text_hunt.text = "text_hunt"
 end
 
 function t:InitBtnLis()
@@ -33,7 +33,7 @@ function t:InitBtnLis()
 end
 
 function t:OnBagClick(_index)
-    UnityLuaUtils.ShowUI( "ui_item_info")
+    UnityLuaUtils.ShowUI("ui_item_info", _index, "Sale")
 end
 
 function t:OnSafeboxClick()

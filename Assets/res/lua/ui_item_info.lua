@@ -14,7 +14,7 @@ function t:OnUnloaded()
     t.mUIWidgets.button_sale.onClick:RemoveAllListeners()
 end
 
-function t:PreShow()
+function t:PreShow( ...)
     -- t.mUIWidgets.text_title.text
     -- t.mUIWidgets.text_name.text
     -- t.mUIWidgets.text_info.text
@@ -24,9 +24,10 @@ function t:PreShow()
     -- t.mUIWidgets.text_saleprice_name.text
     -- t.mUIWidgets.text_saleprice_value.text
     -- t.mUIWidgets.text_saleprice_unit.text
-    --print(_index)
+    local index, handleName = ...
+    print(index)
     t.mUIWidgets.text_num_value.text = "0"
-    --t.mUIWidgets.text_sale_name.text = _name
+    t.mUIWidgets.text_sale_name.text = handleName
 end
 
 function t:OnCloseClick()
