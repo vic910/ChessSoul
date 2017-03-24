@@ -129,6 +129,17 @@ namespace Groot.Network
 		}
 	}
 
+	class GC_LoginOKNoPlayer: MessageBase
+	{
+		[MessageFiled( 0, MsgDefine.MAX_PLAYER_ENAME_LEN )]
+		public string EnglishName;
+
+		public GC_LoginOKNoPlayer() : base( EMsgDirection.MSG_GC, EMsgType.TYPE_LOGIN, (UInt16)ELoginMsgId.LOGIN_OK_NOPLAYER_GC )
+		{
+
+		}
+	}
+
 	// 玩家基本信息
 	public class PlayerInfoBase
 	{
@@ -288,7 +299,7 @@ namespace Groot.Network
 
 	public class PlayerInfo : PlayerInfoBase
 	{
-		[MessageFiled(0, 33)]
+		[MessageFiled(0, MsgDefine.MAX_PLAYER_ENAME_LEN)]
 		public string          EnglishName;
 
 		[MessageFiled(1)]

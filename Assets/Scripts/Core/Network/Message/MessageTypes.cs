@@ -9,15 +9,18 @@ namespace Groot.Network
 		/// <summary>
 		/// 玩家昵称长度
 		/// </summary>
-		public const int MAX_PLAYER_NAME_LEN = 19;
+		public const Int32 MAX_PLAYER_NAME_LEN = 19;
 		/// <summary>
 		/// 邮件标题长度
 		/// </summary>
-		public const int MAX_MESSAGE_TITLE_LEN = 50;
+		public const Int32 MAX_MESSAGE_TITLE_LEN = 50;
 		/// <summary>
 		/// 邮件内容长度
 		/// </summary>
-		public const int MAX_MESSAGE_CONTENT_LEN = 500;
+		public const Int32 MAX_MESSAGE_CONTENT_LEN = 500;
+
+		//用户ID的字符最大值
+		public const Int32 MAX_PLAYER_ENAME_LEN = 33;
 	}
 
 	//消息流向
@@ -97,7 +100,7 @@ namespace Groot.Network
 		LOGIN_FAILED_GC = 3,
 		LOGIN_FORCE_CG = 5,
 
-
+		LOGIN_OK_NOPLAYER_GC = 10,       // 帐号登录成功，无角色信息
 
 		CONNECT = 65534,
 		DIS_CONNECT = 65535,	

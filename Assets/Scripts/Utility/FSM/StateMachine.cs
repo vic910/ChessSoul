@@ -136,9 +136,9 @@ namespace Utility.FSM
 					, m_current_state.GetName() );
 			m_current_state.OnEnter();
 
-			if( WeiqiApp.DevMode )
-				Log.Debug( "[StateMachine.Translate] End - translate from[{0}] to state [{1}]"
-					, m_previous_state.GetName(), m_current_state.GetName() );
+			//if( WeiqiApp.DevMode )
+			//	Log.Debug( "[StateMachine.Translate] End - translate from[{0}] to state [{1}]"
+			//		, m_previous_state.GetName(), m_current_state.GetName() );
 		}
 
 		/// <summary>

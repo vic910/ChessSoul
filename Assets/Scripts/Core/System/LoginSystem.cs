@@ -16,8 +16,9 @@ namespace Weiqi
 
         public override void Initialize()
         {
-            NetManager.Instance.Register<GC_LoginFailedMsg>(_onPacketArrived);
-            NetManager.Instance.Register<GC_LoginOK>(_onPacketArrived);
+            NetManager.Instance.Register<GC_LoginFailedMsg>( _onPacketArrived );
+            NetManager.Instance.Register<GC_LoginOK>( _onPacketArrived );
+			NetManager.Instance.Register<GC_LoginOKNoPlayer>( _onPacketArrived );
             NetManager.Instance.RequestConnect();
         }
 
@@ -25,7 +26,8 @@ namespace Weiqi
         {
             NetManager.Instance.Unregister<GC_LoginFailedMsg>();
             NetManager.Instance.Unregister<GC_LoginOK>();
-        }
+			NetManager.Instance.Unregister<GC_LoginOKNoPlayer>();
+		}
 
         private void _onPacketArrived(Int32 _stream_id, PacketType _packet_type, GC_LoginFailedMsg _msg)
         {
@@ -68,6 +70,16 @@ namespace Weiqi
             LocalConfigSystem.Instacne.UpdateCurAccount(CurAccount);
             LocalConfigSystem.Instacne.Update("CurrentPassword", CurPassword);
         }
-    }
+
+		private void _onPacketArrived( Int32 _stream_id, PacketType _packet_type, GC_LoginOKNoPlayer _msg )
+		{
+			WaitForResponse.Release();
+			UI_MessageBox.Show( Locale.Instance["Login@NoPlayer"] );
+
+			//登陆成功后更新本地配置中的账户名
+			LocalConfigSystem.Instacne.UpdateCurAccount( CurAccount );
+			LocalConfigSystem.Instacne.Update( "CurrentPassword", CurPassword );
+		}
+	}
 
 }
