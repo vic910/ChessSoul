@@ -3,4 +3,4 @@ ui_self.lua
 ui_option.lua
 ui_chess_lobby.lua
 ui_player_online.lua
-ui_email.lua
+ui_email_send.lua

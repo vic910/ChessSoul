@@ -69,12 +69,12 @@ public class UI_Title : UI_Base
     {
         //UnityLuaUtils.ShowSingleMsgBox(UnityLuaUtils.GetLocaleString("Common@NotOpen"), "", null, null);
         //UIManager.Instance.ShowUI("ui_emailSystem");
-        UIManager.Instance.ShowUI("ui_emailWrite");
+        UIManager.Instance.ShowUI( "ui_email_send" );
     }
 
     private void _onOptionButtonClick(int value)
     {
-        UIManager.Instance.ShowUI("ui_option");
+        UIManager.Instance.ShowUI( "ui_option" );
     }
 
     private void _onShopButtonClick(int value)

@@ -153,6 +153,19 @@ public class Lua_UnityLuaUtils : LuaObject {
 			return error(l,e);
 		}
 	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int SendMessage_s(IntPtr l) {
+		try {
+			Groot.Network.MessageBase a1;
+			checkType(l,1,out a1);
+			UnityLuaUtils.SendMessage(a1);
+			pushValue(l,true);
+			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
 	static public void reg(IntPtr l) {
 		getTypeTable(l,"UnityLuaUtils");
 		addMember(l,SetPos_s);
@@ -163,6 +176,7 @@ public class Lua_UnityLuaUtils : LuaObject {
 		addMember(l,ShowSelectMsgBox_s);
 		addMember(l,GetLocaleString_s);
 		addMember(l,StringConvertToBool_s);
+		addMember(l,SendMessage_s);
 		addMember(l,UnityLuaUtils.Test,false);
 		createTypeMetatable(l,null, typeof(UnityLuaUtils));
 	}

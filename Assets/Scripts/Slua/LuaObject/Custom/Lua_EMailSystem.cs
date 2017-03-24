@@ -40,11 +40,11 @@ public class Lua_EMailSystem : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static public int get_receivedMails(IntPtr l) {
+	static public int get_m_received_mails(IntPtr l) {
 		try {
 			EMailSystem self=(EMailSystem)checkSelf(l);
 			pushValue(l,true);
-			pushValue(l,self.receivedMails);
+			pushValue(l,self.m_received_mails);
 			return 2;
 		}
 		catch(Exception e) {
@@ -52,12 +52,12 @@ public class Lua_EMailSystem : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static public int set_receivedMails(IntPtr l) {
+	static public int set_m_received_mails(IntPtr l) {
 		try {
 			EMailSystem self=(EMailSystem)checkSelf(l);
 			System.Collections.Generic.List<ShortMessageBaseInfo> v;
 			checkType(l,2,out v);
-			self.receivedMails=v;
+			self.m_received_mails=v;
 			pushValue(l,true);
 			return 1;
 		}
@@ -66,11 +66,11 @@ public class Lua_EMailSystem : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static public int get_sentMails(IntPtr l) {
+	static public int get_m_send_mails(IntPtr l) {
 		try {
 			EMailSystem self=(EMailSystem)checkSelf(l);
 			pushValue(l,true);
-			pushValue(l,self.sentMails);
+			pushValue(l,self.m_send_mails);
 			return 2;
 		}
 		catch(Exception e) {
@@ -78,12 +78,12 @@ public class Lua_EMailSystem : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static public int set_sentMails(IntPtr l) {
+	static public int set_m_send_mails(IntPtr l) {
 		try {
 			EMailSystem self=(EMailSystem)checkSelf(l);
 			System.Collections.Generic.List<ShortMessageBaseInfo> v;
 			checkType(l,2,out v);
-			self.sentMails=v;
+			self.m_send_mails=v;
 			pushValue(l,true);
 			return 1;
 		}
@@ -95,8 +95,8 @@ public class Lua_EMailSystem : LuaObject {
 		getTypeTable(l,"EMailSystem");
 		addMember(l,SendMessageGetSentAll);
 		addMember(l,"Instance",get_Instance,null,false);
-		addMember(l,"receivedMails",get_receivedMails,set_receivedMails,true);
-		addMember(l,"sentMails",get_sentMails,set_sentMails,true);
+		addMember(l,"m_received_mails",get_m_received_mails,set_m_received_mails,true);
+		addMember(l,"m_send_mails",get_m_send_mails,set_m_send_mails,true);
 		createTypeMetatable(l,constructor, typeof(EMailSystem));
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Groot;
+using Groot.Network;
 using LuaInterface;
 using UnityEngine;
 using SLua;
@@ -62,6 +63,11 @@ public static class UnityLuaUtils
     {
         return Convert.ToBoolean(str);
     }
+
+	public static void SendMessage( MessageBase _msg )
+	{
+		NetManager.Instance.SendMsg( _msg );
+	}
 
     [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
     [StaticExport]
