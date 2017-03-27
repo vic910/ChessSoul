@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using SLua;
 
 namespace Groot
 {
-	delegate void SignalCallback( SignalId _signal_id, SignalParameters _parameters );
-	class SignalParameters
+	public delegate void SignalCallback( SignalId _signal_id, SignalParameters _parameters );
+
+	[CustomLuaClassAttribute]
+	public class SignalParameters
 	{
 		public SignalParameters()
 		{
@@ -39,6 +42,7 @@ namespace Groot
 				return m_parameters[_index];
 			}
 		}
+
 		/// <summary>
 		/// 返回参数个数
 		/// </summary>
@@ -56,7 +60,8 @@ namespace Groot
 		private List<Object> m_parameters = new List<object>();
 	}
 
-	static class SignalSystem
+	[CustomLuaClassAttribute]
+	public static class SignalSystem
 	{
 		/// <summary>
 		/// 注册一个回调函数，该回调函数将在指定信号触发时被调用

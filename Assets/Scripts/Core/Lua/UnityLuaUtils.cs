@@ -69,7 +69,7 @@ public static class UnityLuaUtils
 		NetManager.Instance.SendMsg( _msg );
 	}
 
-    [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
     [StaticExport]
     public static int Test(IntPtr l)
     {

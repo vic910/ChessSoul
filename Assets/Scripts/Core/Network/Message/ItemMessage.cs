@@ -6,7 +6,7 @@ using Utility;
 
 namespace Groot.Network
 {
-	internal class GC_GetItems : MessageBase
+	class GC_GetItems : MessageBase
 	{
 		[MessageFiled( 0 )]
 		public UInt64 PlayerID;
@@ -23,6 +23,26 @@ namespace Groot.Network
 		}
 	}
 
+	class GC_UpdateItems : MessageBase
+	{
+		[MessageFiled( 0 )]
+		public UInt64      PlayerID;
+
+		[MessageFiled( 1 )]
+		public Int32       PropItemsCount;
+
+		[MessageFiled( 2 )]
+		public Byte        Reason;     //EItemReason
+
+		[MessageFiled( 3, 35 )]
+		public List<PropItem> PropItems;
+
+		public GC_UpdateItems() : base( EMsgDirection.MSG_GC, EMsgType.TYPE_PROPS, (ushort)EPropsMsgId.PROPS_UPDATEPROPERTY_GC )
+		{
+
+		}
+	};
+
 	public class PropItem
 	{
 		[MessageFiled( 0 )]
@@ -32,7 +52,7 @@ namespace Groot.Network
 		public Int32 Count; // 道具数量
 	}
 
-	internal class GC_GetItemAttr : MessageBase
+	class GC_GetItemAttr : MessageBase
 	{
 		[MessageFiled( 0 )]
 		public UInt32 TotalCount;
@@ -157,5 +177,39 @@ namespace Groot.Network
 		PROP_ISMONEY = 1,           //棋魂币
 		PROP_ISGOLD,                //元宝,由于帐号服务器限制,元宝将不可交易
 		PROP_LESSIDVALUE = 1001,    //道具最小ID
+	};
+
+	enum EItemReason
+	{
+		IGO_REASON_UNKNOWN,        //未知
+		IGO_REASON_PLAYGO,         //对局费
+		IGO_REASON_GOPRODUCE,      //对局掉落物品
+		IGO_REASON_OPENBOX,        //宝箱开出物品
+		IGO_REASON_PLAYGOWIN,      //对局抽成
+		IGO_REASON_PLAYGOLOTTERY,  //对局抽奖
+		IGO_REASON_FACE,           //大表情
+		IGO_REASON_MAGICFACE,      //魔法表情
+		IGO_REASON_HEADPIC,        //设置头像
+		IGO_REASON_PAYMENT,        //支付
+		IGO_REASON_IMPAWN,         //押分
+		IGO_REASON_USE,            //使用道具(针对可独立使用的道具及被该道具所支配的附加道具)
+		IGO_REASON_TRADE,          //交易
+		IGO_REASON_SALE,           //商铺卖出或购买
+		IGO_REASON_SALEFEE,        //商铺管理费
+		IGO_REASON_SALEGIFT,       //商铺赠送
+		IGO_REASON_LOTTERY,        //定期抽奖
+		IGO_REASON_AWARD,          //押分抽奖
+		IGO_REASON_EXPLAINFEE,     //讲解收费
+		IGO_REASON_BROADCASTFEE,   //直播收费
+		IGO_REASON_ONLINE,         //在线奖励
+		IGO_REASON_RECYCLE,        //系统回收
+		IGO_REASON_BANK,           //银行操作
+		IGO_REASON_MYDAWARD,       //梦游岛抽奖
+		IGO_REASON_GMMODIFY,       //GM调整
+		IGO_REASON_CHAT,           //聊天
+		IGO_REASON_MYD_UPLOAD,     //梦游岛上传道具
+		IGO_REASON_ADJOURNMENT,     // 封盘费用 2014-01-22 add by nava
+		IGO_REASON_USELIVENESSCARD,       //使用活跃度卷轴
+		IGO_REASON_MAX,
 	};
 }

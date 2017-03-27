@@ -164,4 +164,19 @@ namespace Groot.Network
         MESSAGE_GETSENTALL_CG = 12,
         MESSAGE_GETSENTALL_GC = 13,
     }
+
+	public enum ESaleMsgId : ushort
+	{
+		SALE_NEWSALE_CG,        // 新建商铺
+		SALE_NEWSALE_GC,        // -----------------成功后需广播到所有正在商城浏览的用户
+		SALE_CANCELSALE_CG,     // 取消商铺
+		SALE_CANCELSALE_GC,     // -----------------成功后需广播到所有正在商城浏览的用户
+		SALE_BUY_CG,            // 从商铺购买物品
+		SALE_BUY_GC,            // -----------------成功后需广播到所有正在商城浏览的用户
+		SALE_UPDATESALE_GC,     // 更新商铺信息
+		SALE_GETALLSALE_CG,     // 获取所有商铺信息
+		SALE_GETALLSALE_GC,     // -----------------成功后需广播到所有正在商城浏览的用户
+		SALE_USERSALETOSYSTEM_CG,//用户向系统出售,即系统回收
+		SALE_USERSALETOSYSTEM_GC,//出售情况
+	}
 }

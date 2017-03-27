@@ -60,6 +60,22 @@ public class Lua_ItemSystem : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int SaleItemToSystem(IntPtr l) {
+		try {
+			ItemSystem self=(ItemSystem)checkSelf(l);
+			System.UInt64 a1;
+			checkType(l,2,out a1);
+			System.Int32 a2;
+			checkType(l,3,out a2);
+			self.SaleItemToSystem(a1,a2);
+			pushValue(l,true);
+			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static public int get_Instance(IntPtr l) {
 		try {
 			pushValue(l,true);
@@ -75,6 +91,7 @@ public class Lua_ItemSystem : LuaObject {
 		addMember(l,GetItemAttr);
 		addMember(l,GetMyItemIDByIndex);
 		addMember(l,GetAllMyItem);
+		addMember(l,SaleItemToSystem);
 		addMember(l,"Instance",get_Instance,null,false);
 		createTypeMetatable(l,constructor, typeof(ItemSystem));
 	}

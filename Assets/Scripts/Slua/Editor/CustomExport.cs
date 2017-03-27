@@ -71,7 +71,7 @@ namespace SLua
             }
             else if (_type == LuaCodeGen.ExportType.Custom)
             {
-            
+	            //_add( typeof( SignalSystem ), null );
             }
         }
 #endif
