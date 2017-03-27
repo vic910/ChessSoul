@@ -1,18 +1,11 @@
 local t = { };
-
-
-
 function t:OnLoaded()
     t.mUIWidgets.button_close.onClick:AddListener(t.OnCloseClick)
-    t.mUIWidgets.button_sale.onClick:AddListener(t.OnSaleClick)
 end
 
 
 function t:OnUnloaded()
     t.mUIWidgets.button_close.onClick:RemoveAllListeners()
-    t.mUIWidgets.button_num_sub.onClick:RemoveAllListeners()
-    t.mUIWidgets.button_num_add.onClick:RemoveAllListeners()
-    t.mUIWidgets.button_sale.onClick:RemoveAllListeners()
 end
 
 function t:PreShow(...)
@@ -40,6 +33,16 @@ function t:PreShow(...)
     t.mUIWidgets.button_num_add.onClick:AddListener(func)
 
     t.mUIWidgets.text_sale_name.text = handleName
+
+    --Sale OnClick
+    function func() t:OnSaleClick(itemID) end
+    t.mUIWidgets.button_sale.onClick:AddListener(func)
+end
+
+function t:OnHide()
+    t.mUIWidgets.button_num_sub.onClick:RemoveAllListeners()
+    t.mUIWidgets.button_num_add.onClick:RemoveAllListeners()
+    t.mUIWidgets.button_sale.onClick:RemoveAllListeners()
 end
 
 function t:OnCloseClick()
@@ -60,14 +63,20 @@ end
 function t:OnSubClick()
     local value = tonumber(t.mUIWidgets.text_num_value.text)
     value = value - 1
-    if value < 0 then
-        value = 0
+    if value < 1 then
+        value = 1
     end
     t.mUIWidgets.text_num_value.text = tostring(value)
 end
 
-function t:OnSaleClick()
-    print("Sale")
+function t:OnSaleClick(_id)
+   local count = tonumber(t.mUIWidgets.text_num_value.text)
+      print(_id .. "   " .. count)
+   if(count == nil) then
+        return
+   end
+   ItemSystem.Instance:SaleItemToSystem(_id, count)
+   t:OnCloseClick()
 end
 
 return t

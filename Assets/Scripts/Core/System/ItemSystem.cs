@@ -64,7 +64,8 @@ public class ItemSystem
 		PropItem item = new PropItem();
 		item.PropID = _id;
 		item.Count = _count;
-		msg.Items.Add( item );
+	    msg.Items = new List<PropItem>();
+        msg.Items.Add( item );
 		NetManager.Instance.SendMsg( msg );
 	}
 
