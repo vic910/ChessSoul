@@ -11,6 +11,16 @@ public class MainPlayer
 
 	public PlayerInfo PlayerInfo { get; private set; }
 
+	public void Initialize()
+	{
+		
+	}
+
+	public void UnInitialize()
+	{
+
+	}
+
 	[DoNotToLua]
 	public void InitializePlayerInfo( PlayerInfo _info )
 	{
