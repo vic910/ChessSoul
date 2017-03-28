@@ -9,7 +9,6 @@ namespace SLua {
 				Lua_UnityLuaUtils.reg,
 				Lua_MainPlayer.reg,
 				Lua_Groot_Network_MessageBase.reg,
-				Lua_msg_MessageGetSentAll_CG.reg,
 				Lua_SendMailMessage.reg,
 				Lua_Groot_SignalId.reg,
 				Lua_Groot_SignalParameters.reg,

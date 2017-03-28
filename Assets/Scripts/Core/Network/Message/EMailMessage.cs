@@ -46,7 +46,6 @@ public class ShortMessageBaseInfo
 /// <summary>
 /// 请求已发送的邮件
 /// </summary>
-[CustomLuaClass]
 public class msg_MessageGetSentAll_CG : MessageBase
 {
     [MessageFiled(0)]
@@ -55,7 +54,6 @@ public class msg_MessageGetSentAll_CG : MessageBase
     public msg_MessageGetSentAll_CG()
         : base(EMsgDirection.MSG_CG, EMsgType.TYPE_MESSAGE, (ushort)EMessageId.MESSAGE_GETSENTALL_CG)
     {
-        iPlayerID = MainPlayer.Instance.PlayerInfo.PlayerID;
     }
 }
 

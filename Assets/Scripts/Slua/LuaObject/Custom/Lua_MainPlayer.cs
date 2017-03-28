@@ -17,6 +17,30 @@ public class Lua_MainPlayer : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int Initialize(IntPtr l) {
+		try {
+			MainPlayer self=(MainPlayer)checkSelf(l);
+			self.Initialize();
+			pushValue(l,true);
+			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int UnInitialize(IntPtr l) {
+		try {
+			MainPlayer self=(MainPlayer)checkSelf(l);
+			self.UnInitialize();
+			pushValue(l,true);
+			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static public int get_Instance(IntPtr l) {
 		try {
 			pushValue(l,true);
@@ -41,6 +65,8 @@ public class Lua_MainPlayer : LuaObject {
 	}
 	static public void reg(IntPtr l) {
 		getTypeTable(l,"MainPlayer");
+		addMember(l,Initialize);
+		addMember(l,UnInitialize);
 		addMember(l,"Instance",get_Instance,null,false);
 		addMember(l,"PlayerInfo",get_PlayerInfo,null,true);
 		createTypeMetatable(l,constructor, typeof(MainPlayer));

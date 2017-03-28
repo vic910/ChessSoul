@@ -21,7 +21,7 @@ public class WeiqiApp
 
 	public static String ResServerUrl
 	{
-		get { return "http://127.0.0.1/dev/"; }
+		get { return "http://192.168.100.160/dev/"; }
 	}
 
 	public static Boolean DevMode

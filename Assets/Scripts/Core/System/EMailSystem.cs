@@ -83,7 +83,9 @@ public class EMailSystem
     {
         if ( !m_is_get_send )
         {
-            NetManager.Instance.SendMsg(new msg_MessageGetSentAll_CG());
+			msg_MessageGetSentAll_CG msg = new msg_MessageGetSentAll_CG();
+			msg.iPlayerID = MainPlayer.Instance.PlayerInfo.PlayerID;
+			NetManager.Instance.SendMsg( msg );
 			m_is_get_send = true;
         }
     }

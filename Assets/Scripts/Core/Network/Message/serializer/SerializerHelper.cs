@@ -323,7 +323,7 @@ namespace Groot.Network
 						break;
 					}
 					value[0] = s_serialize_reader.ReadString( attribute.Length2 );
-					if( string.Empty == value[0] )
+					if( string.Empty == value[0] as string )
 						value[0] = string.Empty;
 				}
 				else if( item_type.IsClass )

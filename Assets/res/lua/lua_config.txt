@@ -4,3 +4,5 @@ ui_option.lua
 ui_chess_lobby.lua
 ui_player_online.lua
 ui_email_send.lua
+ui_player_backpack.lua
+ui_item_info.lua
