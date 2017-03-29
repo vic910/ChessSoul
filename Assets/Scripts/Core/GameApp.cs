@@ -59,6 +59,7 @@ public class GameApp : UnitySingleton<GameApp>
 		ItemSystem.Instance.Uninitialize();
 		PlayerOnlineSystem.Instance.Uninitialize();
 		EMailSystem.Instance.Uninitialize();
+        MainPlayer.Instance.UnInitialize();
 	}
 
 	private void _uninitializeConfig()

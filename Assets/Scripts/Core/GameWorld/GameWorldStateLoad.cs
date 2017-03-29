@@ -20,6 +20,7 @@ namespace Core
 			// 初始化系统
 			ChatSystem.Instance.Initialize();
 			PlayerOnlineSystem.Instance.Initialize();
+            MainPlayer.Instance.Initialize();
 
 			// 进入大厅
 			Fsm.Translate( "Lobby" );

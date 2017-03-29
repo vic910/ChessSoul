@@ -18,6 +18,10 @@ namespace Groot
 
 		Item_Update,							//物品更新
 
+        Money_Update,                           //银两更新
+
+        Gold_Update,                            //元宝更新
+
 		Test
 	}
 }

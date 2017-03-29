@@ -26,13 +26,18 @@ function t:PreShow()
     -- t.mUIWidgets.text_safebox.text = "text_safebox"
     -- t.mUIWidgets.text_hunt.text = "text_hunt"
 
-    t:UpdateShow()
+    t:UpdateItemShow()
+    t:UdateMoneyShow()
 
-    Groot.SignalSystem.Register(Groot.SignalId.Item_Update, t.UpdateShow);
+    Groot.SignalSystem.Register(Groot.SignalId.Item_Update, t.UpdateItemShow);
+    Groot.SignalSystem.Register(Groot.SignalId.Gold_Update, t.UdateMoneyShow);
+    Groot.SignalSystem.Register(Groot.SignalId.Money_Update, t.UdateMoneyShow);
 end
 
 function t:OnHide()
-    Groot.SignalSystem.Unregister(Groot.SignalId.Item_Update, t.UpdateShow);
+    Groot.SignalSystem.Unregister(Groot.SignalId.Item_Update, t.UpdateItemShow);
+    Groot.SignalSystem.Unregister(Groot.SignalId.Gold_Update, t.UdateMoneyShow);
+    Groot.SignalSystem.Unregister(Groot.SignalId.Money_Update, t.UdateMoneyShow);
 end
 
 function t:InitBtnLis()
@@ -59,16 +64,18 @@ function t:OnHuntClick()
     UnityLuaUtils.ShowSingleMsgBox(UnityLuaUtils.GetLocaleString("Common@NotOpen"), "", nil, nil);
 end
 
--- Update Money And Item
-function t:UpdateShow()
-    t.mUIWidgets.text_money_value.text = MainPlayer.Instance.PlayerInfo.Money
-    t.mUIWidgets.text_vipmoney_value.text = MainPlayer.Instance.PlayerInfo.Gold
-
+-- Update Item
+function t:UpdateItemShow()
     local content = t.mUIWidgets.gameobject_bagList.transform
     local mItem = ItemSystem.Instance:GetAllMyItem()
     for i = 0, mItem.Count - 1 do
         content:GetChild(i).gameObject:GetComponent(UnityEngine.UI.Image).sprite = nil
     end
+end
+
+function t:UdateMoneyShow()
+    t.mUIWidgets.text_money_value.text = MainPlayer.Instance.PlayerInfo.Money
+    t.mUIWidgets.text_vipmoney_value.text = MainPlayer.Instance.PlayerInfo.Gold
 end
 
 return t
