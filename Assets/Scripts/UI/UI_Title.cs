@@ -17,6 +17,9 @@ public class UI_Title : UI_Base
     [SerializeField]
     private Text m_text_title_name = null;
 
+    [SerializeField]
+    private List<string> closeMenuList;
+
     public override void OnLoaded()
     {
         m_btn_return.onClick.AddListener(_onReturnButtonClick);
@@ -52,12 +55,20 @@ public class UI_Title : UI_Base
         if (cur == null)
             m_text_title_name.text = string.Empty;
         else
+        {
             m_text_title_name.text = cur.name;
+            if (closeMenuList.Contains(cur.name))
+            {
+                m_btn_menu.gameObject.SetActive(false);
+            }
+        }
+
     }
 
     private void _onReturnButtonClick()
     {
         UIManager.Instance.NavigatorBack();
+        m_btn_menu.gameObject.SetActive(true);
     }
 
     private void _onMenuButtonClick()
@@ -69,16 +80,16 @@ public class UI_Title : UI_Base
     {
         //UnityLuaUtils.ShowSingleMsgBox(UnityLuaUtils.GetLocaleString("Common@NotOpen"), "", null, null);
         //UIManager.Instance.ShowUI("ui_emailSystem");
-        UIManager.Instance.ShowUI( "ui_email_send" );
+        UIManager.Instance.ShowUI("ui_email_send");
     }
 
     private void _onOptionButtonClick(int value)
     {
-        UIManager.Instance.ShowUI( "ui_option" );
+        UIManager.Instance.ShowUI("ui_option");
     }
 
     private void _onShopButtonClick(int value)
     {
-        UnityLuaUtils.ShowSingleMsgBox(UnityLuaUtils.GetLocaleString("Common@NotOpen"), "", null, null);
+        UIManager.Instance.ShowUI("ui_shop");
     }
 }

@@ -29,6 +29,7 @@ namespace Core.App
             LobbySystem.Instance.Initialize();
 			EMailSystem.Instance.Initialize();
 			ItemSystem.Instance.Initialize();
+            ShopSystem.Instance.Initialize();
 		}
 
         public override void OnExit()

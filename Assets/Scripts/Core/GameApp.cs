@@ -57,6 +57,7 @@ public class GameApp : UnitySingleton<GameApp>
 		LobbySystem.Instance.Uninitialize();
 		ChatSystem.Instance.Uninitialize();
 		ItemSystem.Instance.Uninitialize();
+        ShopSystem.Instance.Uninitialize();
 		PlayerOnlineSystem.Instance.Uninitialize();
 		EMailSystem.Instance.Uninitialize();
         MainPlayer.Instance.UnInitialize();

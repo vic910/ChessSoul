@@ -198,6 +198,8 @@ MonoBehaviour:
   m_btn_return: {fileID: 114943133716342814}
   m_btn_menu: {fileID: 114823428357963046}
   m_text_title_name: {fileID: 114328786578483004}
+  closeMenuList:
+  - ui_shop
 --- !u!114 &114328786578483004
 MonoBehaviour:
   m_ObjectHideFlags: 1

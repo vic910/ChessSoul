@@ -1,15 +1,15 @@
 local t = { };
+
 function t:OnLoaded()
     t.mUIWidgets.button_close.onClick:AddListener(t.OnCloseClick)
 end
-
 
 function t:OnUnloaded()
     t.mUIWidgets.button_close.onClick:RemoveAllListeners()
 end
 
 function t:PreShow(...)
-    local itemID, itemCount, handleName = ...
+    local itemID, itemCount, handleName, handleFunc = ...
     local itemInfo = ItemSystem.Instance:GetItemAttr(itemID)
     -- t.mUIWidgets.text_title.text
     t.mUIWidgets.text_name.text = itemInfo.Name
@@ -34,8 +34,10 @@ function t:PreShow(...)
 
     t.mUIWidgets.text_sale_name.text = handleName
 
-    --Sale OnClick
-    function func() t:OnSaleClick(itemID) end
+    -- Sale OnClick
+    function func()
+        t:OnSaleClick(itemID, handleName)
+    end
     t.mUIWidgets.button_sale.onClick:AddListener(func)
 end
 
@@ -69,14 +71,16 @@ function t:OnSubClick()
     t.mUIWidgets.text_num_value.text = tostring(value)
 end
 
-function t:OnSaleClick(_id)
-   local count = tonumber(t.mUIWidgets.text_num_value.text)
-      print(_id .. "   " .. count)
-   if(count == nil) then
+function t:OnSaleClick(_id, _handleName)
+    count = tonumber(t.mUIWidgets.text_num_value.text)
+    if (count == nil) then
         return
-   end
-   ItemSystem.Instance:SaleItemToSystem(_id, count)
-   t:OnCloseClick()
+    end
+    if (_handleName == "Sale") then
+        ItemSystem.Instance:SaleItemToSystem(_id, count)
+    end
+
+    t:OnCloseClick()
 end
 
 return t
