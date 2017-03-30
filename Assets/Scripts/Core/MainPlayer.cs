@@ -17,13 +17,15 @@ public class MainPlayer
 	{
 	    NetManager.Instance.Register<GC_UpdatePlayerGold>(_onPacketArrived);
         NetManager.Instance.Register<GC_UpdatePlayerMoney>(_onPacketArrived);
+		NetManager.Instance.Register<GC_UpdatePlayerLiveness>( _onPacketArrived );
     }
 
 	public void UnInitialize()
 	{
         NetManager.Instance.Unregister<GC_UpdatePlayerGold>();
         NetManager.Instance.Unregister<GC_UpdatePlayerMoney>();
-    }
+		NetManager.Instance.Unregister<GC_UpdatePlayerLiveness>();
+	}
 
 	[DoNotToLua]
 	public void InitializePlayerInfo( PlayerInfo _info )
@@ -42,4 +44,10 @@ public class MainPlayer
         PlayerInfo.Money = Convert.ToUInt64(_msg.GoldNow);
         SignalSystem.FireSignal(SignalId.Money_Update, PlayerInfo.Money);
     }
+
+	private void _onPacketArrived( Int32 _stream_id, PacketType _packet_type, GC_UpdatePlayerLiveness _msg )
+	{
+		PlayerInfo.Liveness = Convert.ToUInt64( _msg.Liveness );
+		SignalSystem.FireSignal( SignalId.Liveness_Update, PlayerInfo.Liveness );
+	}
 }

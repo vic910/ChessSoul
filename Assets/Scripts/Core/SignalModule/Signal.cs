@@ -15,12 +15,10 @@ namespace Groot
 		#endregion
 
 		Chat_ReceiveChat,                       //收到聊天信息
-
 		Item_Update,							//物品更新
-
         Money_Update,                           //银两更新
-
         Gold_Update,                            //元宝更新
+		Liveness_Update,						//活跃度更新
 
 		Test
 	}
