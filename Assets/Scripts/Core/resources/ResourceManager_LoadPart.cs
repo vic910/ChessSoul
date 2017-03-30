@@ -141,7 +141,7 @@ namespace Groot.Res
 		public void LoadSceneAsync( String _assetbundle_name, String _scene_name, Action<Boolean> _callback )
 		{
 			//_scene_name = _scene_name.ToLower();
-#if GROOT_ASSETBUNDLE_SIMULATION
+#if GROOT_ASSETBUNDLE_SIMULATION || !UNITY_EDITOR
 			StartCoroutine( _loadSceneAsync( _scene_name, _callback ) );
 #else
 			Resource_Base resource_assetbundle = GetResource( _assetbundle_name );

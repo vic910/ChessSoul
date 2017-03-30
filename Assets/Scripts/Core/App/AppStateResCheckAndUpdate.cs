@@ -25,7 +25,7 @@ namespace Core.App
 		{
 			// 初始化UI系统 
 			UIManager.Instance.Initialize();
-#if GROOT_ASSETBUNDLE_SIMULATION
+#if GROOT_ASSETBUNDLE_SIMULATION || !UNITY_EDITOR
 			mIsUpdated = false;
 			// 初始化luaSrv
 			UILuaSvr.Instance.InitAndLoadLuaFile( onLuaLoaded, false );

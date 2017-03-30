@@ -50,11 +50,8 @@ namespace Groot.Res
 				{
 					if( Application.isEditor )
 						re = String.Format( "Assets/StreamingAssets/res/{0}", _file_relative_path );
-					else if( Application.platform == RuntimePlatform.IPhonePlayer )
-						re = String.Format( "{0}/res/{1}", Application.streamingAssetsPath, _file_relative_path );
-					// 安卓不支持直接读取
 					else
-						throw new ExceptionEx( "[ResInfo.GetSystemApiLoadPath] Current platform: {0} not support!", Application.platform );
+						re = String.Format( "{0}/res/{1}", Application.streamingAssetsPath, _file_relative_path );
 					break;
 				}
 			case AssetLocation.PersistentPath:

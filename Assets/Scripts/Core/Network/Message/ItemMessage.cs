@@ -153,13 +153,13 @@ namespace Groot.Network
 
 	enum EPropertyType
 	{
-		PROPERTY_IMPAWN_ASSURANCE,          //押分保险道具
-		PROPERTY_IMPAWN_MULTIPLY,           //押分倍率道具
+		PROPERTY_IMPAWN_ASSURANCE,          //押分保险道具(减损卡)
+		PROPERTY_IMPAWN_MULTIPLY,           //押分倍率道具(加倍卡)
 		PROPERTY_IMPAWN_COMBO,              //押分倍率保险双属性道具
 		PROPERTY_IMPAWN_END,                //押分道具结束
 		PROPERTY_PLAYGO,                    //对局道具
 		PROPERTY_KEY,                       //钥匙道具
-		PROPERTY_BOX,                       //宝箱类道具
+		PROPERTY_BOX,                       //宝箱类道具（宝箱）
 		PROPERTY_ONLINETIMER,               //在线定时处理类道具
 		PROPERTY_LIVENESS,                  //活跃度卡类型
 		PROPERTY_ORDER,                     //订单道具

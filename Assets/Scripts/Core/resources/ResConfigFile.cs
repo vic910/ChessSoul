@@ -274,12 +274,12 @@ namespace Groot.Res
 								continue;
 							line_count++;
 							String[] parts = line.Split( '\t' );
-#if UNITY_EDITOR
-							if( parts.Length != 8 && parts.Length != 9 )
-#else
-							if( parts.Length != 8 )
-#endif
-								throw new Exception( "Assetsinfo size error" );
+//#if UNITY_EDITOR
+//							if( parts.Length != 8 && parts.Length != 9 )
+//#else
+//							if( parts.Length != 8 )
+//#endif
+//								throw new Exception( "Assetsinfo size error" );
 
 							String name = parts[0];
 							Int64 size = Int64.Parse( parts[1], NumberStyles.None );
@@ -307,7 +307,7 @@ namespace Groot.Res
 					Log.Error( "解析 AssetsConfig 文件失败!  创建新文件" );
 					return new ResConfigFile() { m_file_path = _file_path };
 				}
-				Log.Error( "解析 AssetsConfig 文件失败!\tMessage: {0}\nStackTrace: {1}", e.Message, e.StackTrace );
+				Log.Error( "解析 AssetsConfig 文件失败!\tMessage: {0}\nStackTrace: {1} {2}", e.Message, e.StackTrace, e.ToString() );
 				res_config = null;
 			}
 			return res_config;
