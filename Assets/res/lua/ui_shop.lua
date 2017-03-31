@@ -5,11 +5,9 @@ function t:OnLoaded()
     t.mUIWidgets.button_type_sub.onClick:AddListener(t.OnClickSubType)
     t.mUIWidgets.button_type_box.onClick:AddListener(t.OnClickBoxType)
     t.mUIWidgets.button_type_other.onClick:AddListener(t.OnClickOtherType)
+
     t.mUIWidgets.button_pay.onClick:AddListener(t.OnClickPay)
     t.mUIWidgets.button_shoppingcar.onClick:AddListener(t.OnClickShoppingCar)
-
-    t.scrollrect_playershow = t.mUIWidgets.scrollrect_playershow:GetComponent(ScrollRectList)
-    t.scrollrect_playershow.OnItemVisible = function(_obj, _index) t:OnItemVisible(_obj, _index) end
 
 end
 
@@ -33,42 +31,39 @@ function t:PreShow()
     -- t.mUIWidgets.button_type_box.gameObject:GetComponent(UnityEngine.UI.Text).text
     -- t.mUIWidgets.button_type_other.gameObject:GetComponent(UnityEngine.UI.Text).text
 
-    --t.mUIWidgets.image_player_gold.Sprite
-    --t.mUIWidgets.image_player_money.text
-    --t.mUIWidgets.text_player_gold_name.Sprite
-    --t.mUIWidgets.text_player_money_name.text
+    -- t.mUIWidgets.image_player_gold.Sprite
+    -- t.mUIWidgets.image_player_money.text
+    -- t.mUIWidgets.text_player_gold_name.Sprite
+    -- t.mUIWidgets.text_player_money_name.text
+    Groot.SignalSystem.Register(Groot.SignalId.ShoppingCar_Update, t.UpdateShoppingCarShow)
+    t:InitSaleItemList()
+    t:UpdateShoppingCarShow()
+    t:UpdateMoneyShow()
 
-    t:UdateMoneyShow()
-
-end
-
-function t:OnItemVisible(_obj, _index)
-    --    local player_info = PlayerOnlineSystem.Instance:GetPlayerInfoByIndex(_index, 3)
-    --    if player_info == nil then
-    --        _obj:SetActive(false)
-    --        return
-    --    end
-    --    _obj.transform:FindChild("text_name").gameObject:GetComponent(UnityEngine.UI.Text).text = player_info.PlayerName
-    --    _obj.transform:FindChild("text_level").gameObject:GetComponent(UnityEngine.UI.Text).text = player_info.Level .. UnityLuaUtils.GetLocaleString("Common@Level");
-    --    _obj.transform:FindChild("text_win").gameObject:GetComponent(UnityEngine.UI.Text).text = player_info.WinCount .. UnityLuaUtils.GetLocaleString("Common@Win");
-    --    _obj.transform:FindChild("text_lose").gameObject:GetComponent(UnityEngine.UI.Text).text = player_info.LossCount .. UnityLuaUtils.GetLocaleString("Common@Lose");
-    --    _obj.transform:FindChild("text_state").gameObject:GetComponent(UnityEngine.UI.Text).text = UnityLuaUtils.GetLocaleString("Player@State" .. player_info.State)
 end
 
 function t:OnClickAddType()
-    print("OnClickAddType")
+    local showList = ShopSystem.Instance:GetSaleItemAttr(0)
+    ShopSystem.Instance:SetShowList(showList)
+    t.scrollrect_playershow:SetMaxItemCount(ShopSystem.Instance:GetSaleItemAttr(4).Count)
 end
 
 function t:OnClickSubType()
-    print("OnClickSubType: ")
+    local showList = ShopSystem.Instance:GetSaleItemAttr(1)
+    ShopSystem.Instance:SetShowList(showList)
+    t.scrollrect_playershow:SetMaxItemCount(ShopSystem.Instance:GetSaleItemAttr(4).Count)
 end
 
 function t:OnClickBoxType()
-    print("OnClickBoxType: ")
+    local showList = ShopSystem.Instance:GetSaleItemAttr(2)
+    ShopSystem.Instance:SetShowList(showList)
+    t.scrollrect_playershow:SetMaxItemCount(ShopSystem.Instance:GetSaleItemAttr(4).Count)
 end
 
 function t:OnClickOtherType()
-    print("OnClickOtherType")
+    local showList = ShopSystem.Instance:GetSaleItemAttr(3)
+    ShopSystem.Instance:SetShowList(showList)
+    t.scrollrect_playershow:SetMaxItemCount(ShopSystem.Instance:GetSaleItemAttr(4).Count)
 end
 
 function t:OnClickPay()
@@ -76,12 +71,70 @@ function t:OnClickPay()
 end
 
 function t:OnClickShoppingCar()
-     UnityLuaUtils.ShowUI( "ui_shoppingcar")
+    UnityLuaUtils.ShowUI("ui_shoppingcar")
 end
 
-function t:UdateMoneyShow()
+function t:UpdateMoneyShow()
     t.mUIWidgets.text_player_gold_value.text = MainPlayer.Instance.PlayerInfo.Money
     t.mUIWidgets.text_player_money_value.text = MainPlayer.Instance.PlayerInfo.Gold
+end
+
+function t:UpdateShoppingCarShow()
+    t.mUIWidgets.text_count.text = ShopSystem.Instance:GetShoppingcarItemList().Count
+end
+
+function t:InitSaleItemList()
+
+    local defaultShowList = ShopSystem.Instance:GetSaleItemAttr(0)
+    ShopSystem.Instance:SetShowList(defaultShowList)
+
+    t.scrollrect_playershow = t.mUIWidgets.scrollrect_playershow:GetComponent(ScrollRectList)
+    t.scrollrect_playershow.OnItemVisible = function(_obj, _index) t:OnItemVisible(_obj, _index) end
+
+    t.scrollrect_playershow:SetMaxItemCount(ShopSystem.Instance:GetSaleItemAttr(4).Count)
+
+    local content = t.mUIWidgets.scrollrect_playershow.transform:FindChild("content")
+
+    for i = 0, content.childCount - 1 do
+        function func() t:OnClickShowItemInfo(i) end
+        content:GetChild(i).gameObject:GetComponent(UnityEngine.UI.Button).onClick:AddListener(func)
+    end
+end
+
+function t:OnClickShowItemInfo(_index)
+    local saleItem_info = ShopSystem.Instance:GetItemInfo(_index, 4)
+    local propItem = ItemSystem.Instance:GetItemAttr(saleItem_info.ItemID)
+    if (propItem == nil) then
+        return
+    end
+    UnityLuaUtils.ShowUI("ui_item_info", propItem.PropID, 1, 1, saleItem_info.ItemCount, "AddShoppingCar")
+end
+
+
+function t:OnItemVisible(_obj, _index)
+
+    local saleItem_info = ShopSystem.Instance:GetItemInfo(_index, 4)
+
+    if saleItem_info == nil then
+        return
+    end
+
+    local item_info = ItemSystem.Instance:GetItemAttr(saleItem_info.ItemID)
+    if item_info == nil then
+        return
+    end
+    _obj.transform:FindChild("image_good/text_good").gameObject:GetComponent(UnityEngine.UI.Text).text = item_info.Name
+    _obj.transform:FindChild("image_good_value/text_good_value").gameObject:GetComponent(UnityEngine.UI.Text).text = tostring(saleItem_info.Price);
+
+    local unit;
+
+    if saleItem_info.MoneyType == 1 then
+        unit = "money"
+    else
+        unit = "gold"
+    end
+
+    _obj.transform:FindChild("image_good_value/text_good_value/text_good_value_unit").gameObject:GetComponent(UnityEngine.UI.Text).text = unit;
 end
 
 return t

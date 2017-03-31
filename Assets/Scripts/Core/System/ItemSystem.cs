@@ -81,7 +81,7 @@ public class ItemSystem
 	private void _onPacketArrived( Int32 _stream_id, PacketType _packet_type, GC_GetItemAttr _msg )
 	{
 		if( _msg.CurrentStartNo == 1 )
-			m_item_attr.Clear();
+			m_item_attr.Clear();    
 		for( Int32 i = 0; i < _msg.ItemsCount; i++ )
 		{
 			m_item_attr.Add( _msg.ItemsAttr[i].PropID, _msg.ItemsAttr[i] );

@@ -19,6 +19,7 @@ namespace SLua {
 				Lua_LocalConfigSystem.reg,
 				Lua_PlayerOnlineSystem.reg,
 				Lua_RoomSystem.reg,
+				Lua_ShopSystem.reg,
 				Lua_MulitButton.reg,
 				Lua_ScrollRectList.reg,
 			};

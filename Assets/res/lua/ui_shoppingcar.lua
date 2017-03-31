@@ -6,6 +6,7 @@ function t:OnLoaded()
     t.mUIWidgets.button_type_cost.onClick:AddListener(t.OnClickCostType)
     t.mUIWidgets.button_pay.onClick:AddListener(t.OnClickPay)
 
+
     t.scrollrect_playershow = t.mUIWidgets.scrollrect_playershow:GetComponent(ScrollRectList)
     t.scrollrect_playershow.OnItemVisible = function(_obj, _index) t:OnItemVisible(_obj, _index) end
 
@@ -21,52 +22,114 @@ end
 function t:PreShow()
     --    t.scrollrect_playershow:SetMaxItemCount(PlayerOnlineSystem.Instance:GetPlayerInfoCount(3))
 
-    --    local content = t.mUIWidgets.scrollrect_playershow.transform:FindChild("content")
-    --    for i = 0, content.childCount - 1 do
-    --        local muliButton = content:GetChild(i).gameObject:GetComponent(UnityEngine.UI.Button)
-    --    end
+    function func()
+        t.scrollrect_playershow:SetMaxItemCount(ShopSystem.Instance:GetShoppingcarItemList().Count)
+        t:ShowShoppingTotal()
+    end
+    Groot.SignalSystem.Register(Groot.SignalId.ShoppingCar_Update, func);
+    t:InitShoppingCarItemList()
+    t:UpdateMoneyShow()
+    t:ShowShoppingTotal()
 
-
-    t:UdateMoneyShow()
-
-end
-
-function t:OnItemVisible(_obj, _index)
-    --    local player_info = PlayerOnlineSystem.Instance:GetPlayerInfoByIndex(_index, 3)
-    --    if player_info == nil then
-    --        _obj:SetActive(false)
-    --        return
-    --    end
-    --    _obj.transform:FindChild("text_name").gameObject:GetComponent(UnityEngine.UI.Text).text = player_info.PlayerName
-    --    _obj.transform:FindChild("text_level").gameObject:GetComponent(UnityEngine.UI.Text).text = player_info.Level .. UnityLuaUtils.GetLocaleString("Common@Level");
-    --    _obj.transform:FindChild("text_win").gameObject:GetComponent(UnityEngine.UI.Text).text = player_info.WinCount .. UnityLuaUtils.GetLocaleString("Common@Win");
-    --    _obj.transform:FindChild("text_lose").gameObject:GetComponent(UnityEngine.UI.Text).text = player_info.LossCount .. UnityLuaUtils.GetLocaleString("Common@Lose");
-    --    _obj.transform:FindChild("text_state").gameObject:GetComponent(UnityEngine.UI.Text).text = UnityLuaUtils.GetLocaleString("Player@State" .. player_info.State)
 end
 
 function t:OnClickNameType()
-    print("OnClickAddType")
+
 end
 
 function t:OnClickNumType()
-    print("OnClickSubType: ")
+
 end
 
 function t:OnClickCostType()
-    print("OnClickBoxType: ")
+
 end
 
 function t:OnClickPay()
-    UnityLuaUtils.ShowSingleMsgBox(UnityLuaUtils.GetLocaleString("Common@NotOpen"), "", nil, nil);
+    local str = "Total: " .. ShopSystem.Instance:GetShoppingcarItemList().Count .. "  goods\n\n"
+    str = str .. "Cost: " .. t.mUIWidgets.text_totalcast_value.text .. t.mUIWidgets.text_totalcast_gold_unit.text
+    str = str .. "  " .. t.mUIWidgets.text_totalcast_money_value.text .. t.mUIWidgets.text_totalcast_money_unit.text
+    UnityLuaUtils.ShowSingleMsgBox(str, "Confirm Buy", t.ConfirmBuy, t.ConcelBuy);
 end
 
-function t:OnClickShoppingCar()
-    UnityLuaUtils.ShowSingleMsgBox(UnityLuaUtils.GetLocaleString("Common@NotOpen"), "", nil, nil);
+function t:ConfirmBuy()
+    ShopSystem.Instance:BuyItemToSystem()
 end
 
-function t:UdateMoneyShow()
+function t:ConcelBuy()
+
+end
+
+
+function t:UpdateMoneyShow()
     t.mUIWidgets.text_player_gold_value.text = MainPlayer.Instance.PlayerInfo.Money
     t.mUIWidgets.text_player_money_value.text = MainPlayer.Instance.PlayerInfo.Gold
+end
+
+function t:ShowShoppingTotal()
+    local saleItem_infoList = ShopSystem.Instance:GetShoppingcarItemList()
+    local money = 0;
+    local gold = 0;
+
+    for i = 0, saleItem_infoList.Count - 1 do
+        saleItem = ShopSystem.Instance:GetSaleItem(saleItem_infoList[i].PropID)
+        if saleItem.MoneyType == 1 then
+            money = money + saleItem.Price * saleItem_infoList[i].Count
+        else
+            gold = gold + saleItem.Price * saleItem_infoList[i].Count
+        end
+    end
+    t.mUIWidgets.text_totalcast_gold_unit.text = "gold"
+    t.mUIWidgets.text_totalcast_value.text = gold
+    t.mUIWidgets.text_totalcast_money_value.text = money
+    t.mUIWidgets.text_totalcast_money_unit.text = "money"
+end
+
+
+
+function t:InitShoppingCarItemList()
+    t.scrollrect_playershow = t.mUIWidgets.scrollrect_playershow:GetComponent(ScrollRectList)
+    t.scrollrect_playershow.OnItemVisible = function(_obj, _index) t:OnItemVisible(_obj, _index) end
+
+    t.scrollrect_playershow:SetMaxItemCount(ShopSystem.Instance:GetShoppingcarItemList().Count)
+
+    local content = t.mUIWidgets.scrollrect_playershow.transform:FindChild("content")
+
+    for i = 0, content.childCount - 1 do
+        function func() t:OnClickShowItemInfo(i) end
+        content:GetChild(i).gameObject:GetComponent(UnityEngine.UI.Button).onClick:AddListener(func)
+    end
+end
+
+function t:OnClickShowItemInfo(_index)
+    local saleItem_infoList = ShopSystem.Instance:GetShoppingcarItemList()
+    UnityLuaUtils.ShowUI("ui_item_info", saleItem_infoList[_index].PropID, saleItem_infoList[_index].Count, 0, 0, "UpdateShoppingCar")
+end
+
+function t:OnItemVisible(_obj, _index)
+    local saleItem_infoList = ShopSystem.Instance:GetShoppingcarItemList()
+
+    local saleItem = ShopSystem.Instance:GetSaleItem(saleItem_infoList[_index].PropID)
+    local item_info = ItemSystem.Instance:GetItemAttr(saleItem_infoList[_index].PropID)
+    if item_info == nil then
+        return
+    end
+
+    _obj.transform:FindChild("image_good/text_good").gameObject:GetComponent(UnityEngine.UI.Text).text = item_info.Name
+    _obj.transform:FindChild("text_count").gameObject:GetComponent(UnityEngine.UI.Text).text = tostring(saleItem_infoList[_index].Count)
+
+    local unit
+    local price
+
+    if saleItem.MoneyType == 1 then
+        price = saleItem.Price * saleItem_infoList[_index].Count
+        unit = "money"
+    else
+        price = saleItem.Price * saleItem_infoList[_index].Count
+        unit = "gold"
+    end
+    _obj.transform:FindChild("image_good_value/text_good_value").gameObject:GetComponent(UnityEngine.UI.Text).text = tostring(price)
+    _obj.transform:FindChild("image_good_value/text_good_value/text_good_value_unit").gameObject:GetComponent(UnityEngine.UI.Text).text = unit;
 end
 
 return t

@@ -9,7 +9,7 @@ function t:OnUnloaded()
 end
 
 function t:PreShow(...)
-    local itemID, itemCount, handleName, handleFunc = ...
+    local itemID, curCount, minCount, maxCount, handleName = ...
     local itemInfo = ItemSystem.Instance:GetItemAttr(itemID)
     -- t.mUIWidgets.text_title.text
     t.mUIWidgets.text_name.text = itemInfo.Name
@@ -27,10 +27,14 @@ function t:PreShow(...)
     t.mUIWidgets.text_saleprice_value.text = itemInfo.RecycleMoney
     -- t.mUIWidgets.text_saleprice_unit.text = "PriceMoney"
 
-    t.mUIWidgets.text_num_value.text = itemCount
-    function func() t:OnAddClick(itemCount) end
-    t.mUIWidgets.button_num_sub.onClick:AddListener(t.OnSubClick)
+    t.mUIWidgets.text_num_value.text = curCount
+
+    function func() t:OnAddClick(maxCount) end
     t.mUIWidgets.button_num_add.onClick:AddListener(func)
+
+    function func() t:OnSubClick(minCount) end
+    t.mUIWidgets.button_num_sub.onClick:AddListener(func)
+
 
     t.mUIWidgets.text_sale_name.text = handleName
 
@@ -38,6 +42,7 @@ function t:PreShow(...)
     function func()
         t:OnSaleClick(itemID, handleName)
     end
+
     t.mUIWidgets.button_sale.onClick:AddListener(func)
 end
 
@@ -55,18 +60,18 @@ end
 function t:OnAddClick(_count)
     local value = tonumber(t.mUIWidgets.text_num_value.text)
     value = value + 1
-    if value > _count then
+    if value > _count and _count ~= 0 then
         value = _count
     end
     t.mUIWidgets.text_num_value.text = tostring(value)
 end
 
 
-function t:OnSubClick()
+function t:OnSubClick(_count)
     local value = tonumber(t.mUIWidgets.text_num_value.text)
     value = value - 1
-    if value < 1 then
-        value = 1
+    if value < _count then
+        value = _count
     end
     t.mUIWidgets.text_num_value.text = tostring(value)
 end
@@ -76,8 +81,17 @@ function t:OnSaleClick(_id, _handleName)
     if (count == nil) then
         return
     end
+
     if (_handleName == "Sale") then
         ItemSystem.Instance:SaleItemToSystem(_id, count)
+    end
+
+    if (_handleName == "AddShoppingCar") then
+        ShopSystem.Instance:AddShoppingcarItemList(_id, count)
+    end
+
+    if (_handleName == "UpdateShoppingCar") then
+        ShopSystem.Instance:SetShoppingcarItemList(_id, count)
     end
 
     t:OnCloseClick()

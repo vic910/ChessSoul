@@ -53,7 +53,7 @@ function t:OnBagClick(_index)
     if (propItem == nil) then
         return
     end
-    UnityLuaUtils.ShowUI("ui_item_info", propItem.PropID, propItem.Count, "Sale", t.OnSaleClick)
+    UnityLuaUtils.ShowUI("ui_item_info", propItem.PropID, propItem.Count, 1, propItem.Count, "Sale")
 end
 
 function t:OnSafeboxClick()
@@ -76,14 +76,6 @@ end
 function t:UdateMoneyShow()
     t.mUIWidgets.text_money_value.text = MainPlayer.Instance.PlayerInfo.Money
     t.mUIWidgets.text_vipmoney_value.text = MainPlayer.Instance.PlayerInfo.Gold
-end
-
-function t:OnSaleClick(_id, _count)
-    print(_count)
-    if (_count == nil) then
-        return
-    end
-   ItemSystem.Instance:SaleItemToSystem(_id, _count)
 end
 
 return t

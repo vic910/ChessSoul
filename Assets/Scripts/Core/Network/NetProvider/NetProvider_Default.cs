@@ -210,7 +210,7 @@ namespace Groot.Network
 				NetManager.Instance.Register<ConnectMsg>( _onGameSrvConnected );
 				NetManager.Instance.Register<DisconnectMsg>( _onGameSrvDisconnected );
 				IPAddress ip;
-				if( !IPAddress.TryParse( "192.168.100.152", out ip ) )
+				if( !IPAddress.TryParse("192.168.100.200", out ip ) )
 					throw new ServerInfoException( ServerInfoException.ErrorType.IpParseError );
 				IPEndPoint ip_end = new IPEndPoint( ip, 12345 );
 				Entity.m_net_client_gamesrv.Connect( ip_end );

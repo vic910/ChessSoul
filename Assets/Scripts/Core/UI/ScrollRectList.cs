@@ -76,8 +76,18 @@ public class ScrollRectList : MonoBehaviour
 
 	public void SetMaxItemCount( Int32 _count )
 	{
-		if( m_max_item_count == _count )
-			return;
+	    if (m_max_item_count == _count)
+	    {
+	        var node = m_items.First;
+	        Int32 index = 0;
+	        while (node!=null)
+	        {
+                _setItemInfo( node.Value, index, node.Value.Go );
+	            index++;
+	            node = node.Next;
+	        }
+            return;
+        }
 		m_max_item_count = _count;
 		if( m_vertical )
 		{
