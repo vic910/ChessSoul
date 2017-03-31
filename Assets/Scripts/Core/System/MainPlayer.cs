@@ -46,9 +46,14 @@ public class MainPlayer
     private void _onPacketArrived(Int32 _stream_id, PacketType _packet_type, GC_UpdateDeltaGold _msg)
     {
         if (_msg.DeltaGold < 0)
-            PlayerInfo.Gold -= Convert.ToUInt32(_msg.DeltaGold);
-        else
-            PlayerInfo.Gold += Convert.ToUInt32(_msg.DeltaGold);
+        {
+            UInt64 deltaMoney = Convert.ToUInt64(_msg.DeltaGold);
+            if (PlayerInfo.Gold < deltaMoney)
+                PlayerInfo.Gold = 0;
+            else
+                PlayerInfo.Gold -= Convert.ToUInt32(_msg.DeltaGold);
+        }
+        PlayerInfo.Gold += Convert.ToUInt32(_msg.DeltaGold);
         SignalSystem.FireSignal(SignalId.Gold_Update, PlayerInfo.Gold);
     }
 
@@ -61,7 +66,13 @@ public class MainPlayer
     private void _onPacketArrived(Int32 _stream_id, PacketType _packet_type, GC_UpdateDeltaMoney _msg)
     {
         if (_msg.DeltaMoney < 0)
-            PlayerInfo.Money -= Convert.ToUInt32(_msg.DeltaMoney);
+        {
+            UInt64 deltaMoney = Convert.ToUInt64(_msg.DeltaMoney);
+            if (PlayerInfo.Money < deltaMoney)
+                PlayerInfo.Money = 0;
+            else
+                PlayerInfo.Money -= Convert.ToUInt32(_msg.DeltaMoney);
+        }
         else
             PlayerInfo.Money += Convert.ToUInt32(_msg.DeltaMoney);
         SignalSystem.FireSignal(SignalId.Gold_Update, PlayerInfo.Money);
