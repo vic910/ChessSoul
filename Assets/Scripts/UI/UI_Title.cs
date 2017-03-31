@@ -52,15 +52,22 @@ public class UI_Title : UI_Base
             m_btn_return.gameObject.SetActive(false);
         }
         UI_Base cur = UIManager.Instance.GetCurrentWindow();
-        if (cur == null)
-            m_text_title_name.text = string.Empty;
+	    if( cur == null )
+	    {
+			m_btn_menu.gameObject.SetActive( false );
+			m_text_title_name.text = string.Empty;
+		}
         else
         {
             m_text_title_name.text = cur.name;
-            if (closeMenuList.Contains(cur.name))
+            if ( closeMenuList.Contains( cur.name ) )
             {
-                m_btn_menu.gameObject.SetActive(false);
+                m_btn_menu.gameObject.SetActive( false );
             }
+            else
+            {
+				m_btn_menu.gameObject.SetActive( true );
+			}
         }
 
     }
@@ -68,7 +75,6 @@ public class UI_Title : UI_Base
     private void _onReturnButtonClick()
     {
         UIManager.Instance.NavigatorBack();
-        m_btn_menu.gameObject.SetActive(true);
     }
 
     private void _onMenuButtonClick()
@@ -80,16 +86,16 @@ public class UI_Title : UI_Base
     {
         //UnityLuaUtils.ShowSingleMsgBox(UnityLuaUtils.GetLocaleString("Common@NotOpen"), "", null, null);
         //UIManager.Instance.ShowUI("ui_emailSystem");
-        UIManager.Instance.ShowUI("ui_email_send");
+        UIManager.Instance.ShowUI( "ui_email_list" );
     }
 
     private void _onOptionButtonClick(int value)
     {
-        UIManager.Instance.ShowUI("ui_option");
+        UIManager.Instance.ShowUI( "ui_option" );
     }
 
     private void _onShopButtonClick(int value)
     {
-        UIManager.Instance.ShowUI("ui_shop");
+        UIManager.Instance.ShowUI( "ui_shop" );
     }
 }

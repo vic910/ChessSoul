@@ -87,9 +87,11 @@ function t:OnItemVisible( _obj, _index )
 		_obj:SetActive( false );
 		return;
 	end
-	_obj.transform:FindChild( "button_join" ).gameObject:GetComponent( UnityEngine.UI.Button ).onClick:AddListener( function()
-		t:OnItemJoinClick( _index );
-	end );	
+
+	local button = _obj.transform:FindChild( "button_join" ).gameObject:GetComponent( UnityEngine.UI.Button );
+	button.onClick:RemoveAllListeners();
+	button.onClick:AddListener( function() t:OnItemJoinClick( _index ); end );	
+
 	_obj.transform:FindChild( "text_audience" ).gameObject:GetComponent( UnityEngine.UI.Text ).text = UnityLuaUtils.GetLocaleString( "Common@People" )..room_info.PlayerCount;
 	_obj.transform:FindChild( "text_room" ).gameObject:GetComponent( UnityEngine.UI.Text ).text = room_info.RoomID..UnityLuaUtils.GetLocaleString( "Room@Room" );
 	_obj.transform:FindChild( "text_type" ).gameObject:GetComponent( UnityEngine.UI.Text ).text = UnityLuaUtils.GetLocaleString( "Room@Type"..room_info.RoomType );

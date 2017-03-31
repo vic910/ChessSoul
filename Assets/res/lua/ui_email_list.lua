@@ -47,12 +47,11 @@ function t:OnEmailClick( _index )
 end
 
 function t:OnItemVisible( _obj, _index )
+	local button = _obj.transform:FindChild( "btn_click" ).gameObject:GetComponent( UnityEngine.UI.Button );
+	button.onClick:RemoveAllListeners();
+	button.onClick:AddListener( function() t:OnEmailClick( _index ); end );	
+
 	local data = EMailSystem.Instance:GetEmailInfo( t.cur_tab, _index );
-
-	_obj.transform:FindChild( "btn_click" ).gameObject:GetComponent( UnityEngine.UI.Button ).onClick:AddListener( function()
-		t:OnEmailClick( _index );
-	end );	
-
 
 	if data.cRead == 0 then
 		--_obj.transform:FindChild( "image_icon" ).gameObject:GetComponent( UnityEngine.UI.Image ).sprite = 
