@@ -94,12 +94,24 @@ function t:OnSaleClick(_id, _handleName)
         ShopSystem.Instance:SetShoppingcarItemList(_id, count)
     end
 
-    if (_handleName == "BuyItem") then
+    if (_handleName == "BuyItem" and t:JudgeIsBuy(_id, count)) then
         ShopSystem.Instance:BuyItemtoSystem(_id, count)
     end
-
 
     t:OnCloseClick()
 end
 
+function t:JudgeIsBuy(_id, _count)
+    local saleItem = ShopSystem.Instance:GetSaleItem(_id)
+    local price = saleItem.Price * _count
+    if (saleItem.MoneyType == 1 and price > MainPlayer.Instance.PlayerInfo.Money) then
+        UnityLuaUtils.ShowSingleMsgBox("Failed", "Confirm", nil, nil);
+        return false
+    end
+    if (saleItem.MoneyType == 2 and price > MainPlayer.Instance.PlayerInfo.Gold) then
+        UnityLuaUtils.ShowSingleMsgBox("Failed", "Confirm", nil, nil);
+        return false
+    end
+    return true
+end
 return t
