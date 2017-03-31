@@ -94,6 +94,11 @@ function t:OnSaleClick(_id, _handleName)
         ShopSystem.Instance:SetShoppingcarItemList(_id, count)
     end
 
+    if (_handleName == "BuyItem") then
+        ShopSystem.Instance:BuyItemtoSystem(_id, count)
+    end
+
+
     t:OnCloseClick()
 end
 

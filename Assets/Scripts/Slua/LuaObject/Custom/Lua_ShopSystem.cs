@@ -29,12 +29,43 @@ public class Lua_ShopSystem : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int BuyItemtoSystem(IntPtr l) {
+		try {
+			ShopSystem self=(ShopSystem)checkSelf(l);
+			System.UInt64 a1;
+			checkType(l,2,out a1);
+			System.UInt32 a2;
+			checkType(l,3,out a2);
+			self.BuyItemtoSystem(a1,a2);
+			pushValue(l,true);
+			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static public int GetSaleItem(IntPtr l) {
 		try {
 			ShopSystem self=(ShopSystem)checkSelf(l);
 			System.UInt64 a1;
 			checkType(l,2,out a1);
 			var ret=self.GetSaleItem(a1);
+			pushValue(l,true);
+			pushValue(l,ret);
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int GetSaleItemBySaleID(IntPtr l) {
+		try {
+			ShopSystem self=(ShopSystem)checkSelf(l);
+			System.UInt64 a1;
+			checkType(l,2,out a1);
+			var ret=self.GetSaleItemBySaleID(a1);
 			pushValue(l,true);
 			pushValue(l,ret);
 			return 2;
@@ -135,6 +166,19 @@ public class Lua_ShopSystem : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int GetBuyRet(IntPtr l) {
+		try {
+			ShopSystem self=(ShopSystem)checkSelf(l);
+			var ret=self.GetBuyRet();
+			pushValue(l,true);
+			pushValue(l,ret);
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static public int get_Instance(IntPtr l) {
 		try {
 			pushValue(l,true);
@@ -148,13 +192,16 @@ public class Lua_ShopSystem : LuaObject {
 	static public void reg(IntPtr l) {
 		getTypeTable(l,"ShopSystem");
 		addMember(l,BuyItemToSystem);
+		addMember(l,BuyItemtoSystem);
 		addMember(l,GetSaleItem);
+		addMember(l,GetSaleItemBySaleID);
 		addMember(l,GetSaleItemAttr);
 		addMember(l,SetShowList);
 		addMember(l,GetItemInfo);
 		addMember(l,GetShoppingcarItemList);
 		addMember(l,SetShoppingcarItemList);
 		addMember(l,AddShoppingcarItemList);
+		addMember(l,GetBuyRet);
 		addMember(l,"Instance",get_Instance,null,false);
 		createTypeMetatable(l,constructor, typeof(ShopSystem));
 	}

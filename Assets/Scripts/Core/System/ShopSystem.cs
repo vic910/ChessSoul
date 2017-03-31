@@ -69,6 +69,12 @@ public class ShopSystem
         }
     }
 
+    /// <summary>
+    /// 购买失败
+    /// </summary>
+    /// <param name="_stream_id"></param>
+    /// <param name="_packet_type"></param>
+    /// <param name="_msg"></param>
     private void _onPacketArrived(Int32 _stream_id, PacketType _packet_type, GC_Buy _msg)
     {
         m_buyRetItem_attr.Clear();
@@ -79,6 +85,10 @@ public class ShopSystem
         SignalSystem.FireSignal(SignalId.BuyFail_Update);
     }
 
+
+    /// <summary>
+    /// 购物车购买
+    /// </summary>
     public void BuyItemToSystem()
     {
         CG_Buy msg = new CG_Buy();
@@ -91,6 +101,27 @@ public class ShopSystem
             buyItem.BuyCount = Convert.ToUInt32(item.Count);
             msg.BuyItems.Add(buyItem);
         }
+        NetManager.Instance.SendMsg(msg);
+    }
+
+    /// <summary>
+    /// 购买单个商品
+    /// </summary>
+    /// <param name="_id"></param>
+    /// <param name="_count"></param>
+    public void BuyItemtoSystem(UInt64 _id, UInt32 _count)
+    {
+        CG_Buy msg = new CG_Buy();
+        msg.BuyerID = MainPlayer.Instance.PlayerInfo.PlayerID;
+        msg.BuyItemCount = 1;
+
+        BuyItem buyItem = new BuyItem();
+        buyItem.SaleID = GetSaleItem(_id).SaleID;
+        buyItem.BuyCount = _count;
+
+        msg.BuyItems = new List<BuyItem>();
+        msg.BuyItems.Add(buyItem);
+
         NetManager.Instance.SendMsg(msg);
     }
 
@@ -121,6 +152,19 @@ public class ShopSystem
             foreach (SaleItem saleItem in item.Value)
             {
                 if (saleItem.ItemID == _itemID)
+                    return saleItem;
+            }
+        }
+        return null;
+    }
+
+    public SaleItem GetSaleItemBySaleID(ulong _saleID)
+    {
+        foreach (var item in m_saleItem_attr)
+        {
+            foreach (SaleItem saleItem in item.Value)
+            {
+                if (saleItem.SaleID == _saleID)
                     return saleItem;
             }
         }
@@ -221,6 +265,11 @@ public class ShopSystem
         it.Count = _count;
         m_shoppingcarItem_attr.Add(it);
         Groot.SignalSystem.FireSignal(Groot.SignalId.ShoppingCar_Update);
+    }
+
+    public List<BuyRetItem> GetBuyRet()
+    {
+        return m_buyRetItem_attr;
     }
 
     #endregion

@@ -52,7 +52,7 @@ namespace Groot.Network
         [MessageFiled(2, 30)]
         public List<BuyItem> BuyItems; //购买信息
 
-        public CG_Buy() : base(EMsgDirection.MSG_GC, EMsgType.TYPE_SALE, (ushort)ESaleMsgId.SALE_BUY_CG)
+        public CG_Buy() : base(EMsgDirection.MSG_CG, EMsgType.TYPE_SALE, (ushort)ESaleMsgId.SALE_BUY_CG)
         {
 
         }
@@ -60,7 +60,9 @@ namespace Groot.Network
 
     class BuyItem
     {
+        [MessageFiled(0)]
         public UInt64 SaleID; // 临时商铺ID( 这个叫道具ID准确些)
+        [MessageFiled(1)]
         public UInt32 BuyCount; // 购买的此道具数量
     };
 
@@ -77,10 +79,13 @@ namespace Groot.Network
         }
     };
 
-    class BuyRetItem
+    public class BuyRetItem
     {
-        public char Status;           // 参见EIGoRetStatus
+        [MessageFiled(0)]
+        public Byte Status;           // 参见EIGoRetStatus
+        [MessageFiled(1)]
         public UInt64 SaleID;         // 临时商铺ID，GS生成，生存期为出售起至停售或售出止
+        [MessageFiled(2)]
         public UInt32 BuyCount;         // 购买数量
     };
 

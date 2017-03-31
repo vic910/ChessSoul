@@ -36,10 +36,40 @@ function t:PreShow()
     -- t.mUIWidgets.text_player_gold_name.Sprite
     -- t.mUIWidgets.text_player_money_name.text
     Groot.SignalSystem.Register(Groot.SignalId.ShoppingCar_Update, t.UpdateShoppingCarShow)
+    Groot.SignalSystem.Register(Groot.SignalId.Money_Update, t.UpdateMoneyShow)
+    Groot.SignalSystem.Register(Groot.SignalId.Gold_Update, t.UpdateMoneyShow)
+    Groot.SignalSystem.Register(Groot.SignalId.BuyFail_Update, t.BuyFail)
+
     t:InitSaleItemList()
     t:UpdateShoppingCarShow()
     t:UpdateMoneyShow()
 
+end
+
+function t:OnHide()
+    Groot.SignalSystem.Unregister(Groot.SignalId.ShoppingCar_Update, t.UpdateShoppingCarShow);
+    Groot.SignalSystem.Unregister(Groot.SignalId.Money_Update, t.UpdateMoneyShow);
+    Groot.SignalSystem.Unregister(Groot.SignalId.Gold_Update, t.UpdateMoneyShow);
+    Groot.SignalSystem.Unregister(Groot.SignalId.BuyFail_Update, t.BuyFail);
+end
+
+function t:BuyFail()
+    local ret = ShopSystem.Instance:GetBuyRet()
+    local saleItem = ShopSystem.Instance:GetSaleItemBySaleID(ret[0].SaleID)
+    local itemInfo = ItemSystem.Instance:GetItemAttr(saleItem.ItemID)
+
+    if ret[0].Status == 0 then
+        local moneyType
+        if (saleItem.MoneyType == 1) then
+            moneyType = "money"
+        else
+            moneyType = "gold"
+        end
+        local str = itemInfo.Name .. " * " .. ret[0].BuyCount .. "\ntotal use" .. saleItem.Price * ret[0].BuyCount .. "  " .. moneyType
+        UnityLuaUtils.ShowSingleMsgBox(str, "Confirm", nil, nil);
+    else
+        UnityLuaUtils.ShowSingleMsgBox(ret[0].Status, "Confirm", nil, nil);
+    end
 end
 
 function t:OnClickAddType()
@@ -75,8 +105,8 @@ function t:OnClickShoppingCar()
 end
 
 function t:UpdateMoneyShow()
-    t.mUIWidgets.text_player_gold_value.text = MainPlayer.Instance.PlayerInfo.Money
-    t.mUIWidgets.text_player_money_value.text = MainPlayer.Instance.PlayerInfo.Gold
+    t.mUIWidgets.text_player_gold_value.text = MainPlayer.Instance.PlayerInfo.Gold
+    t.mUIWidgets.text_player_money_value.text = MainPlayer.Instance.PlayerInfo.Money
 end
 
 function t:UpdateShoppingCarShow()
@@ -107,7 +137,8 @@ function t:OnClickShowItemInfo(_index)
     if (propItem == nil) then
         return
     end
-    UnityLuaUtils.ShowUI("ui_item_info", propItem.PropID, 1, 1, saleItem_info.ItemCount, "AddShoppingCar")
+    -- UnityLuaUtils.ShowUI("ui_item_info", propItem.PropID, 1, 1, saleItem_info.ItemCount, "AddShoppingCar")
+    UnityLuaUtils.ShowUI("ui_item_info", propItem.PropID, 1, 1, saleItem_info.ItemCount, "BuyItem")
 end
 
 
