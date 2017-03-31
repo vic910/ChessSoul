@@ -45,19 +45,35 @@ public class EMailSystem
         NetManager.Instance.Unregister<msg_MessageGetSentAll_GC>();
     }
 
+	public Int32 GetEmailCount( Int32 _type )
+	{
+		if( _type == 0 )
+			return m_received_mails.Count;
+		else
+			return m_send_mails.Count;
+	}
 
-    //---------------------------------接收消息处理-----------------------------------------------
-    #region 接收消息处理
+	public ShortMessageBaseInfo GetEmailInfo( Int32 _type, Int32 _index )
+	{
+		if( _type == 0 )
+			return m_received_mails[_index];
+		else
+			return m_send_mails[_index];
+	}
 
-    /// <summary>
-    /// 登录时接收到服务器推送的收件箱列表
-    /// </summary>
-    /// <param name="id"></param>
-    /// <param name="type"></param>
-    /// <param name="msg"></param>
-    private void _onPacketArrived( Int32 _id, PacketType _type, msg_MessageGetAll_GC _msg )
+	//---------------------------------接收消息处理-----------------------------------------------
+	#region 接收消息处理
+
+	/// <summary>
+	/// 登录时接收到服务器推送的收件箱列表
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="type"></param>
+	/// <param name="msg"></param>
+	private void _onPacketArrived( Int32 _id, PacketType _type, msg_MessageGetAll_GC _msg )
     {
-		m_received_mails.AddRange( _msg.messageBaseInfo );
+		for( Int32 i = 0; i < _msg.iCount; ++i )
+			m_received_mails.Add( _msg.messageBaseInfo[i] );
     }
 
     /// <summary>
@@ -68,7 +84,8 @@ public class EMailSystem
     /// <param name="msg"></param>
     private void _onPacketArrived( Int32 _id, PacketType _type, msg_MessageGetSentAll_GC _msg )
     {
-		m_send_mails.AddRange( _msg.messageBaseInfo );
+		for( Int32 i = 0; i < _msg.iCount; ++i )
+			m_send_mails.Add( _msg.messageBaseInfo[i] );
     }
 
     #endregion

@@ -44,7 +44,13 @@ public static class UnityLuaUtils
         UIManager.Instance.ShowUI( _name, _args );
     }
 
-    public static void ShowSingleMsgBox(string _tip, string _button_tip, Action _button_action, Action _close_action)
+	public static void UIRetuenBack()
+	{
+		UIManager.Instance.NavigatorBack();
+	}
+
+
+	public static void ShowSingleMsgBox(string _tip, string _button_tip, Action _button_action, Action _close_action)
     {
         UI_MessageBox.Show(_tip, _button_tip, _button_action, _close_action);
     }

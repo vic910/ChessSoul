@@ -17,6 +17,38 @@ public class Lua_EMailSystem : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int GetEmailCount(IntPtr l) {
+		try {
+			EMailSystem self=(EMailSystem)checkSelf(l);
+			System.Int32 a1;
+			checkType(l,2,out a1);
+			var ret=self.GetEmailCount(a1);
+			pushValue(l,true);
+			pushValue(l,ret);
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int GetEmailInfo(IntPtr l) {
+		try {
+			EMailSystem self=(EMailSystem)checkSelf(l);
+			System.Int32 a1;
+			checkType(l,2,out a1);
+			System.Int32 a2;
+			checkType(l,3,out a2);
+			var ret=self.GetEmailInfo(a1,a2);
+			pushValue(l,true);
+			pushValue(l,ret);
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static public int SendMessageGetSentAll(IntPtr l) {
 		try {
 			EMailSystem self=(EMailSystem)checkSelf(l);
@@ -93,6 +125,8 @@ public class Lua_EMailSystem : LuaObject {
 	}
 	static public void reg(IntPtr l) {
 		getTypeTable(l,"EMailSystem");
+		addMember(l,GetEmailCount);
+		addMember(l,GetEmailInfo);
 		addMember(l,SendMessageGetSentAll);
 		addMember(l,"Instance",get_Instance,null,false);
 		addMember(l,"m_received_mails",get_m_received_mails,set_m_received_mails,true);

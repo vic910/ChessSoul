@@ -11,10 +11,6 @@ function t:OnLoaded()
 	t.ScrollRectList.OnItemVisible = function( _obj, _index )
 		t:OnItemVisible( _obj, _index );
 	end
-	local content = t.mUIWidgets.ScrollRect.transform:FindChild( "Content" );
-	for i = 0, content.childCount - 1 do
-		content:GetChild( i ):FindChild( "button_join" ).gameObject:GetComponent( UnityEngine.UI.Button ).onClick:AddListener( t.OnItemJoinClick );
-	end
 end
 
 function t:OnUnloaded()
@@ -81,9 +77,8 @@ function t:OnSearchClick()
 	t.ScrollRectList:SetMaxItemCount( count );
 end
 
-function t:OnItemJoinClick()
-	print( UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.parent.name );
-	--print( type( tonumber( UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.parent.name ) ) );
+function t:OnItemJoinClick( _index )
+	print( _index );
 end
 
 function t:OnItemVisible( _obj, _index )
@@ -92,6 +87,9 @@ function t:OnItemVisible( _obj, _index )
 		_obj:SetActive( false );
 		return;
 	end
+	_obj.transform:FindChild( "button_join" ).gameObject:GetComponent( UnityEngine.UI.Button ).onClick:AddListener( function()
+		t:OnItemJoinClick( _index );
+	end );	
 	_obj.transform:FindChild( "text_audience" ).gameObject:GetComponent( UnityEngine.UI.Text ).text = UnityLuaUtils.GetLocaleString( "Common@People" )..room_info.PlayerCount;
 	_obj.transform:FindChild( "text_room" ).gameObject:GetComponent( UnityEngine.UI.Text ).text = room_info.RoomID..UnityLuaUtils.GetLocaleString( "Room@Room" );
 	_obj.transform:FindChild( "text_type" ).gameObject:GetComponent( UnityEngine.UI.Text ).text = UnityLuaUtils.GetLocaleString( "Room@Type"..room_info.RoomType );

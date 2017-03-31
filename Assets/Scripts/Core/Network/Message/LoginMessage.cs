@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SLua;
 using Utility;
 namespace Groot.Network
 {
@@ -221,6 +222,7 @@ namespace Groot.Network
 		public Int32 JigoCount;
 	};
 
+	[CustomLuaClass]
 	public class SysTimeData
 	{
 		[MessageFiled(0)]

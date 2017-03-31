@@ -9,6 +9,7 @@ namespace SLua {
 				Lua_UnityEngine_Events_UnityEventBase.reg,
 				Lua_UnityEngine_Events_UnityEvent.reg,
 				Lua_UnityEngine_UI_Button_ButtonClickedEvent.reg,
+				Lua_UnityEngine_UI_Graphic.reg,
 				Lua_UnityEngine_UI_Text.reg,
 				Lua_UnityEngine_UI_Image.reg,
 				Lua_UnityEngine_UI_Button.reg,

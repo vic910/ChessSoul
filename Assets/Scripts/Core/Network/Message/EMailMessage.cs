@@ -29,6 +29,7 @@ public class msg_MessageGetAll_GC : MessageBase
 /// <summary>
 /// 已发送邮件数据结构
 /// </summary>
+[CustomLuaClass]
 public class ShortMessageBaseInfo
 {
 	[MessageFiled(0)]

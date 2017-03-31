@@ -56,7 +56,8 @@ namespace SLua
                 _add(typeof(UnityEngine.Events.UnityEvent), null);
                 _add(typeof(UnityEngine.Events.UnityEventBase), null);
                 _add(typeof(UnityEngine.UI.Button.ButtonClickedEvent), null);
-                _add(typeof(UnityEngine.UI.Text), null);
+				_add( typeof( UnityEngine.UI.Graphic ), null );
+				_add(typeof(UnityEngine.UI.Text), null);
                 _add(typeof(UnityEngine.UI.Image), null);
                 _add(typeof(UnityEngine.UI.Button), null);
                 _add(typeof(UnityEngine.UI.InputField), null);
@@ -66,9 +67,9 @@ namespace SLua
             else if (_type == LuaCodeGen.ExportType.DotNET)
             {
                 // .NET
-                _add(typeof(System.Int32), null);
-                _add(typeof(System.String), null);
-            }
+                _add( typeof( System.Int32 ), null );
+                _add( typeof( System.String ), null );
+			}
             else if (_type == LuaCodeGen.ExportType.Custom)
             {
 	            //_add( typeof( SignalSystem ), null );

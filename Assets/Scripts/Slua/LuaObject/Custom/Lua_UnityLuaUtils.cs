@@ -84,6 +84,17 @@ public class Lua_UnityLuaUtils : LuaObject {
 		}
 	}
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int UIRetuenBack_s(IntPtr l) {
+		try {
+			UnityLuaUtils.UIRetuenBack();
+			pushValue(l,true);
+			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static public int ShowSingleMsgBox_s(IntPtr l) {
 		try {
 			System.String a1;
@@ -172,6 +183,7 @@ public class Lua_UnityLuaUtils : LuaObject {
 		addMember(l,GetPos_s);
 		addMember(l,HideUI_s);
 		addMember(l,ShowUI_s);
+		addMember(l,UIRetuenBack_s);
 		addMember(l,ShowSingleMsgBox_s);
 		addMember(l,ShowSelectMsgBox_s);
 		addMember(l,GetLocaleString_s);
