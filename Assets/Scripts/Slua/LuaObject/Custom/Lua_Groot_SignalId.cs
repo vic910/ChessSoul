@@ -15,7 +15,8 @@ public class Lua_Groot_SignalId : LuaObject {
 		addMember(l,7,"Liveness_Update");
 		addMember(l,8,"ShoppingCar_Update");
 		addMember(l,9,"BuyFail_Update");
-		addMember(l,10,"Test");
+		addMember(l,10,"Shop_Update");
+		addMember(l,11,"Test");
 		LuaDLL.lua_pop(l, 1);
 	}
 }

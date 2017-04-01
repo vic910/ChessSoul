@@ -43,6 +43,19 @@ namespace Groot.Network
         }
     };
 
+    class GC_UpdateSale : MessageBase
+    {
+        [MessageFiled(0)]
+        public UInt32 UpdateCount;
+        [MessageFiled(1, 100)]
+        public List<SaleItem> SaleItems;
+
+        public GC_UpdateSale() : base(EMsgDirection.MSG_GC, EMsgType.TYPE_SALE, (ushort)ESaleMsgId.SALE_UPDATESALE_GC)
+        {
+
+        }
+    };
+
     class CG_Buy : MessageBase
     {
         [MessageFiled(0)]

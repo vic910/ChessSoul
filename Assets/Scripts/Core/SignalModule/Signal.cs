@@ -20,7 +20,8 @@ namespace Groot
         Gold_Update,                            //元宝更新
 		Liveness_Update,						//活跃度更新
         ShoppingCar_Update,                     //购物车更新
-        BuyFail_Update,                     //购买失败更新
+        BuyFail_Update,                         //购买失败更新
+        Shop_Update,                            //商城更新
 
 		Test
 	}

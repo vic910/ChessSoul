@@ -54,13 +54,20 @@ public class LocalConfigSystem
             root.AppendChild(openSound);
 
             xml.AppendChild(root);
+
             xml.Save(m_path);
 
+            XmlNodeList xmlNodeList = xml.SelectSingleNode("LocalConfig").ChildNodes;
+            InitConfigList(m_optionConfig, xmlNodeList);
         }
 
-        //加载本地配置表
-        Load();
+        else
+        {
+            //加载本地配置表
+            Load();
+        }
     }
+
 
     public void Uninitialize()
     {

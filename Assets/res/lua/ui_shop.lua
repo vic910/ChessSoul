@@ -39,6 +39,7 @@ function t:PreShow()
     Groot.SignalSystem.Register(Groot.SignalId.Money_Update, t.UpdateMoneyShow)
     Groot.SignalSystem.Register(Groot.SignalId.Gold_Update, t.UpdateMoneyShow)
     Groot.SignalSystem.Register(Groot.SignalId.BuyFail_Update, t.BuyFail)
+    Groot.SignalSystem.Register(Groot.SignalId.Shop_Update, t.UpdateShop)
 
     t:InitSaleItemList()
     t:UpdateShoppingCarShow()
@@ -47,10 +48,17 @@ function t:PreShow()
 end
 
 function t:OnHide()
-    Groot.SignalSystem.Unregister(Groot.SignalId.ShoppingCar_Update, t.UpdateShoppingCarShow);
-    Groot.SignalSystem.Unregister(Groot.SignalId.Money_Update, t.UpdateMoneyShow);
-    Groot.SignalSystem.Unregister(Groot.SignalId.Gold_Update, t.UpdateMoneyShow);
-    Groot.SignalSystem.Unregister(Groot.SignalId.BuyFail_Update, t.BuyFail);
+    Groot.SignalSystem.Unregister(Groot.SignalId.ShoppingCar_Update, t.UpdateShoppingCarShow)
+    Groot.SignalSystem.Unregister(Groot.SignalId.Money_Update, t.UpdateMoneyShow)
+    Groot.SignalSystem.Unregister(Groot.SignalId.Gold_Update, t.UpdateMoneyShow)
+    Groot.SignalSystem.Unregister(Groot.SignalId.BuyFail_Update, t.BuyFail)
+    Groot.SignalSystem.Unregister(Groot.SignalId.Shop_Update, t.UpdateShop)
+end
+
+function t:UpdateShop()
+    local defaultShowList = ShopSystem.Instance:GetSaleItemAttr(0)
+    ShopSystem.Instance:SetShowList(defaultShowList)
+    t.scrollrect_playershow:SetMaxItemCount(ShopSystem.Instance:GetSaleItemAttr(4).Count)
 end
 
 function t:BuyFail()

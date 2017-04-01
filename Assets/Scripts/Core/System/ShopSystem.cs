@@ -20,6 +20,7 @@ public class ShopSystem
     {
         NetManager.Instance.Register<GC_GetAllSales>(_onPacketArrived);
         NetManager.Instance.Register<GC_Buy>(_onPacketArrived);
+        NetManager.Instance.Register<GC_UpdateSale>(_onPacketArrived);
         InitSaleItemAttr();
     }
 
@@ -30,7 +31,10 @@ public class ShopSystem
         m_shoppingcarItem_attr.Clear();
         NetManager.Instance.Unregister<CG_UserSaleToSystem>();
         NetManager.Instance.Unregister<GC_Buy>();
+        NetManager.Instance.Unregister<GC_UpdateSale>();
     }
+
+    #region//消息处理
 
     /// <summary>
     /// 接受商品信息
@@ -69,6 +73,45 @@ public class ShopSystem
         }
     }
 
+    private void _onPacketArrived(Int32 _stream_id, PacketType _packet_type, GC_UpdateSale _msg)
+    {
+        for (int i = 0; i < _msg.UpdateCount; i++)
+        {
+            int type = _msg.SaleItems[i].SaleType;
+            switch (type)
+            {
+                case 0:
+                    UpdateSaleItem(_msg.SaleItems[i], 1);//减损
+                    break;
+                case 1:
+                    UpdateSaleItem(_msg.SaleItems[i], 0);//加倍
+                    break;
+                case 6:
+                    UpdateSaleItem(_msg.SaleItems[i], 2);//宝箱
+                    break;
+                default:
+                    UpdateSaleItem(_msg.SaleItems[i], 3);//其他
+                    break;
+            }
+        }
+        SignalSystem.FireSignal(SignalId.Shop_Update);
+    }
+
+    private void UpdateSaleItem(SaleItem _item, int _index)
+    {
+        List<SaleItem> lis = m_saleItem_attr[_index];
+        for (int i = 0; i < lis.Count; i++)
+        {
+            if (lis[i].SaleID == _item.SaleID)
+            {
+                lis[i] = _item;
+                return;
+            }
+        }
+        lis.Add(_item);
+    }
+
+
     /// <summary>
     /// 购买失败
     /// </summary>
@@ -84,7 +127,6 @@ public class ShopSystem
         }
         SignalSystem.FireSignal(SignalId.BuyFail_Update);
     }
-
 
     /// <summary>
     /// 购物车购买
@@ -124,6 +166,8 @@ public class ShopSystem
 
         NetManager.Instance.SendMsg(msg);
     }
+
+    #endregion
 
     #region//商城及购物车数据操作
 
